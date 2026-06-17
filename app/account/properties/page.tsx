@@ -1,0 +1,81 @@
+import Link from 'next/link';
+import { getSupabaseServerClient } from '@/lib/supabase';
+import { PROPERTY_STATUS_LABELS, PROPERTY_TYPE_LABELS, formatBudget } from '@/lib/types';
+import type { SellerProperty } from '@/lib/types';
+
+export const metadata = { title: 'My properties | Intentory' };
+
+export default async function PropertiesPage({ searchParams }: { searchParams: Promise<{ added?: string }> }) {
+  const params = await searchParams;
+  const supabase = await getSupabaseServerClient();
+  const { data: { user } } = await supabase.auth.getUser();
+
+  const { data } = await supabase
+    .from('seller_properties')
+    .select('*')
+    .eq('user_id', user!.id)
+    .neq('status', 'withdrawn')
+    .order('created_at', { ascending: false });
+
+  const properties = (data ?? []) as SellerProperty[];
+
+  return (
+    <>
+      <div className="account-page-header">
+        <div>
+          <h1 className="account-page-title">My properties</h1>
+          <p className="account-page-sub">Properties you have registered as privately available.</p>
+        </div>
+        <Link href="/account/properties/add" className="btn btn-primary">+ Register a property</Link>
+      </div>
+
+      {params.added && (
+        <div style={{ background: 'var(--teal-soft)', border: '1.5px solid var(--teal)', borderRadius: 'var(--radius-lg)', padding: 'var(--space-4) var(--space-5)', marginBottom: 'var(--space-6)', fontSize: 'var(--text-sm)', color: 'var(--teal-dark)' }}>
+          ✓ Property registered. We&apos;re checking for matched buyers now.
+        </div>
+      )}
+
+      {properties.length === 0 ? (
+        <div className="empty-state">
+          <svg className="empty-state-icon" viewBox="0 0 48 48" fill="none">
+            <path d="M6 20L24 6l18 14v22a2 2 0 01-2 2H8a2 2 0 01-2-2V20z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+            <path d="M18 42V28h12v14" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+          </svg>
+          <div className="empty-state-title">No properties registered yet</div>
+          <p className="empty-state-body">Register a property as privately available and we&apos;ll match it to buyers who have already registered interest in your area.</p>
+          <Link href="/account/properties/add" className="btn btn-primary">Register a property</Link>
+        </div>
+      ) : (
+        <div className="card-grid">
+          {properties.map(p => (
+            <div key={p.id} className="card" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                {p.property_type && <span className="badge badge-navy">{PROPERTY_TYPE_LABELS[p.property_type]}</span>}
+                <span className={`badge ${p.status === 'available' ? 'badge-teal' : 'badge-slate'}`}>
+                  {PROPERTY_STATUS_LABELS[p.status]}
+                </span>
+              </div>
+              <div style={{ fontWeight: 600, fontSize: 'var(--text-sm)', lineHeight: 1.4 }}>{p.full_address}</div>
+              {p.asking_price && (
+                <div style={{ fontSize: 'var(--text-xs)', color: 'var(--slate)' }}>Asking {formatBudget(p.asking_price)}</div>
+              )}
+              {p.broadcast_buyer_count > 0 && (
+                <div style={{ fontSize: 'var(--text-xs)', color: 'var(--teal-dark)', fontWeight: 600 }}>
+                  {p.broadcast_buyer_count} matched {p.broadcast_buyer_count === 1 ? 'buyer' : 'buyers'}
+                </div>
+              )}
+              <div style={{ display: 'flex', gap: 'var(--space-2)', marginTop: 'auto' }}>
+                <Link href={`/account/properties/${p.id}`} className="btn btn-outline-dark btn-sm">View</Link>
+                {!p.broadcast_sent_at && p.status === 'available' && (
+                  <Link href={`/account/properties/${p.id}/broadcast`} className="btn btn-primary btn-sm">
+                    Broadcast to buyers — £49
+                  </Link>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </>
+  );
+}
