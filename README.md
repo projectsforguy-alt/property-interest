@@ -1,4 +1,4 @@
-# Quietly — private property interest MVP 
+# Quietly — private property interest MVP
 
 A Next.js app for registering private interest in a property, street or area.
 Buyers pay via Stripe, submissions are stored in Supabase, and the team

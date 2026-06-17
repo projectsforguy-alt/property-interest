@@ -2,7 +2,7 @@
    INTENTORY — Design tokens & global styles
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600&display=swap');
+/* Fonts loaded via next/font/google in layout.tsx */
 
 :root {
   /* Palette */
@@ -21,8 +21,8 @@
   --red:         #DC2626;
 
   /* Typography */
-  --font-display: 'Instrument Serif', Georgia, serif;
-  --font-body:    'Inter', system-ui, sans-serif;
+  --font-display: 'DM Sans', system-ui, sans-serif;
+  --font-body:    'DM Sans', system-ui, sans-serif;
   --font-tight:   'Inter Tight', 'Inter', system-ui, sans-serif;
 
   /* Scale */
@@ -301,15 +301,16 @@ ul, ol { list-style: none; }
   font-size: clamp(2.5rem, 6vw, 4.5rem);
   font-weight: 400;
   line-height: 1.08;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
   color: var(--white);
   max-width: 820px;
   margin-bottom: var(--space-6);
 }
 
 .hero-headline em {
-  font-style: italic;
+  font-style: normal;
   color: var(--teal);
+  font-weight: 700;
 }
 
 .hero-sub {

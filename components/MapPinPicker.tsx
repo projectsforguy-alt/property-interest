@@ -1,64 +1,54 @@
 'use client';
+import { useEffect, useState } from 'react';
+import dynamic from 'next/dynamic';
 
-import { useState } from 'react';
-import { MapContainer, TileLayer, Marker, useMapEvents } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
-import L from 'leaflet';
-
-// Default Leaflet marker icons reference image files that don't resolve under
-// Next.js bundling — point them at the CDN copies instead.
-const markerIcon = new L.Icon({
-  iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
-  iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
-  shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  shadowSize: [41, 41],
-});
-
-const UK_CENTER: [number, number] = [54.5, -3.4];
-
-type MapPinPickerProps = {
+interface Props {
   lat: number | null;
   lng: number | null;
-  onChange: (lat: number, lng: number) => void;
-};
-
-function ClickHandler({ onChange }: { onChange: (lat: number, lng: number) => void }) {
-  useMapEvents({
-    click(e) {
-      onChange(e.latlng.lat, e.latlng.lng);
-    },
-  });
-  return null;
+  onChange: (lat: number, lng: number, address?: string) => void;
 }
 
-export default function MapPinPicker({ lat, lng, onChange }: MapPinPickerProps) {
-  const [center] = useState<[number, number]>(lat && lng ? [lat, lng] : UK_CENTER);
-  const zoom = lat && lng ? 15 : 6;
+// Dynamically import Leaflet to avoid SSR issues
+const LeafletMap = dynamic(() => import('./LeafletMap'), { ssr: false, loading: () => (
+  <div style={{ height: 320, background: 'var(--surface)', borderRadius: 'var(--radius)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--slate)', fontSize: 'var(--text-sm)' }}>
+    Loading map…
+  </div>
+) });
+
+export default function MapPinPicker({ lat, lng, onChange }: Props) {
+  const [address, setAddress] = useState<string>('');
+  const [loading, setLoading] = useState(false);
+
+  async function handleMapClick(newLat: number, newLng: number) {
+    setLoading(true);
+    onChange(newLat, newLng);
+    try {
+      const res = await fetch(
+        `https://nominatim.openstreetmap.org/reverse?lat=${newLat}&lon=${newLng}&format=json`,
+        { headers: { 'Accept-Language': 'en-GB' } }
+      );
+      const data = await res.json();
+      if (data.display_name) {
+        setAddress(data.display_name);
+        onChange(newLat, newLng, data.display_name);
+      }
+    } catch { /* ignore */ }
+    setLoading(false);
+  }
 
   return (
-    <div
-      style={{
-        borderRadius: 'var(--radius)',
-        overflow: 'hidden',
-        border: '1px solid var(--line-strong)',
-      }}
-    >
-      <MapContainer
-        center={center}
-        zoom={zoom}
-        style={{ height: '320px', width: '100%' }}
-        scrollWheelZoom
-      >
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        <ClickHandler onChange={onChange} />
-        {lat && lng && <Marker position={[lat, lng]} icon={markerIcon} />}
-      </MapContainer>
+    <div>
+      <LeafletMap lat={lat} lng={lng} onMapClick={handleMapClick} />
+      {lat && lng && (
+        <div style={{ marginTop: 'var(--space-3)', fontSize: 'var(--text-xs)', color: 'var(--slate)' }}>
+          {loading ? 'Looking up address…' : address || `${lat.toFixed(5)}, ${lng.toFixed(5)}`}
+        </div>
+      )}
+      {!lat && (
+        <div style={{ marginTop: 'var(--space-2)', fontSize: 'var(--text-xs)', color: 'var(--slate)' }}>
+          Click on the map to drop a pin at your target location
+        </div>
+      )}
     </div>
   );
 }

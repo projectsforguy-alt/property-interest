@@ -1,20 +1,12 @@
 import type { Metadata } from 'next';
-import { Instrument_Serif, Inter, Inter_Tight } from 'next/font/google';
+import { DM_Sans, Inter_Tight } from 'next/font/google';
 import Link from 'next/link';
 import './globals.css';
 
-const display = Instrument_Serif({
+const display = DM_Sans({
   subsets: ['latin'],
   variable: '--font-display',
-  weight: '400',
-  style: ['normal', 'italic'],
-  display: 'swap',
-});
-
-const body = Inter({
-  subsets: ['latin'],
-  variable: '--font-body',
-  weight: ['400', '500', '600'],
+  weight: ['400', '500', '600', '700'],
   display: 'swap',
 });
 
@@ -34,7 +26,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className={`${display.variable} ${body.variable} ${tight.variable}`}>
+      <body className={`${display.variable} ${tight.variable}`}>
         <div className="site">
           <SiteHeader />
           <main className="site-main">{children}</main>
