@@ -79,29 +79,13 @@ function HeroSection() {
         </div>
       </div>
 
-      {/* Right — hero image, no CSS class interference */}
-      <div style={{ position: 'relative', minHeight: 680 }}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/images/hero.png"
-          alt="A desirable home on a quiet residential street"
-          style={{
-            position: 'absolute',
-            inset: 0,
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            objectPosition: 'center',
-            display: 'block',
-          }}
-        />
-        <div style={{
-          position: 'absolute',
-          inset: 0,
-          background: 'linear-gradient(90deg, var(--navy) 0%, transparent 25%)',
-          pointerEvents: 'none',
-        }} />
-      </div>
+      {/* Right — hero image as background */}
+      <div style={{
+        backgroundImage: 'url(/images/hero.png)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        minHeight: 680,
+      }} />
     </section>
   );
 }
