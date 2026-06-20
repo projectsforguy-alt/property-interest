@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 const TICKER_ITEMS = [
   { location: 'Prestbury Road, SK10', count: 4 },
@@ -29,40 +30,59 @@ export default function HomePage() {
 function HeroSection() {
   const doubled = [...TICKER_ITEMS, ...TICKER_ITEMS];
   return (
-    <section className="hero">
-      <div className="container">
-        <div className="hero-eyebrow">
-          <span className="hero-eyebrow-dot" />
-          Private property demand platform
-        </div>
-        <h1 className="hero-headline">
-          The home you want<br />
-          probably <em>isn&apos;t listed.</em>
-        </h1>
-        <p className="hero-sub">
-          Intentory lets buyers make private offers on any home — listed or not. And lets homeowners discover whether serious buyers are already waiting, before they call an agent.
-        </p>
-        <div className="hero-actions">
-          <Link href="/register" className="btn btn-primary btn-lg">
-            Go after the home you want
-          </Link>
-          <Link href="/sellers" className="btn btn-outline btn-lg">
-            I own a property
-          </Link>
-        </div>
-
-        <div className="demand-ticker">
-          <div className="demand-ticker-label">Buyer demand registered today</div>
-          <div className="demand-ticker-track" aria-hidden="true">
-            <div className="demand-ticker-inner">
-              {doubled.map((item, i) => (
-                <span key={i} className="demand-chip">
-                  <span className="demand-chip-count">{item.count}</span>
-                  {item.count === 1 ? 'buyer' : 'buyers'} · {item.location}
-                </span>
-              ))}
+    <section className="hero" style={{ padding: 0, minHeight: 600 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', minHeight: 600 }}>
+        {/* Left — copy */}
+        <div style={{ padding: 'var(--space-20) var(--space-12) var(--space-16)', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+          <div className="hero-eyebrow">
+            <span className="hero-eyebrow-dot" />
+            Private property demand platform
+          </div>
+          <h1 className="hero-headline">
+            The home you want<br />
+            probably <em>isn&apos;t listed.</em>
+          </h1>
+          <p className="hero-sub">
+            Intentory lets buyers make private offers on any home — listed or not. And lets homeowners discover whether serious buyers are already waiting, before they call an agent.
+          </p>
+          <div className="hero-actions">
+            <Link href="/register" className="btn btn-primary btn-lg">
+              Go after the home you want
+            </Link>
+            <Link href="/sellers" className="btn btn-outline btn-lg">
+              I own a property
+            </Link>
+          </div>
+          <div className="demand-ticker" style={{ marginTop: 'var(--space-10)' }}>
+            <div className="demand-ticker-label">Buyer demand registered today</div>
+            <div className="demand-ticker-track" aria-hidden="true">
+              <div className="demand-ticker-inner">
+                {doubled.map((item, i) => (
+                  <span key={i} className="demand-chip">
+                    <span className="demand-chip-count">{item.count}</span>
+                    {item.count === 1 ? 'buyer' : 'buyers'} · {item.location}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
+        </div>
+
+        {/* Right — hero image */}
+        <div style={{ position: 'relative', minHeight: 600 }}>
+          <Image
+            src="/images/hero.png"
+            alt="A desirable home on a quiet residential street"
+            fill
+            style={{ objectFit: 'cover', objectPosition: 'center' }}
+            priority
+          />
+          {/* Subtle gradient fade to left so it blends with the navy */}
+          <div style={{
+            position: 'absolute', inset: 0,
+            background: 'linear-gradient(90deg, var(--navy) 0%, transparent 20%)',
+            pointerEvents: 'none',
+          }} />
         </div>
       </div>
     </section>
@@ -84,7 +104,7 @@ function ProblemSection() {
             <div style={{ paddingLeft: 'var(--space-5)', borderLeft: '3px solid var(--teal)' }}>
               <div style={{ fontWeight: 600, marginBottom: 'var(--space-1)', fontSize: 'var(--text-base)' }}>For buyers</div>
               <p style={{ fontSize: 'var(--text-sm)', color: 'var(--slate)', lineHeight: 1.65 }}>
-                You want a specific road, village, or type of home. But you&apos;re at the mercy of whatever happens to be listed — and when your dream home does appear, so does everyone else. The best properties go before most buyers even know they existed.
+                You want a specific road, village, or type of home. But you&apos;re at the mercy of whatever happens to be listed — and when your dream home does appear, so does everyone else. The best properties go before most buyers even knew they existed.
               </p>
             </div>
             <div style={{ paddingLeft: 'var(--space-5)', borderLeft: '3px solid var(--teal)' }}>
@@ -123,25 +143,59 @@ function BuyerBenefitsSection() {
   return (
     <section className="section section-dark">
       <div className="container">
-        <div className="section-label section-label-dark">For buyers</div>
-        <h2 className="section-headline" style={{ color: 'var(--white)', maxWidth: 600, marginBottom: 'var(--space-3)' }}>
-          Stop waiting for the right home to appear. Go and find it.
-        </h2>
-        <p className="section-sub section-sub-light" style={{ marginBottom: 'var(--space-12)' }}>
-          Intentory gives serious buyers a private route to the homes they actually want — not just the ones that happen to be listed.
-        </p>
-        <div className="steps" style={{ marginBottom: 'var(--space-10)' }}>
-          {benefits.map((b, i) => (
-            <div key={i} className="step">
-              <div className="step-number">0{i + 1}</div>
-              <div className="step-title">{b.title}</div>
-              <p className="step-body">{b.body}</p>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-16)', alignItems: 'start' }}>
+          <div>
+            <div className="section-label section-label-dark">For buyers</div>
+            <h2 className="section-headline" style={{ color: 'var(--white)', marginBottom: 'var(--space-3)' }}>
+              Stop waiting for the right home to appear. Go and find it.
+            </h2>
+            <p className="section-sub section-sub-light" style={{ marginBottom: 'var(--space-8)' }}>
+              Intentory gives serious buyers a private route to the homes they actually want — not just the ones that happen to be listed.
+            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-5)', marginBottom: 'var(--space-10)' }}>
+              {benefits.map((b, i) => (
+                <div key={i} style={{ display: 'flex', gap: 'var(--space-4)' }}>
+                  <div style={{ fontFamily: 'var(--font-tight)', fontWeight: 700, fontSize: 'var(--text-xs)', color: 'var(--teal)', width: 24, flexShrink: 0, paddingTop: 3 }}>0{i + 1}</div>
+                  <div>
+                    <div style={{ fontWeight: 600, fontSize: 'var(--text-sm)', color: 'var(--white)', marginBottom: 4 }}>{b.title}</div>
+                    <div style={{ fontSize: 'var(--text-sm)', color: 'rgba(255,255,255,0.55)', lineHeight: 1.65 }}>{b.body}</div>
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-        <div style={{ display: 'flex', gap: 'var(--space-4)', flexWrap: 'wrap' }}>
-          <Link href="/register" className="btn btn-primary btn-lg">Register free — no commitment</Link>
-          <Link href="/how-it-works" className="btn btn-outline btn-lg">How it works</Link>
+            <div style={{ display: 'flex', gap: 'var(--space-4)', flexWrap: 'wrap' }}>
+              <Link href="/register" className="btn btn-primary btn-lg">Register free</Link>
+              <Link href="/how-it-works" className="btn btn-outline btn-lg">How it works</Link>
+            </div>
+          </div>
+
+          {/* Three image block */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridTemplateRows: '1fr 1fr', gap: 'var(--space-3)', aspectRatio: '1 / 1' }}>
+            <div style={{ position: 'relative', borderRadius: 'var(--radius-lg)', overflow: 'hidden', gridRow: '1 / 3' }}>
+              <Image
+                src="/images/block-1.png"
+                alt="A young couple outside their new home"
+                fill
+                style={{ objectFit: 'cover' }}
+              />
+            </div>
+            <div style={{ position: 'relative', borderRadius: 'var(--radius-lg)', overflow: 'hidden' }}>
+              <Image
+                src="/images/block-2.png"
+                alt="A family on a desirable residential street"
+                fill
+                style={{ objectFit: 'cover' }}
+              />
+            </div>
+            <div style={{ position: 'relative', borderRadius: 'var(--radius-lg)', overflow: 'hidden' }}>
+              <Image
+                src="/images/block-3.png"
+                alt="A homeowner considering their options"
+                fill
+                style={{ objectFit: 'cover' }}
+              />
+            </div>
+          </div>
         </div>
       </div>
     </section>
