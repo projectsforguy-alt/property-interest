@@ -30,10 +30,15 @@ function HeroSection() {
   const doubled = [...TICKER_ITEMS, ...TICKER_ITEMS];
   return (
     <section style={{ background: 'var(--navy)', color: 'var(--white)' }}>
-      <div className="hero-grid">
-        {/* Left — copy, uses same container padding as rest of site */}
+      <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        minHeight: 680,
+      }}>
+        {/* Left — text */}
         <div style={{
-          padding: 'var(--space-20) var(--space-8) var(--space-16) calc((100vw - 1160px) / 2 + var(--space-6))',
+          flex: '0 0 50%',
+          padding: 'var(--space-20) var(--space-8) var(--space-16) calc(max((100vw - 1160px) / 2, var(--space-6)))',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
@@ -72,16 +77,19 @@ function HeroSection() {
           </div>
         </div>
 
-        {/* Right — background image */}
-        <div className="hero-image" style={{
+        {/* Right — image */}
+        <div style={{
+          flex: '0 0 50%',
           backgroundImage: 'url(/images/hero.png)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
+          minHeight: 680,
         }} />
       </div>
     </section>
   );
 }
+
 
 function ProblemSection() {
   return (
