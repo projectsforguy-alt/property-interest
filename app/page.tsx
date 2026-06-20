@@ -30,28 +30,16 @@ function HeroSection() {
   const doubled = [...TICKER_ITEMS, ...TICKER_ITEMS];
   return (
     <section style={{ background: 'var(--navy)', color: 'var(--white)', overflow: 'hidden' }}>
-      <div style={{
-        display: 'flex',
-        flexDirection: 'row',
-        minHeight: 680,
-      }}>
+      {/* Desktop: side by side. Mobile: stacked via CSS class */}
+      <div className="hero-layout">
         {/* Left — text */}
-        <div style={{
-          flex: '0 0 50%',
-          padding: 'var(--space-20) var(--space-8) var(--space-16) calc(max((100vw - 1160px) / 2, var(--space-6)))',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          overflow: 'hidden',
-          minWidth: 0,
-        }}>
+        <div className="hero-text">
           <div className="hero-eyebrow">
             <span className="hero-eyebrow-dot" />
             Private property demand platform
           </div>
           <h1 className="hero-headline">
-            The home you want<br />
-            probably <em>isn&apos;t listed.</em>
+            The home you want probably <em>isn&apos;t listed.</em>
           </h1>
           <p className="hero-sub">
             Intentory lets buyers make private offers on any home — listed or not. And lets homeowners discover whether serious buyers are already waiting, before they call an agent.
@@ -80,25 +68,13 @@ function HeroSection() {
         </div>
 
         {/* Right — image */}
-        <div style={{
-          flex: '0 0 50%',
-          minHeight: 680,
-          position: 'relative',
-          overflow: 'hidden',
-        }}>
+        <div className="hero-img-wrap">
           <img
             src="/images/hero.png"
-            alt=""
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              objectPosition: 'center',
-            }}
+            alt="A desirable home on a quiet residential street"
+            className="hero-img"
           />
+          <div className="hero-img-fade" />
         </div>
       </div>
     </section>
