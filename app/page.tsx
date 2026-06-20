@@ -42,6 +42,8 @@ function HeroSection() {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
+          overflow: 'hidden',
+          minWidth: 0,
         }}>
           <div className="hero-eyebrow">
             <span className="hero-eyebrow-dot" />
