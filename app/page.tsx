@@ -29,63 +29,56 @@ export default function HomePage() {
 function HeroSection() {
   const doubled = [...TICKER_ITEMS, ...TICKER_ITEMS];
   return (
-    <section style={{
-      background: 'var(--navy)',
-      color: 'var(--white)',
-      display: 'grid',
-      gridTemplateColumns: '1fr 1fr',
-      minHeight: 680,
-    }}>
-      {/* Left — copy */}
-      <div style={{
-        padding: 'var(--space-16) var(--space-8) var(--space-16) var(--space-12)',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        position: 'relative',
-        zIndex: 1,
-      }}>
-        <div className="hero-eyebrow">
-          <span className="hero-eyebrow-dot" />
-          Private property demand platform
-        </div>
-        <h1 className="hero-headline">
-          The home you want<br />
-          probably <em>isn&apos;t listed.</em>
-        </h1>
-        <p className="hero-sub">
-          Intentory lets buyers make private offers on any home — listed or not. And lets homeowners discover whether serious buyers are already waiting, before they call an agent.
-        </p>
-        <div className="hero-actions">
-          <Link href="/register" className="btn btn-primary btn-lg">
-            Go after the home you want
-          </Link>
-          <Link href="/sellers" className="btn btn-outline btn-lg">
-            I own a property
-          </Link>
-        </div>
-        <div className="demand-ticker" style={{ marginTop: 'var(--space-10)' }}>
-          <div className="demand-ticker-label">Buyer demand registered today</div>
-          <div className="demand-ticker-track" aria-hidden="true">
-            <div className="demand-ticker-inner">
-              {doubled.map((item, i) => (
-                <span key={i} className="demand-chip">
-                  <span className="demand-chip-count">{item.count}</span>
-                  {item.count === 1 ? 'buyer' : 'buyers'} · {item.location}
-                </span>
-              ))}
+    <section style={{ background: 'var(--navy)', color: 'var(--white)' }}>
+      <div className="hero-grid">
+        {/* Left — copy, uses same container padding as rest of site */}
+        <div style={{
+          padding: 'var(--space-20) var(--space-8) var(--space-16) calc((100vw - 1160px) / 2 + var(--space-6))',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+        }}>
+          <div className="hero-eyebrow">
+            <span className="hero-eyebrow-dot" />
+            Private property demand platform
+          </div>
+          <h1 className="hero-headline">
+            The home you want<br />
+            probably <em>isn&apos;t listed.</em>
+          </h1>
+          <p className="hero-sub">
+            Intentory lets buyers make private offers on any home — listed or not. And lets homeowners discover whether serious buyers are already waiting, before they call an agent.
+          </p>
+          <div className="hero-actions">
+            <Link href="/register" className="btn btn-primary btn-lg">
+              Go after the home you want
+            </Link>
+            <Link href="/sellers" className="btn btn-outline btn-lg">
+              I own a property
+            </Link>
+          </div>
+          <div className="demand-ticker" style={{ marginTop: 'var(--space-10)' }}>
+            <div className="demand-ticker-label">Buyer demand registered today</div>
+            <div className="demand-ticker-track" aria-hidden="true">
+              <div className="demand-ticker-inner">
+                {doubled.map((item, i) => (
+                  <span key={i} className="demand-chip">
+                    <span className="demand-chip-count">{item.count}</span>
+                    {item.count === 1 ? 'buyer' : 'buyers'} · {item.location}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Right — hero image as background */}
-      <div style={{
-        backgroundImage: 'url(/images/hero.png)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        minHeight: 680,
-      }} />
+        {/* Right — background image */}
+        <div className="hero-image" style={{
+          backgroundImage: 'url(/images/hero.png)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }} />
+      </div>
     </section>
   );
 }
@@ -94,7 +87,7 @@ function ProblemSection() {
   return (
     <section className="section" style={{ background: 'var(--white)', borderBottom: '1px solid var(--line)' }}>
       <div className="container">
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-16)', alignItems: 'center' }}>
+        <div className="two-col-grid" style={{ alignItems: 'center' }}>
           <div>
             <div className="section-label">The problem</div>
             <h2 className="section-headline">
@@ -144,7 +137,7 @@ function BuyerBenefitsSection() {
   return (
     <section className="section section-dark">
       <div className="container">
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-16)', alignItems: 'center' }}>
+        <div className="two-col-grid" style={{ alignItems: 'center' }}>
           <div>
             <div className="section-label section-label-dark">For buyers</div>
             <h2 className="section-headline" style={{ color: 'var(--white)', marginBottom: 'var(--space-3)' }}>
@@ -198,7 +191,7 @@ function SellerBenefitsSection() {
   return (
     <section className="section" style={{ background: 'var(--white)' }}>
       <div className="container">
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-16)', alignItems: 'center' }}>
+        <div className="two-col-grid" style={{ alignItems: 'center' }}>
           <div>
             <div className="section-label">For homeowners</div>
             <h2 className="section-headline" style={{ marginBottom: 'var(--space-4)' }}>
@@ -257,7 +250,7 @@ function HowItWorksSection() {
       <div className="container">
         <div className="section-label">Simple by design</div>
         <h2 className="section-headline" style={{ marginBottom: 'var(--space-12)' }}>How Intentory works</h2>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-8)' }}>
+        <div className="two-col-grid">
           <div>
             <div style={{ fontWeight: 700, fontSize: 'var(--text-xs)', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--teal-dark)', marginBottom: 'var(--space-5)' }}>Buyers</div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-5)' }}>
@@ -304,7 +297,7 @@ function CtaSection() {
   return (
     <section className="section section-dark">
       <div className="container">
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-4)' }}>
+        <div className="two-col-grid" style={{ gap: 'var(--space-4)' }}>
           <div className="split-card split-card-buyer" style={{ background: 'var(--navy-soft)' }}>
             <div className="split-card-eyebrow">For buyers</div>
             <h3 className="split-card-headline">Go after the home you want.</h3>
