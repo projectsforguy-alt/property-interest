@@ -29,7 +29,7 @@ export default function HomePage() {
 function HeroSection() {
   const doubled = [...TICKER_ITEMS, ...TICKER_ITEMS];
   return (
-    <section style={{ background: 'var(--navy)', color: 'var(--white)' }}>
+    <section style={{ background: 'var(--navy)', color: 'var(--white)', overflow: 'hidden' }}>
       <div style={{
         display: 'flex',
         flexDirection: 'row',
