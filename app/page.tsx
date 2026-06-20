@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Image from 'next/image';
 
 const TICKER_ITEMS = [
   { location: 'Prestbury Road, SK10', count: 4 },
@@ -142,7 +141,7 @@ function BuyerBenefitsSection() {
   return (
     <section className="section section-dark">
       <div className="container">
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-16)', alignItems: 'start' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-16)', alignItems: 'center' }}>
           <div>
             <div className="section-label section-label-dark">For buyers</div>
             <h2 className="section-headline" style={{ color: 'var(--white)', marginBottom: 'var(--space-3)' }}>
@@ -169,30 +168,21 @@ function BuyerBenefitsSection() {
           </div>
 
           {/* Three image block */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridTemplateRows: '1fr 1fr', gap: 'var(--space-3)', aspectRatio: '1 / 1' }}>
-            <div style={{ position: 'relative', borderRadius: 'var(--radius-lg)', overflow: 'hidden', gridRow: '1 / 3' }}>
-              <Image
-                src="/images/block-1.png"
-                alt="A young couple outside their new home"
-                fill
-                style={{ objectFit: 'cover' }}
-              />
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridTemplateRows: '300px 300px', gap: 'var(--space-3)' }}>
+            <div style={{ borderRadius: 'var(--radius-lg)', overflow: 'hidden', gridRow: '1 / 3' }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/images/block-1.png" alt="A young couple outside their new home"
+                style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
             </div>
-            <div style={{ position: 'relative', borderRadius: 'var(--radius-lg)', overflow: 'hidden' }}>
-              <Image
-                src="/images/block-2.png"
-                alt="A family on a desirable residential street"
-                fill
-                style={{ objectFit: 'cover' }}
-              />
+            <div style={{ borderRadius: 'var(--radius-lg)', overflow: 'hidden' }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/images/block-2.png" alt="A family on a desirable residential street"
+                style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
             </div>
-            <div style={{ position: 'relative', borderRadius: 'var(--radius-lg)', overflow: 'hidden' }}>
-              <Image
-                src="/images/block-3.png"
-                alt="A homeowner considering their options"
-                fill
-                style={{ objectFit: 'cover' }}
-              />
+            <div style={{ borderRadius: 'var(--radius-lg)', overflow: 'hidden' }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/images/block-3.png" alt="A homeowner considering their options"
+                style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
             </div>
           </div>
         </div>
@@ -205,7 +195,7 @@ function SellerBenefitsSection() {
   return (
     <section className="section" style={{ background: 'var(--white)' }}>
       <div className="container">
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-16)', alignItems: 'start' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-16)', alignItems: 'center' }}>
           <div>
             <div className="section-label">For homeowners</div>
             <h2 className="section-headline" style={{ marginBottom: 'var(--space-4)' }}>
