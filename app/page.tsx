@@ -29,59 +29,78 @@ export default function HomePage() {
 function HeroSection() {
   const doubled = [...TICKER_ITEMS, ...TICKER_ITEMS];
   return (
-    <section className="hero" style={{ padding: 0, minHeight: 600 }}>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', height: 680 }}>
-        {/* Left — copy */}
-        <div style={{ padding: 'var(--space-16) var(--space-8)', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-          <div className="hero-eyebrow">
-            <span className="hero-eyebrow-dot" />
-            Private property demand platform
-          </div>
-          <h1 className="hero-headline">
-            The home you want<br />
-            probably <em>isn&apos;t listed.</em>
-          </h1>
-          <p className="hero-sub">
-            Intentory lets buyers make private offers on any home — listed or not. And lets homeowners discover whether serious buyers are already waiting, before they call an agent.
-          </p>
-          <div className="hero-actions">
-            <Link href="/register" className="btn btn-primary btn-lg">
-              Go after the home you want
-            </Link>
-            <Link href="/sellers" className="btn btn-outline btn-lg">
-              I own a property
-            </Link>
-          </div>
-          <div className="demand-ticker" style={{ marginTop: 'var(--space-10)' }}>
-            <div className="demand-ticker-label">Buyer demand registered today</div>
-            <div className="demand-ticker-track" aria-hidden="true">
-              <div className="demand-ticker-inner">
-                {doubled.map((item, i) => (
-                  <span key={i} className="demand-chip">
-                    <span className="demand-chip-count">{item.count}</span>
-                    {item.count === 1 ? 'buyer' : 'buyers'} · {item.location}
-                  </span>
-                ))}
-              </div>
+    <section style={{
+      background: 'var(--navy)',
+      color: 'var(--white)',
+      display: 'grid',
+      gridTemplateColumns: '1fr 1fr',
+      minHeight: 680,
+    }}>
+      {/* Left — copy */}
+      <div style={{
+        padding: 'var(--space-16) var(--space-8) var(--space-16) var(--space-12)',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        position: 'relative',
+        zIndex: 1,
+      }}>
+        <div className="hero-eyebrow">
+          <span className="hero-eyebrow-dot" />
+          Private property demand platform
+        </div>
+        <h1 className="hero-headline">
+          The home you want<br />
+          probably <em>isn&apos;t listed.</em>
+        </h1>
+        <p className="hero-sub">
+          Intentory lets buyers make private offers on any home — listed or not. And lets homeowners discover whether serious buyers are already waiting, before they call an agent.
+        </p>
+        <div className="hero-actions">
+          <Link href="/register" className="btn btn-primary btn-lg">
+            Go after the home you want
+          </Link>
+          <Link href="/sellers" className="btn btn-outline btn-lg">
+            I own a property
+          </Link>
+        </div>
+        <div className="demand-ticker" style={{ marginTop: 'var(--space-10)' }}>
+          <div className="demand-ticker-label">Buyer demand registered today</div>
+          <div className="demand-ticker-track" aria-hidden="true">
+            <div className="demand-ticker-inner">
+              {doubled.map((item, i) => (
+                <span key={i} className="demand-chip">
+                  <span className="demand-chip-count">{item.count}</span>
+                  {item.count === 1 ? 'buyer' : 'buyers'} · {item.location}
+                </span>
+              ))}
             </div>
           </div>
         </div>
+      </div>
 
-        {/* Right — hero image */}
-        <div style={{ position: 'relative', overflow: 'hidden' }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/images/hero.png"
-            alt="A desirable home on a quiet residential street"
-            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block', position: 'absolute', inset: 0 }}
-          />
-          {/* Subtle gradient fade to left so it blends with the navy */}
-          <div style={{
-            position: 'absolute', inset: 0,
-            background: 'linear-gradient(90deg, var(--navy) 0%, transparent 20%)',
-            pointerEvents: 'none',
-          }} />
-        </div>
+      {/* Right — hero image, no CSS class interference */}
+      <div style={{ position: 'relative', minHeight: 680 }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/images/hero.png"
+          alt="A desirable home on a quiet residential street"
+          style={{
+            position: 'absolute',
+            inset: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            objectPosition: 'center',
+            display: 'block',
+          }}
+        />
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'linear-gradient(90deg, var(--navy) 0%, transparent 25%)',
+          pointerEvents: 'none',
+        }} />
       </div>
     </section>
   );
