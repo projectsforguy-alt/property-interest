@@ -1447,3 +1447,70 @@ ul, ol { list-style: none; }
     min-height: 240px;
   }
 }
+
+/* ============================================================
+   HERO LAYOUT
+   ============================================================ */
+
+.hero-layout {
+  display: flex;
+  flex-direction: row;
+  height: 580px;
+}
+
+.hero-text {
+  flex: 0 0 50%;
+  min-width: 0;
+  overflow: hidden;
+  padding: var(--space-16) var(--space-8) var(--space-16) calc(max((100vw - 1160px) / 2, var(--space-6)));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero-img-wrap {
+  flex: 0 0 50%;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.hero-img-fade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, var(--navy) 0%, transparent 30%);
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .hero-layout {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .hero-text {
+    flex: none;
+    padding: var(--space-10) var(--space-6);
+    overflow: visible;
+    order: 2;
+  }
+
+  .hero-img-wrap {
+    flex: none;
+    height: 260px;
+    order: 1;
+  }
+
+  .hero-img-fade {
+    background: linear-gradient(to bottom, transparent 60%, var(--navy) 100%);
+  }
+}
