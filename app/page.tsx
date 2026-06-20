@@ -17,9 +17,10 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
+      <ProblemSection />
+      <BuyerBenefitsSection />
+      <SellerBenefitsSection />
       <HowItWorksSection />
-      <TwoSidedSection />
-      <PaidActionsSection />
       <CtaSection />
     </>
   );
@@ -32,18 +33,18 @@ function HeroSection() {
       <div className="container">
         <div className="hero-eyebrow">
           <span className="hero-eyebrow-dot" />
-          Private property demand
+          Private property demand platform
         </div>
         <h1 className="hero-headline">
-          Register where you want to buy —<br />
-          <em>before it comes to market.</em>
+          The home you want<br />
+          probably <em>isn&apos;t listed.</em>
         </h1>
         <p className="hero-sub">
-          Intentory builds a private layer of buyer demand by location. Homeowners can check whether serious buyers are already waiting before they decide to sell.
+          Intentory lets buyers make private offers on any home — listed or not. And lets homeowners discover whether serious buyers are already waiting, before they call an agent.
         </p>
         <div className="hero-actions">
           <Link href="/register" className="btn btn-primary btn-lg">
-            Register buying interest
+            Go after the home you want
           </Link>
           <Link href="/sellers" className="btn btn-outline btn-lg">
             I own a property
@@ -51,7 +52,7 @@ function HeroSection() {
         </div>
 
         <div className="demand-ticker">
-          <div className="demand-ticker-label">Live buyer demand</div>
+          <div className="demand-ticker-label">Buyer demand registered today</div>
           <div className="demand-ticker-track" aria-hidden="true">
             <div className="demand-ticker-inner">
               {doubled.map((item, i) => (
@@ -68,107 +69,30 @@ function HeroSection() {
   );
 }
 
-function HowItWorksSection() {
-  const steps = [
-    {
-      n: '01',
-      title: 'Register your interest',
-      body: 'Tell us where you want to buy — a specific property, a street, a village, or an area. Add your budget and buying position. It\'s free.',
-    },
-    {
-      n: '02',
-      title: 'Your intent is recorded',
-      body: 'Your interest is stored privately against that location. You\'ll receive a confirmation and can manage your interests from your account.',
-    },
-    {
-      n: '03',
-      title: 'Owners can check demand',
-      body: 'Homeowners can enter their address to see whether buyers are already interested in their property or area before deciding to sell.',
-    },
-    {
-      n: '04',
-      title: 'Private introductions happen',
-      body: 'When a seller registers as available, we match them to relevant buyers. Introductions happen privately — no public listing required.',
-    },
-  ];
-
+function ProblemSection() {
   return (
-    <section className="section">
+    <section className="section" style={{ background: 'var(--white)', borderBottom: '1px solid var(--line)' }}>
       <div className="container">
-        <div className="section-label">How it works</div>
-        <h2 className="section-headline">A private market,<br />before the public one.</h2>
-        <p className="section-sub">
-          Most properties are sold before serious buyers even know they were available. Intentory changes that.
-        </p>
-        <div className="steps">
-          {steps.map((s) => (
-            <div key={s.n} className="step">
-              <div className="step-number">{s.n}</div>
-              <div className="step-title">{s.title}</div>
-              <p className="step-body">{s.body}</p>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-16)', alignItems: 'center' }}>
+          <div>
+            <div className="section-label">The problem</div>
+            <h2 className="section-headline">
+              Most property transactions are decided before anyone lists.
+            </h2>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-6)' }}>
+            <div style={{ paddingLeft: 'var(--space-5)', borderLeft: '3px solid var(--teal)' }}>
+              <div style={{ fontWeight: 600, marginBottom: 'var(--space-1)', fontSize: 'var(--text-base)' }}>For buyers</div>
+              <p style={{ fontSize: 'var(--text-sm)', color: 'var(--slate)', lineHeight: 1.65 }}>
+                You want a specific road, village, or type of home. But you&apos;re at the mercy of whatever happens to be listed — and when your dream home does appear, so does everyone else. The best properties go before most buyers even know they existed.
+              </p>
             </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function TwoSidedSection() {
-  return (
-    <section className="section section-sm" style={{ background: 'var(--surface)' }}>
-      <div className="container">
-        <div className="split">
-          <div className="split-card split-card-buyer">
-            <div className="split-card-eyebrow">For buyers</div>
-            <h3 className="split-card-headline">Register where<br />you want to buy.</h3>
-            <p className="split-card-sub">
-              Free to register. Tell us the property, street, or area. We capture your budget, position, and timeline — and alert you the moment a matching opportunity appears.
-            </p>
-            <ul className="split-card-list">
-              {[
-                'Specific properties, streets, areas or land',
-                'Private alerts when sellers register as available',
-                'Manage multiple interests from one account',
-                'Upgrade to make a direct owner approach',
-              ].map((item) => (
-                <li key={item} className="split-card-item">
-                  <svg className="split-card-icon" viewBox="0 0 20 20" fill="none">
-                    <path d="M4 10l4 4 8-8" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                  {item}
-                </li>
-              ))}
-            </ul>
-            <Link href="/register" className="btn btn-primary" style={{ alignSelf: 'flex-start' }}>
-              Register free
-            </Link>
-          </div>
-
-          <div className="split-card split-card-seller">
-            <div className="split-card-eyebrow">For homeowners</div>
-            <h3 className="split-card-headline">See if buyers are<br />already waiting.</h3>
-            <p className="split-card-sub">
-              Before you list, check whether serious buyers have already registered interest in your property, your street, or your area. No obligation, no agent required.
-            </p>
-            <ul className="split-card-list">
-              {[
-                'Check demand at your address in seconds',
-                'Register as privately available to matched buyers',
-                'Control who knows — no public listing',
-                'Pay only if you want to reach matched buyers',
-              ].map((item) => (
-                <li key={item} className="split-card-item">
-                  <svg className="split-card-icon" viewBox="0 0 20 20" fill="none">
-                    <path d="M4 10l4 4 8-8" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                  {item}
-                </li>
-              ))}
-            </ul>
-            <Link href="/sellers" className="btn btn-outline-dark" style={{ alignSelf: 'flex-start' }}>
-              Check demand at my address
-            </Link>
+            <div style={{ paddingLeft: 'var(--space-5)', borderLeft: '3px solid var(--teal)' }}>
+              <div style={{ fontWeight: 600, marginBottom: 'var(--space-1)', fontSize: 'var(--text-base)' }}>For sellers</div>
+              <p style={{ fontSize: 'var(--text-sm)', color: 'var(--slate)', lineHeight: 1.65 }}>
+                You&apos;re considering selling but don&apos;t know if the demand is there. So you call an agent, agree to a commission, and commit to a process — before you even know whether a buyer is already out there waiting.
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -176,46 +100,154 @@ function TwoSidedSection() {
   );
 }
 
-function PaidActionsSection() {
-  const actions = [
+function BuyerBenefitsSection() {
+  const benefits = [
     {
-      label: 'Private owner approach',
-      price: '£29',
-      desc: 'Already registered interest in a specific property? Upgrade to have us contact the owner directly on your behalf with a private, professional letter and QR-coded response link.',
+      title: 'Go after the home you actually want',
+      body: 'Most buyers search what\'s listed. Intentory lets you identify exactly where you want to live — a specific road, a village, a postcode — and make a private approach to owners directly. You\'re not waiting for luck.',
     },
     {
-      label: 'Street or area outreach',
-      price: 'From £99',
-      desc: 'Want to unlock a whole street or area? We contact every owner in your target location and invite them to check whether buyers are waiting for their home specifically.',
+      title: 'Make an offer before it hits the market',
+      body: 'Register interest in a specific property and we\'ll contact the owner on your behalf. A motivated seller who hasn\'t yet committed to an agent may prefer a clean, private sale — on your terms and your timescale.',
     },
     {
-      label: 'Seller broadcast',
-      price: '£49',
-      desc: 'Ready to sell privately? Pay to have your property sent directly to every buyer who has registered matching interest — before it appears anywhere publicly.',
+      title: 'First mover advantage',
+      body: 'When a seller registers as available, matched buyers are notified privately before any public listing. You get first sight — ahead of every buyer watching Rightmove.',
+    },
+    {
+      title: 'Your interest works while you wait',
+      body: 'Register once. If an owner on your target street decides to sell — now or in six months — you\'ll be the first to know. No refreshing portals. No missing the window.',
     },
   ];
 
   return (
     <section className="section section-dark">
       <div className="container">
-        <div className="section-label section-label-dark">Paid actions</div>
-        <h2 className="section-headline" style={{ color: 'var(--white)' }}>
-          When you&apos;re ready to move.
+        <div className="section-label section-label-dark">For buyers</div>
+        <h2 className="section-headline" style={{ color: 'var(--white)', maxWidth: 600, marginBottom: 'var(--space-3)' }}>
+          Stop waiting for the right home to appear. Go and find it.
         </h2>
-        <p className="section-sub section-sub-light">
-          Registration is always free. These optional actions let you take a private approach when demand or opportunity exists.
+        <p className="section-sub section-sub-light" style={{ marginBottom: 'var(--space-12)' }}>
+          Intentory gives serious buyers a private route to the homes they actually want — not just the ones that happen to be listed.
         </p>
-        <div className="pricing-grid">
-          {actions.map((a) => (
-            <div key={a.label} className="price-card">
-              <div className="price-card-name">{a.label}</div>
-              <div className="price-card-amount">{a.price}</div>
-              <p className="price-card-desc">{a.desc}</p>
-              <Link href="/register" className="btn btn-outline-dark w-full" style={{ marginTop: 'auto' }}>
-                Register first — free
-              </Link>
+        <div className="steps" style={{ marginBottom: 'var(--space-10)' }}>
+          {benefits.map((b, i) => (
+            <div key={i} className="step">
+              <div className="step-number">0{i + 1}</div>
+              <div className="step-title">{b.title}</div>
+              <p className="step-body">{b.body}</p>
             </div>
           ))}
+        </div>
+        <div style={{ display: 'flex', gap: 'var(--space-4)', flexWrap: 'wrap' }}>
+          <Link href="/register" className="btn btn-primary btn-lg">Register free — no commitment</Link>
+          <Link href="/how-it-works" className="btn btn-outline btn-lg">How it works</Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function SellerBenefitsSection() {
+  return (
+    <section className="section" style={{ background: 'var(--white)' }}>
+      <div className="container">
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-16)', alignItems: 'start' }}>
+          <div>
+            <div className="section-label">For homeowners</div>
+            <h2 className="section-headline" style={{ marginBottom: 'var(--space-4)' }}>
+              Find out if buyers are waiting — before you commit to anything.
+            </h2>
+            <p style={{ fontSize: 'var(--text-base)', color: 'var(--slate)', lineHeight: 1.65, marginBottom: 'var(--space-8)' }}>
+              Check real buyer demand at your address in seconds. If demand exists, you have options — including selling privately for a fraction of what a traditional agent would charge.
+            </p>
+            <div style={{ display: 'flex', gap: 'var(--space-3)', flexWrap: 'wrap' }}>
+              <Link href="/sellers/check" className="btn btn-primary">Check demand at my address</Link>
+              <Link href="/sellers" className="btn btn-outline-dark">Learn more</Link>
+            </div>
+          </div>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)' }}>
+            {[
+              {
+                title: 'Know before you commit',
+                body: 'See whether serious buyers have already registered interest in your property, street or area — before you sign anything with anyone.',
+              },
+              {
+                title: 'Sell privately, on your terms',
+                body: 'If demand exists, register as available and we match you to interested buyers. No public listing, no open days, no unqualified viewings.',
+              },
+              {
+                title: 'Save significantly on fees',
+                body: 'Estate agent commission typically runs to thousands. A private sale through Intentory costs a fraction of that — particularly when the buyer is already out there waiting.',
+              },
+              {
+                title: 'No obligation at any stage',
+                body: 'Checking demand is free and creates zero commitment. You decide at every step whether to proceed.',
+              },
+            ].map(item => (
+              <div key={item.title} style={{ display: 'flex', gap: 'var(--space-4)', alignItems: 'flex-start' }}>
+                <div style={{ width: 24, height: 24, borderRadius: '50%', background: 'var(--teal-soft)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 2 }}>
+                  <svg width="12" height="12" viewBox="0 0 20 20" fill="none">
+                    <path d="M4 10l4 4 8-8" stroke="var(--teal-dark)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </div>
+                <div>
+                  <div style={{ fontWeight: 600, fontSize: 'var(--text-sm)', marginBottom: 4 }}>{item.title}</div>
+                  <div style={{ fontSize: 'var(--text-sm)', color: 'var(--slate)', lineHeight: 1.6 }}>{item.body}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function HowItWorksSection() {
+  return (
+    <section className="section section-teal">
+      <div className="container">
+        <div className="section-label">Simple by design</div>
+        <h2 className="section-headline" style={{ marginBottom: 'var(--space-12)' }}>How Intentory works</h2>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-8)' }}>
+          <div>
+            <div style={{ fontWeight: 700, fontSize: 'var(--text-xs)', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--teal-dark)', marginBottom: 'var(--space-5)' }}>Buyers</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-5)' }}>
+              {[
+                { n: '01', t: 'Register where you want to buy', b: 'A specific address, a street, a village, or an area. Free to register.' },
+                { n: '02', t: 'We match you to available sellers', b: 'When a seller registers in your target location, you\'re notified immediately — privately.' },
+                { n: '03', t: 'Make your move', b: 'Open a private conversation, make an offer, or upgrade to a direct owner approach on any unlisted property.' },
+              ].map(s => (
+                <div key={s.n} style={{ display: 'flex', gap: 'var(--space-4)' }}>
+                  <div style={{ fontFamily: 'var(--font-tight)', fontWeight: 700, fontSize: 'var(--text-xs)', color: 'var(--teal-dark)', width: 24, flexShrink: 0, paddingTop: 2 }}>{s.n}</div>
+                  <div>
+                    <div style={{ fontWeight: 600, fontSize: 'var(--text-sm)', marginBottom: 4 }}>{s.t}</div>
+                    <div style={{ fontSize: 'var(--text-sm)', color: 'var(--slate)', lineHeight: 1.6 }}>{s.b}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div>
+            <div style={{ fontWeight: 700, fontSize: 'var(--text-xs)', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--teal-dark)', marginBottom: 'var(--space-5)' }}>Sellers</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-5)' }}>
+              {[
+                { n: '01', t: 'Check demand at your address', b: 'Enter your postcode. See whether buyers have already registered interest in your property or area. Free and instant.' },
+                { n: '02', t: 'Register as privately available', b: 'If you\'re open to selling, register your property. We match it to relevant buyers — no public listing involved.' },
+                { n: '03', t: 'Connect and proceed on your terms', b: 'Receive buyer messages, arrange viewings, and decide whether to proceed — all privately, all without an agent if you choose.' },
+              ].map(s => (
+                <div key={s.n} style={{ display: 'flex', gap: 'var(--space-4)' }}>
+                  <div style={{ fontFamily: 'var(--font-tight)', fontWeight: 700, fontSize: 'var(--text-xs)', color: 'var(--teal-dark)', width: 24, flexShrink: 0, paddingTop: 2 }}>{s.n}</div>
+                  <div>
+                    <div style={{ fontWeight: 600, fontSize: 'var(--text-sm)', marginBottom: 4 }}>{s.t}</div>
+                    <div style={{ fontSize: 'var(--text-sm)', color: 'var(--slate)', lineHeight: 1.6 }}>{s.b}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -224,16 +256,29 @@ function PaidActionsSection() {
 
 function CtaSection() {
   return (
-    <section className="section section-teal">
-      <div className="container" style={{ textAlign: 'center' }}>
-        <div className="section-label">Get started</div>
-        <h2 className="section-headline">Your next home might<br />not be listed yet.</h2>
-        <p className="section-sub" style={{ margin: '0 auto var(--space-8)' }}>
-          Register your buying intent today. It takes two minutes and it&apos;s free. We&apos;ll alert you the moment a matching opportunity appears.
-        </p>
-        <div style={{ display: 'flex', gap: 'var(--space-4)', justifyContent: 'center', flexWrap: 'wrap' }}>
-          <Link href="/register" className="btn btn-primary btn-lg">Register interest — free</Link>
-          <Link href="/how-it-works" className="btn btn-outline-dark btn-lg">Learn more</Link>
+    <section className="section section-dark">
+      <div className="container">
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-4)' }}>
+          <div className="split-card split-card-buyer" style={{ background: 'var(--navy-soft)' }}>
+            <div className="split-card-eyebrow">For buyers</div>
+            <h3 className="split-card-headline">Go after the home you want.</h3>
+            <p className="split-card-sub">
+              Register your interest in any property, street or area. Make private approaches. Get first sight of seller availability. Free to start.
+            </p>
+            <Link href="/register" className="btn btn-primary" style={{ alignSelf: 'flex-start', marginTop: 'auto' }}>
+              Register free
+            </Link>
+          </div>
+          <div className="split-card split-card-seller">
+            <div className="split-card-eyebrow">For homeowners</div>
+            <h3 className="split-card-headline">See if buyers are already waiting.</h3>
+            <p className="split-card-sub">
+              Check demand at your address in seconds. Register as privately available. Sell on your terms — without committing to an agent first.
+            </p>
+            <Link href="/sellers/check" className="btn btn-outline-dark" style={{ alignSelf: 'flex-start', marginTop: 'auto' }}>
+              Check demand — free
+            </Link>
+          </div>
         </div>
       </div>
     </section>
