@@ -80,11 +80,24 @@ function HeroSection() {
         {/* Right — image */}
         <div style={{
           flex: '0 0 50%',
-          backgroundImage: 'url(/images/hero.png)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
           minHeight: 680,
-        }} />
+          position: 'relative',
+          overflow: 'hidden',
+        }}>
+          <img
+            src="/images/hero.png"
+            alt=""
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              objectPosition: 'center',
+            }}
+          />
+        </div>
       </div>
     </section>
   );
