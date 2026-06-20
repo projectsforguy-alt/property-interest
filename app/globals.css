@@ -1400,3 +1400,50 @@ ul, ol { list-style: none; }
   .demand-ticker-inner { animation: none; }
   .hero-eyebrow-dot { animation: none; }
 }
+
+/* ============================================================
+   HOMEPAGE RESPONSIVE LAYOUT
+   ============================================================ */
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 680px;
+}
+
+.hero-image {
+  min-height: 680px;
+}
+
+.two-col-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+}
+
+@media (max-width: 900px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .hero-grid > div:first-child {
+    padding: var(--space-12) var(--space-6) !important;
+  }
+
+  .hero-image {
+    min-height: 300px;
+    order: -1;
+  }
+
+  .two-col-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-image {
+    min-height: 240px;
+  }
+}
