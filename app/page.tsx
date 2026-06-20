@@ -31,9 +31,9 @@ function HeroSection() {
   const doubled = [...TICKER_ITEMS, ...TICKER_ITEMS];
   return (
     <section className="hero" style={{ padding: 0, minHeight: 600 }}>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', minHeight: 600 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', height: 680 }}>
         {/* Left — copy */}
-        <div style={{ padding: 'var(--space-20) var(--space-12) var(--space-16)', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+        <div style={{ padding: 'var(--space-16) var(--space-8)', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
           <div className="hero-eyebrow">
             <span className="hero-eyebrow-dot" />
             Private property demand platform
@@ -69,13 +69,12 @@ function HeroSection() {
         </div>
 
         {/* Right — hero image */}
-        <div style={{ position: 'relative', minHeight: 600 }}>
-          <Image
+        <div style={{ position: 'relative', overflow: 'hidden' }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
             src="/images/hero.png"
             alt="A desirable home on a quiet residential street"
-            fill
-            style={{ objectFit: 'cover', objectPosition: 'center' }}
-            priority
+            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block', position: 'absolute', inset: 0 }}
           />
           {/* Subtle gradient fade to left so it blends with the navy */}
           <div style={{
