@@ -1453,13 +1453,13 @@ ul, ol { list-style: none; }
    ============================================================ */
 
 .hero-layout {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   height: 580px;
+  overflow: hidden;
 }
 
 .hero-text {
-  flex: 0 0 50%;
   min-width: 0;
   overflow: hidden;
   padding: var(--space-16) var(--space-8) var(--space-16) calc(max((100vw - 1160px) / 2, var(--space-6)));
@@ -1469,7 +1469,6 @@ ul, ol { list-style: none; }
 }
 
 .hero-img-wrap {
-  flex: 0 0 50%;
   position: relative;
   overflow: hidden;
 }
@@ -1493,19 +1492,16 @@ ul, ol { list-style: none; }
 
 @media (max-width: 768px) {
   .hero-layout {
-    flex-direction: column;
+    grid-template-columns: 1fr;
     height: auto;
   }
 
   .hero-text {
-    flex: none;
-    padding: var(--space-10) var(--space-6);
-    overflow: visible;
+    padding: var(--space-10) var(--space-6) !important;
     order: 2;
   }
 
   .hero-img-wrap {
-    flex: none;
     height: 260px;
     order: 1;
   }
