@@ -1510,3 +1510,132 @@ ul, ol { list-style: none; }
     background: linear-gradient(to bottom, transparent 60%, var(--navy) 100%);
   }
 }
+
+/* ============================================================
+   MOBILE NAV
+   ============================================================ */
+
+.mobile-nav-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-left: var(--space-2);
+  flex-shrink: 0;
+}
+
+.mobile-nav-icon {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 20px;
+}
+
+.mobile-nav-icon span {
+  display: block;
+  height: 1.5px;
+  width: 100%;
+  background: var(--white);
+  border-radius: 2px;
+  transition: transform 200ms ease, opacity 200ms ease;
+  transform-origin: center;
+}
+
+.mobile-nav-icon--open span:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
+}
+.mobile-nav-icon--open span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.mobile-nav-icon--open span:nth-child(3) {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+
+.mobile-nav-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 98;
+}
+
+.mobile-nav-drawer {
+  display: none;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 0;
+  background: var(--navy-mid);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  z-index: 99;
+  padding: var(--space-4) var(--space-4) var(--space-6);
+  transform: translateY(-8px);
+  opacity: 0;
+  transition: transform 200ms ease, opacity 200ms ease;
+  pointer-events: none;
+}
+
+.mobile-nav-drawer--open {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobile-nav-links {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: var(--space-5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: var(--space-4);
+}
+
+.mobile-nav-link {
+  display: block;
+  padding: var(--space-3) var(--space-2);
+  font-size: var(--text-base);
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.75);
+  border-radius: var(--radius);
+  transition: color var(--transition), background var(--transition);
+}
+
+.mobile-nav-link:hover {
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.mobile-nav-link--active {
+  color: var(--teal);
+}
+
+.mobile-nav-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+@media (max-width: 640px) {
+  .mobile-nav-toggle {
+    display: flex;
+  }
+
+  .mobile-nav-backdrop {
+    display: block;
+  }
+
+  .mobile-nav-drawer {
+    display: block;
+  }
+
+  /* Hide desktop sign-in on mobile since it's in the drawer */
+  .header-actions {
+    display: none;
+  }
+}
