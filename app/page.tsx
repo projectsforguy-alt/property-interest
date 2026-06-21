@@ -1,4 +1,66 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: 'The home you want probably isn\'t listed',
+  description:
+    'Intentory lets buyers register private interest in any home — listed or not. Sellers discover real buyer demand at their address before going to market. Free to start.',
+  alternates: {
+    canonical: 'https://property-interest-sepia.vercel.app',
+  },
+  openGraph: {
+    title: 'The home you want probably isn\'t listed | Intentory',
+    description:
+      'Register private interest in any home. Sellers discover real buyer demand before going to market. Free to start.',
+    url: 'https://property-interest-sepia.vercel.app',
+  },
+};
+
+const FAQ_ITEMS = [
+  {
+    question: 'Can I buy a house that isn\'t for sale?',
+    answer:
+      'Yes. Many homeowners would consider selling if approached in the right way — they simply haven\'t listed because nobody has asked. Intentory lets you register genuine interest in a specific address, street, or area, and we can contact the owner on your behalf. This is known as an off-market approach.',
+  },
+  {
+    question: 'What is off-market property?',
+    answer:
+      'Off-market property refers to homes that are sold or agreed privately, without being listed on Rightmove, Zoopla, or through an estate agent. These transactions are more common than most people realise — particularly in sought-after streets and villages where owners prefer discretion.',
+  },
+  {
+    question: 'How much does it cost to register interest?',
+    answer:
+      'Registering buyer interest is completely free. There\'s no subscription. You only pay if you choose to take an active step — such as requesting an owner approach (£29), street outreach (£99), or area outreach (£199).',
+  },
+  {
+    question: 'How do sellers use Intentory?',
+    answer:
+      'Sellers enter their postcode to see whether any buyers have already registered interest at their address, street, or area. If demand exists, they can register as privately available and broadcast to matched buyers for £49 — without any public listing.',
+  },
+  {
+    question: 'Is my registration kept private?',
+    answer:
+      'Yes. Individual buyer registrations are never publicly visible. Sellers only see that demand exists at their address — not who the buyers are — until both parties agree to connect.',
+  },
+  {
+    question: 'What areas does Intentory cover?',
+    answer:
+      'Intentory covers all of England and Wales. Buyers can register interest at any valid UK postcode, and sellers at any residential address.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: FAQ_ITEMS.map(({ question, answer }) => ({
+    '@type': 'Question',
+    name: question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: answer,
+    },
+  })),
+};
 
 const TICKER_ITEMS = [
   { location: 'Prestbury Road, SK10', count: 4 },
@@ -16,11 +78,16 @@ const TICKER_ITEMS = [
 export default function HomePage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <HeroSection />
       <ProblemSection />
       <BuyerBenefitsSection />
       <SellerBenefitsSection />
       <HowItWorksSection />
+      <FaqSection />
       <CtaSection />
     </>
   );
@@ -151,22 +218,19 @@ function BuyerBenefitsSection() {
                   <div style={{ fontFamily: 'var(--font-tight)', fontWeight: 700, fontSize: 'var(--text-xs)', color: 'var(--teal)', width: 24, flexShrink: 0, paddingTop: 3 }}>0{i + 1}</div>
                   <div>
                     <div style={{ fontWeight: 600, fontSize: 'var(--text-sm)', color: 'var(--white)', marginBottom: 4 }}>{b.title}</div>
-                    <div style={{ fontSize: 'var(--text-sm)', color: 'rgba(255,255,255,0.55)', lineHeight: 1.65 }}>{b.body}</div>
+                    <div style={{ fontSize: 'var(--text-sm)', color: 'rgba(255,255,255,0.6)', lineHeight: 1.6 }}>{b.body}</div>
                   </div>
                 </div>
               ))}
             </div>
-            <div style={{ display: 'flex', gap: 'var(--space-4)', flexWrap: 'wrap' }}>
-              <Link href="/register" className="btn btn-primary btn-lg">Register free</Link>
-              <Link href="/how-it-works" className="btn btn-outline btn-lg">How it works</Link>
-            </div>
+            <Link href="/register" className="btn btn-primary">Register interest free</Link>
           </div>
 
-          {/* Three image block */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridTemplateRows: '300px 300px', gap: 'var(--space-3)' }}>
-            <div style={{ borderRadius: 'var(--radius-lg)', overflow: 'hidden', gridRow: '1 / 3' }}>
+          {/* Image block */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridTemplateRows: 'auto auto', gap: 'var(--space-3)' }}>
+            <div style={{ gridColumn: '1 / -1', borderRadius: 'var(--radius-lg)', overflow: 'hidden', aspectRatio: '16/7' }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/images/block-1.png" alt="A young couple outside their new home"
+              <img src="/images/block-1.png" alt="A quiet residential street"
                 style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
             </div>
             <div style={{ borderRadius: 'var(--radius-lg)', overflow: 'hidden' }}>
@@ -286,6 +350,37 @@ function HowItWorksSection() {
               ))}
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function FaqSection() {
+  return (
+    <section className="section" style={{ background: 'var(--white)', borderTop: '1px solid var(--line)' }}>
+      <div className="container-narrow">
+        <div className="section-label">FAQ</div>
+        <h2 className="section-headline" style={{ marginBottom: 'var(--space-8)' }}>
+          Common questions
+        </h2>
+        <div className="faq-list">
+          {FAQ_ITEMS.map(({ question, answer }) => (
+            <details key={question} className="faq-item">
+              <summary>
+                {question}
+                <svg className="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M6 9l6 6 6-6" />
+                </svg>
+              </summary>
+              <p className="faq-body">{answer}</p>
+            </details>
+          ))}
+        </div>
+        <div style={{ marginTop: 'var(--space-8)' }}>
+          <Link href="/how-it-works" style={{ fontSize: 'var(--text-sm)', color: 'var(--teal)', fontWeight: 500, textDecoration: 'underline', textUnderlineOffset: '3px' }}>
+            Read the full guide to how Intentory works →
+          </Link>
         </div>
       </div>
     </section>
