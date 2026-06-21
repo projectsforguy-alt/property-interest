@@ -17,16 +17,108 @@ const tight = Inter_Tight({
   display: 'swap',
 });
 
+const BASE_URL = 'https://property-interest-sepia.vercel.app';
+
 export const metadata: Metadata = {
-  title: 'Intentory — The private property demand platform',
+  metadataBase: new URL(BASE_URL),
+  title: {
+    default: 'Intentory — The private property demand platform',
+    template: '%s | Intentory',
+  },
   description:
-    'Register where you want to buy before a property comes to market. Intentory builds a private layer of buyer demand, helping homeowners understand hidden interest before they decide to sell.',
+    'Intentory is the private property demand platform. Buyers register interest in specific homes, streets or areas for free. Sellers discover real buyer demand at their address — before going to market.',
+  keywords: [
+    'off-market property',
+    'buy property not for sale',
+    'private property purchase',
+    'approach homeowner to buy house',
+    'off market homes UK',
+    'register property interest',
+    'private house sale UK',
+    'buy house not listed',
+  ],
+  authors: [{ name: 'Intentory' }],
+  creator: 'Intentory',
+  openGraph: {
+    type: 'website',
+    locale: 'en_GB',
+    url: BASE_URL,
+    siteName: 'Intentory',
+    title: 'Intentory — The private property demand platform',
+    description:
+      'Buyers register interest in specific homes, streets or areas. Sellers discover real buyer demand at their address — before going to market.',
+    images: [
+      {
+        url: '/images/hero.png',
+        width: 1200,
+        height: 630,
+        alt: 'Intentory — Private property demand platform',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Intentory — The private property demand platform',
+    description:
+      'Buyers register interest in specific homes, streets or areas. Sellers discover real demand at their address before going to market.',
+    images: ['/images/hero.png'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+};
+
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Intentory',
+  url: BASE_URL,
+  description:
+    'Intentory is the private property demand platform. Buyers register interest in specific homes, streets or areas for free. Sellers discover real buyer demand at their address — before going to market.',
+  areaServed: {
+    '@type': 'Country',
+    name: 'United Kingdom',
+  },
+};
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Intentory',
+  url: BASE_URL,
+  description: 'The private property demand platform.',
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: {
+      '@type': 'EntryPoint',
+      urlTemplate: `${BASE_URL}/sellers/check?postcode={search_term_string}`,
+    },
+    'query-input': 'required name=search_term_string',
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
-      <body className={`${display.variable} ${tight.variable}`}>
+    <html lang="en-GB" className={`${display.variable} ${tight.variable}`}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
+      </head>
+      <body>
         <div className="site">
           <SiteHeader />
           <main className="site-main">{children}</main>
