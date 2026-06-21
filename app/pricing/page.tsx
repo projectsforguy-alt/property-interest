@@ -1,160 +1,372 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 
-export const metadata = { title: 'Pricing | Intentory' };
+export const metadata: Metadata = {
+  title: 'Pricing — Simple, one-off actions',
+  description:
+    'Registering property interest on Intentory is always free. Pay only when you take an active step — owner approach £29, street outreach £99, area outreach £199, seller broadcast £49.',
+  alternates: {
+    canonical: 'https://property-interest-sepia.vercel.app/pricing',
+  },
+  openGraph: {
+    title: 'Pricing | Intentory',
+    description:
+      'Free to register. Pay only when you act — owner approach £29, street outreach £99, area outreach £199, seller broadcast £49.',
+    url: 'https://property-interest-sepia.vercel.app/pricing',
+  },
+};
 
-const PAID_ACTIONS = [
+const pricingSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Intentory — Private Property Demand Platform',
+  description:
+    'Intentory connects buyers who want a specific home with sellers who haven\'t listed yet. Register interest for free, or check real buyer demand at your address.',
+  provider: {
+    '@type': 'Organization',
+    name: 'Intentory',
+    url: 'https://property-interest-sepia.vercel.app',
+  },
+  serviceType: 'Property matching service',
+  areaServed: { '@type': 'Country', name: 'United Kingdom' },
+  offers: [
+    {
+      '@type': 'Offer',
+      name: 'Register Buyer Interest',
+      description: 'Register interest in a specific address, street, postcode, or area. Receive match alerts automatically.',
+      price: '0',
+      priceCurrency: 'GBP',
+    },
+    {
+      '@type': 'Offer',
+      name: 'Owner Approach',
+      description: 'We contact the homeowner at your target address personally on your behalf with a letter.',
+      price: '29',
+      priceCurrency: 'GBP',
+    },
+    {
+      '@type': 'Offer',
+      name: 'Street Outreach',
+      description: 'We send a personal letter to every homeowner on your target street.',
+      price: '99',
+      priceCurrency: 'GBP',
+    },
+    {
+      '@type': 'Offer',
+      name: 'Area Outreach',
+      description: 'Broadcast your buying interest across a full postcode district or area.',
+      price: '199',
+      priceCurrency: 'GBP',
+    },
+    {
+      '@type': 'Offer',
+      name: 'Seller Broadcast',
+      description: 'Notify all matched buyers that your property is privately available.',
+      price: '49',
+      priceCurrency: 'GBP',
+    },
+  ],
+};
+
+const BUYER_ACTIONS = [
   {
-    name: 'Private owner approach',
-    amount: '£29',
-    who: 'Buyer',
-    desc: 'Have us contact a specific homeowner on your behalf with a professional letter and a private QR-coded response link.',
-    items: [
-      'Professional letter drafted and sent to the owner',
-      'Private QR code and response link included',
-      'Owner can respond, decline, or request more info',
-      'You are notified of any response',
-      'One property per request',
+    name: 'Register interest',
+    price: 'Free',
+    priceNote: 'Always',
+    description: 'Register buying interest in any address, street, postcode, or area. Receive match alerts when a seller registers at your location.',
+    features: [
+      'Unlimited interest registrations',
+      'Automatic match alerts',
+      'Private — never publicly visible',
+      'Active until you remove it',
     ],
+    cta: { label: 'Register free', href: '/register' },
+    featured: false,
+  },
+  {
+    name: 'Owner approach',
+    price: '£29',
+    priceNote: 'one-off',
+    description: 'We research the registered owner of your target property and send a personally addressed letter on your behalf.',
+    features: [
+      'Owner identified via Land Registry',
+      'Personally addressed letter sent',
+      'Private response link for the owner',
+      'You\'re notified of any response',
+    ],
+    cta: { label: 'Register to unlock', href: '/register' },
+    featured: false,
   },
   {
     name: 'Street outreach',
-    amount: '£99',
-    who: 'Buyer',
-    desc: 'We contact every owner on a target street and invite them to check whether buyers are waiting for their home.',
-    items: [
-      'Up to 15 properties on a single street',
-      'Professional letter to each owner',
-      'Each owner can check demand and register as available',
-      'You are matched and alerted to any interested sellers',
+    price: '£99',
+    priceNote: 'one-off',
+    description: 'A personal letter goes to every homeowner on your target street. Ideal when you want the road, not just one specific house.',
+    features: [
+      'Every owner on the street contacted',
+      'Personally addressed to each owner',
+      'Private response link per property',
+      'You\'re notified of every response',
     ],
-  },
-  {
-    name: 'Area outreach',
-    amount: '£199',
-    who: 'Buyer',
-    desc: 'Wider campaign across a postcode or area — up to 30 properties approached on your behalf.',
-    items: [
-      'Up to 30 properties in a defined area',
-      'Professional letter to each owner',
-      'Full campaign report on responses',
-      'Matched to any sellers who register as available',
-    ],
+    cta: { label: 'Register to unlock', href: '/register' },
     featured: true,
   },
   {
-    name: 'Seller broadcast',
-    amount: '£49',
-    who: 'Seller',
-    desc: 'Send your property to every buyer who has registered matching interest — privately, before any public listing.',
-    items: [
-      'Matched to buyers by property, street, postcode and area',
-      'Private notification sent to all matched buyers',
-      'Buyers can open a conversation from their account',
-      'No public listing required',
+    name: 'Area outreach',
+    price: '£199',
+    priceNote: 'one-off',
+    description: 'Broadcast your interest across a full postcode district or defined area. Maximum reach for serious buyers with location flexibility.',
+    features: [
+      'Full postcode district or area covered',
+      'Letters to all registered owners',
+      'Private response links per property',
+      'You\'re notified of every response',
     ],
+    cta: { label: 'Register to unlock', href: '/register' },
+    featured: false,
   },
 ];
 
-const FAQS = [
-  { q: 'Is registration really free?', a: 'Yes — registering buying interest is always free. You only pay if you choose to take a paid action, such as requesting a direct owner approach or broadcasting your property to matched buyers.' },
-  { q: 'What if no sellers respond to an owner approach?', a: 'We cannot guarantee a response from any homeowner. If we are unable to deliver a letter (e.g. undeliverable address), we will notify you. We do not offer refunds where a letter is delivered but the owner does not respond.' },
-  { q: 'Can I register as a seller without paying?', a: 'Yes. You can check demand at your address and register your property as available for free. You only pay if you want to send a broadcast to matched buyers.' },
-  { q: 'Are my details shared with the homeowner in a buyer approach?', a: 'No. The letter we send does not include your name or contact details. The owner receives a private link to respond — we manage the introduction.' },
-  { q: 'What happens if both parties want to proceed?', a: 'Once both a buyer and seller have expressed mutual interest, we open a private messaging thread in their accounts. From there, you can exchange details, arrange viewings, or involve solicitors — Intentory facilitates the introduction, not the sale itself.' },
+const SELLER_ACTIONS = [
+  {
+    name: 'Check demand',
+    price: 'Free',
+    priceNote: 'Always',
+    description: 'Enter your postcode and see instantly whether buyers have registered interest at your address, on your street, or in your area.',
+    features: [
+      'Instant demand check',
+      'See interest at address, street, and area level',
+      'No commitment required',
+      'No account needed to check',
+    ],
+    cta: { label: 'Check demand', href: '/sellers/check' },
+    featured: false,
+  },
+  {
+    name: 'Seller broadcast',
+    price: '£49',
+    priceNote: 'one-off',
+    description: 'Notify every matched buyer in our database that your property is privately available — before any public listing.',
+    features: [
+      'All matched buyers notified',
+      'Matches at address, street, postcode, and area level',
+      'No public listing created',
+      'You control whether to proceed',
+    ],
+    cta: { label: 'Register to unlock', href: '/register' },
+    featured: true,
+  },
+];
+
+const FAQ_ITEMS = [
+  {
+    q: 'Are there any subscription fees?',
+    a: 'No. Intentory has no subscription, no monthly fee, and no hidden charges. You pay only for the specific action you choose to take.',
+  },
+  {
+    q: 'What if an owner doesn\'t respond to a letter?',
+    a: 'If there\'s no response within a reasonable window, we\'ll let you know. You can then decide whether to wait longer, try a different approach, or move on.',
+  },
+  {
+    q: 'Can I get a refund if I change my mind?',
+    a: 'Paid actions involve work we begin immediately — owner research, letter production, and postage. As a result, we\'re unable to offer refunds once an action has been dispatched. Please contact us if you have concerns before an action begins.',
+  },
+  {
+    q: 'Do I need an account to pay?',
+    a: 'Yes. Paid actions are tied to your Intentory account so we can notify you of responses and manage your active interests.',
+  },
 ];
 
 export default function PricingPage() {
   return (
     <>
-      <section className="section section-dark">
-        <div className="container">
-          <div className="section-label section-label-dark">Pricing</div>
-          <h1 className="section-headline" style={{ color: 'var(--white)' }}>
-            Free to register.<br />Pay only when you act.
-          </h1>
-          <p className="section-sub section-sub-light">
-            Building a demand profile costs nothing. Paid actions are available when you&apos;re ready to move — whether you&apos;re a buyer making a private approach or a seller reaching matched buyers.
-          </p>
-        </div>
-      </section>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(pricingSchema) }}
+      />
 
-      <section className="section">
-        <div className="container">
-          <div className="section-label">Free tier</div>
-          <h2 className="section-headline" style={{ marginBottom: 'var(--space-6)' }}>What&apos;s always free</h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 'var(--space-4)', marginBottom: 'var(--space-16)' }}>
-            {[
-              { title: 'Buyer registration', desc: 'Register interest in specific properties, streets, areas, or land. Unlimited registrations.' },
-              { title: 'Buyer profile', desc: 'Your budget, buying position, timeline, and preferences — stored privately against your interests.' },
-              { title: 'Demand check', desc: 'Homeowners can check buyer demand at their address at any time, with no account required.' },
-              { title: 'Seller registration', desc: 'Register your property as privately available to matched buyers. Free to set up.' },
-              { title: 'Match alerts', desc: 'Be notified when a seller registers as available at a location you\'ve saved, or when a buyer matches your property.' },
-              { title: 'Account dashboard', desc: 'Manage all your interests, properties, and conversations from one place.' },
-            ].map(item => (
-              <div key={item.title} className="card">
-                <div style={{ display: 'flex', alignItems: 'flex-start', gap: 'var(--space-3)' }}>
-                  <svg width="18" height="18" viewBox="0 0 20 20" fill="none" style={{ color: 'var(--teal)', flexShrink: 0, marginTop: 2 }}>
-                    <path d="M4 10l4 4 8-8" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                  <div>
-                    <div style={{ fontWeight: 600, fontSize: 'var(--text-sm)', marginBottom: 4 }}>{item.title}</div>
-                    <div style={{ fontSize: 'var(--text-xs)', color: 'var(--slate)', lineHeight: 1.5 }}>{item.desc}</div>
+      <main className="site-main">
+
+        {/* Hero */}
+        <section className="section section-dark" style={{ paddingTop: 'var(--space-20)', paddingBottom: 'var(--space-16)' }}>
+          <div className="container-narrow">
+            <p className="section-label">Pricing</p>
+            <h1 className="section-headline" style={{ color: 'var(--white)', marginBottom: 'var(--space-4)' }}>
+              Simple, one-off actions.<br />No subscriptions.
+            </h1>
+            <p className="section-sub section-sub-light" style={{ marginBottom: 0 }}>
+              Registering interest is always free. You only pay when you choose to take an active step — and every action is a one-off payment, not a recurring charge.
+            </p>
+          </div>
+        </section>
+
+        {/* Buyer pricing */}
+        <section className="section" style={{ background: 'var(--surface)' }}>
+          <div className="container">
+            <p className="section-label">For buyers</p>
+            <h2 className="section-headline" style={{ marginBottom: 'var(--space-3)' }}>
+              Start free. Act when you're ready.
+            </h2>
+            <p className="section-sub" style={{ marginBottom: 'var(--space-10)' }}>
+              Register your interest in any location at no cost. Unlock paid actions when you want to actively pursue a property or street.
+            </p>
+            <div className="pricing-grid">
+              {BUYER_ACTIONS.map((action) => (
+                <div key={action.name} className={`price-card${action.featured ? ' price-card-featured' : ''}`}>
+                  {action.featured && <div className="price-card-tag">Most popular</div>}
+                  <div className="price-card-name">{action.name}</div>
+                  <div className="price-card-amount">
+                    {action.price}
+                    {action.priceNote && <span> / {action.priceNote}</span>}
                   </div>
+                  <p className="price-card-desc">{action.description}</p>
+                  <ul className="price-card-items">
+                    {action.features.map((f) => (
+                      <li key={f} className="price-card-item">
+                        <svg className="price-check" viewBox="0 0 20 20" fill="none">
+                          <path d="M4 10l4 4 8-8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+                  <Link href={action.cta.href} className="btn btn-primary w-full mt-auto" style={{ marginTop: 'auto' }}>
+                    {action.cta.label}
+                  </Link>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
+        </section>
 
-          <div className="section-label">Paid actions</div>
-          <h2 className="section-headline" style={{ marginBottom: 'var(--space-8)' }}>When you&apos;re ready to move</h2>
-          <div className="pricing-grid">
-            {PAID_ACTIONS.map(a => (
-              <div key={a.name} className={`price-card${a.featured ? ' price-card-featured' : ''}`}>
-                {a.featured && <span className="price-card-tag">Most popular</span>}
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                  <div className="price-card-name">{a.name}</div>
-                  <span className="badge badge-slate">{a.who}</span>
+        {/* Seller pricing */}
+        <section className="section" style={{ background: 'var(--white)', borderTop: '1px solid var(--line)' }}>
+          <div className="container">
+            <p className="section-label">For sellers</p>
+            <h2 className="section-headline" style={{ marginBottom: 'var(--space-3)' }}>
+              Know before you commit.
+            </h2>
+            <p className="section-sub" style={{ marginBottom: 'var(--space-10)' }}>
+              Check demand at your address for free. If buyers are waiting, reach them all with a single broadcast.
+            </p>
+            <div className="pricing-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', maxWidth: 680 }}>
+              {SELLER_ACTIONS.map((action) => (
+                <div key={action.name} className={`price-card${action.featured ? ' price-card-featured' : ''}`}>
+                  {action.featured && <div className="price-card-tag">Most popular</div>}
+                  <div className="price-card-name">{action.name}</div>
+                  <div className="price-card-amount">
+                    {action.price}
+                    {action.priceNote && <span> / {action.priceNote}</span>}
+                  </div>
+                  <p className="price-card-desc">{action.description}</p>
+                  <ul className="price-card-items">
+                    {action.features.map((f) => (
+                      <li key={f} className="price-card-item">
+                        <svg className="price-check" viewBox="0 0 20 20" fill="none">
+                          <path d="M4 10l4 4 8-8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+                  <Link href={action.cta.href} className="btn btn-primary w-full" style={{ marginTop: 'auto' }}>
+                    {action.cta.label}
+                  </Link>
                 </div>
-                <div className="price-card-amount">{a.amount}</div>
-                <p className="price-card-desc">{a.desc}</p>
-                <ul className="price-card-items">
-                  {a.items.map(item => (
-                    <li key={item} className="price-card-item">
-                      <svg className="price-check" viewBox="0 0 20 20" fill="none">
-                        <path d="M4 10l4 4 8-8" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                <Link href="/register" className="btn btn-outline-dark w-full" style={{ marginTop: 'var(--space-4)' }}>
-                  Register first — free
-                </Link>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="section" style={{ background: 'var(--white)', borderTop: '1px solid var(--line)' }}>
-        <div className="container-narrow">
-          <div className="section-label">FAQ</div>
-          <h2 className="section-headline" style={{ marginBottom: 'var(--space-8)' }}>Pricing questions</h2>
-          <div className="faq-list">
-            {FAQS.map(f => (
-              <details key={f.q} className="faq-item">
-                <summary>
-                  {f.q}
-                  <svg className="faq-chevron" viewBox="0 0 20 20" fill="none">
-                    <path d="M5 8l5 5 5-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </summary>
-                <p className="faq-body">{f.a}</p>
-              </details>
-            ))}
+        {/* Comparison note */}
+        <section className="section section-teal">
+          <div className="container-narrow">
+            <p className="section-label">Worth knowing</p>
+            <h2 className="section-headline" style={{ marginBottom: 'var(--space-8)' }}>
+              How this compares
+            </h2>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-5)' }}>
+              {[
+                {
+                  label: 'Estate agent commission',
+                  value: '1–3% of sale price',
+                  note: 'Typically £3,000–£9,000 on an average UK home — payable whether or not you chose the buyer.',
+                },
+                {
+                  label: 'Rightmove listing',
+                  value: 'Agent fee included',
+                  note: 'You can\'t list on Rightmove directly. You pay an agent, who pays for the listing as part of their service.',
+                },
+                {
+                  label: 'Intentory owner approach',
+                  value: '£29',
+                  note: 'A single, personally addressed letter to the owner of a specific property. No commission. No agent.',
+                },
+                {
+                  label: 'Intentory street outreach',
+                  value: '£99',
+                  note: 'Every owner on a street contacted. Equivalent reach to dozens of individual approaches, for the cost of a family dinner.',
+                },
+              ].map((row) => (
+                <div key={row.label} style={{ display: 'flex', gap: 'var(--space-6)', alignItems: 'flex-start', paddingBottom: 'var(--space-5)', borderBottom: '1px solid var(--line)' }}>
+                  <div style={{ minWidth: 200, flexShrink: 0 }}>
+                    <div style={{ fontWeight: 600, fontSize: 'var(--text-sm)', color: 'var(--navy)', marginBottom: 2 }}>{row.label}</div>
+                    <div style={{ fontFamily: 'var(--font-tight)', fontWeight: 600, fontSize: 'var(--text-lg)', color: 'var(--teal-dark)' }}>{row.value}</div>
+                  </div>
+                  <p style={{ fontSize: 'var(--text-sm)', color: 'var(--slate)', lineHeight: 1.65, paddingTop: 2 }}>{row.note}</p>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+
+        {/* Pricing FAQ */}
+        <section className="section" style={{ background: 'var(--white)', borderTop: '1px solid var(--line)' }}>
+          <div className="container-narrow">
+            <p className="section-label">Pricing questions</p>
+            <div className="faq-list">
+              {FAQ_ITEMS.map(({ q, a }) => (
+                <details key={q} className="faq-item">
+                  <summary>
+                    {q}
+                    <svg className="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M6 9l6 6 6-6" />
+                    </svg>
+                  </summary>
+                  <p className="faq-body">{a}</p>
+                </details>
+              ))}
+            </div>
+            <p style={{ marginTop: 'var(--space-6)', fontSize: 'var(--text-sm)', color: 'var(--slate)' }}>
+              More questions?{' '}
+              <Link href="/faq" style={{ color: 'var(--teal)', fontWeight: 500, textDecoration: 'underline', textUnderlineOffset: '3px' }}>
+                Read the full FAQ →
+              </Link>
+            </p>
+          </div>
+        </section>
+
+        {/* CTA */}
+        <section className="section section-dark">
+          <div className="container-narrow" style={{ textAlign: 'center' }}>
+            <h2 className="section-headline" style={{ color: 'var(--white)', marginBottom: 'var(--space-4)' }}>
+              Start for free. No card required.
+            </h2>
+            <p className="section-sub section-sub-light" style={{ margin: '0 auto var(--space-8)' }}>
+              Register your buying interest in minutes. You only pay when you choose to take action.
+            </p>
+            <div style={{ display: 'flex', gap: 'var(--space-3)', justifyContent: 'center', flexWrap: 'wrap' }}>
+              <Link href="/register" className="btn btn-primary btn-lg">
+                Register interest free
+              </Link>
+              <Link href="/sellers/check" className="btn btn-outline btn-lg">
+                Check demand at my address
+              </Link>
+            </div>
+          </div>
+        </section>
+
+      </main>
     </>
   );
 }
