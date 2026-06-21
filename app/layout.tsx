@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { DM_Sans, Inter_Tight } from 'next/font/google';
 import Link from 'next/link';
+import MobileNav from '@/components/MobileNav';
 import './globals.css';
 
 const display = DM_Sans({
@@ -142,16 +143,23 @@ function SiteHeader() {
           </span>
           Intentory
         </Link>
+
+        {/* Desktop nav */}
         <nav className="site-nav" aria-label="Primary">
           <Link href="/how-it-works">How it works</Link>
           <Link href="/off-market-property">Off-market property</Link>
           <Link href="/pricing">Pricing</Link>
           <Link href="/faq">FAQ</Link>
         </nav>
+
+        {/* Desktop actions */}
         <div className="header-actions">
           <Link href="/login" className="btn btn-ghost">Sign in</Link>
           <Link href="/register" className="btn btn-primary">Register interest</Link>
         </div>
+
+        {/* Mobile nav — hamburger + drawer */}
+        <MobileNav />
       </div>
     </header>
   );
