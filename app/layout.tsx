@@ -144,6 +144,7 @@ function SiteHeader() {
         </Link>
         <nav className="site-nav" aria-label="Primary">
           <Link href="/how-it-works">How it works</Link>
+          <Link href="/off-market-property">Off-market property</Link>
           <Link href="/pricing">Pricing</Link>
           <Link href="/faq">FAQ</Link>
         </nav>
@@ -169,6 +170,7 @@ function SiteFooter() {
           </div>
           <nav className="footer-nav" aria-label="Footer">
             <Link href="/how-it-works">How it works</Link>
+            <Link href="/off-market-property">Off-market property</Link>
             <Link href="/pricing">Pricing</Link>
             <Link href="/faq">FAQ</Link>
             <Link href="/register">Register interest</Link>
