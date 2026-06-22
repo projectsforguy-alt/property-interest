@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { DM_Sans, Inter_Tight } from 'next/font/google';
 import Link from 'next/link';
 import MobileNav from '@/components/MobileNav';
+import GuidesDropdown from '@/components/GuidesDropdown';
 import './globals.css';
 
 const display = DM_Sans({
@@ -147,7 +148,7 @@ function SiteHeader() {
         {/* Desktop nav */}
         <nav className="site-nav" aria-label="Primary">
           <Link href="/how-it-works">How it works</Link>
-          <Link href="/off-market-property">Off-market property</Link>
+          <GuidesDropdown />
           <Link href="/pricing">Pricing</Link>
           <Link href="/faq">FAQ</Link>
         </nav>
@@ -158,7 +159,7 @@ function SiteHeader() {
           <Link href="/register" className="btn btn-primary">Register interest</Link>
         </div>
 
-        {/* Mobile nav — hamburger + drawer */}
+        {/* Mobile hamburger + drawer */}
         <MobileNav />
       </div>
     </header>
@@ -179,6 +180,8 @@ function SiteFooter() {
           <nav className="footer-nav" aria-label="Footer">
             <Link href="/how-it-works">How it works</Link>
             <Link href="/off-market-property">Off-market property</Link>
+            <Link href="/approach-a-homeowner">Approach a homeowner</Link>
+            <Link href="/sell-without-an-estate-agent">Sell without an agent</Link>
             <Link href="/pricing">Pricing</Link>
             <Link href="/faq">FAQ</Link>
             <Link href="/register">Register interest</Link>
