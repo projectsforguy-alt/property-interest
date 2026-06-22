@@ -78,11 +78,14 @@ export default function MobileNav() {
         ))}
 
         <div className="mobile-nav-actions">
-          <Link href="/login" className="btn btn-outline w-full" onClick={() => setOpen(false)}>
-            Sign in
+          <Link href="/sellers/check" className="btn btn-primary w-full" onClick={() => setOpen(false)}>
+            I&apos;m a seller — check demand
           </Link>
-          <Link href="/register" className="btn btn-primary w-full" onClick={() => setOpen(false)}>
-            Register interest free
+          <Link href="/register" className="btn btn-outline w-full" onClick={() => setOpen(false)}>
+            Register buying interest
+          </Link>
+          <Link href="/login" className="btn btn-ghost w-full" style={{ justifyContent: 'center', color: 'rgba(255,255,255,0.5)', fontSize: 'var(--text-sm)' }} onClick={() => setOpen(false)}>
+            Sign in
           </Link>
         </div>
       </nav>
