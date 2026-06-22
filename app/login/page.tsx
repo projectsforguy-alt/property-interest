@@ -1,7 +1,11 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import LoginForm from './LoginForm';
 
-export const metadata = { title: 'Sign in | Intentory' };
+export const metadata: Metadata = {
+  title: 'Sign in | Intentory',
+  robots: { index: false, follow: false },
+};
 
 export default function LoginPage() {
   return (
