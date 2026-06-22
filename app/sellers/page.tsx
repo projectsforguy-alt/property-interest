@@ -1,6 +1,20 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 
-export const metadata = { title: 'For homeowners | Intentory' };
+export const metadata: Metadata = {
+  title: 'For homeowners — sell privately without an estate agent',
+  description:
+    'Check whether buyers have already registered interest at your address before you commit to an agent. List privately, connect directly, and save on fees.',
+  alternates: {
+    canonical: 'https://property-interest-sepia.vercel.app/sellers',
+  },
+  openGraph: {
+    title: 'For homeowners | Intentory',
+    description:
+      'Check buyer demand at your address before you commit to anything. Sell privately, no public listing required.',
+    url: 'https://property-interest-sepia.vercel.app/sellers',
+  },
+};
 
 export default function SellersPage() {
   return (
@@ -36,9 +50,9 @@ export default function SellersPage() {
           <div className="steps" style={{ marginTop: 'var(--space-10)' }}>
             {[
               { n: '01', title: 'Check demand for free', body: 'Enter your address to see whether buyers have already registered interest in your property, your street, or your postcode area. No account needed.' },
-              { n: '02', title: 'Register as privately available', body: 'If demand exists and you\'re interested in exploring a private sale, create a free account and register your property as available to matched buyers.' },
-              { n: '03', title: 'Reach matched buyers', body: 'Pay £49 to send your property privately to every buyer who has registered matching interest. They\'re notified in their account and can open a conversation with you.' },
-              { n: '04', title: 'Stay in control', body: 'Nothing is public. You decide whether to respond to buyer messages, arrange a viewing, or proceed — all before any agent or public listing is involved.' },
+              { n: '02', title: 'Register as privately available', body: 'If demand exists and you\'re open to a private sale, create a free account and register your property. It never appears publicly.' },
+              { n: '03', title: 'Reach matched buyers', body: 'Pay £49 to notify every buyer who has registered matching interest. They\'re alerted privately and can open a conversation with you directly.' },
+              { n: '04', title: 'Stay in control', body: 'Nothing is public. You decide whether to respond to messages, arrange a viewing, or proceed — all before any agent or public listing is involved.' },
             ].map(s => (
               <div key={s.n} className="step">
                 <div className="step-number">{s.n}</div>
@@ -73,10 +87,15 @@ export default function SellersPage() {
       <section className="section section-teal">
         <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 'var(--space-8)', flexWrap: 'wrap' }}>
           <div>
-            <h2 className="section-headline" style={{ marginBottom: 'var(--space-2)' }}>Check demand at your address</h2>
-            <p style={{ color: 'var(--slate)', fontSize: 'var(--text-base)' }}>Free, instant, and no account required.</p>
+            <h2 className="section-headline" style={{ marginBottom: 'var(--space-2)' }}>Ready to list your property privately?</h2>
+            <p style={{ color: 'var(--slate)', fontSize: 'var(--text-base)' }}>
+              Check demand first — free and instant. Then create an account to connect with matched buyers.
+            </p>
           </div>
-          <Link href="/sellers/check" className="btn btn-primary btn-lg">Check now — free</Link>
+          <div style={{ display: 'flex', gap: 'var(--space-3)', flexWrap: 'wrap' }}>
+            <Link href="/sellers/check" className="btn btn-primary btn-lg">Check demand — free</Link>
+            <Link href="/register?intent=seller" className="btn btn-outline-dark btn-lg">Create seller account</Link>
+          </div>
         </div>
       </section>
     </>
