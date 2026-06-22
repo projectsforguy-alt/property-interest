@@ -11,7 +11,11 @@ function getBrowserClient() {
   );
 }
 
-export default function RegisterForm() {
+interface Props {
+  intent?: 'buyer' | 'seller';
+}
+
+export default function RegisterForm({ intent = 'buyer' }: Props) {
   const router = useRouter();
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -20,6 +24,8 @@ export default function RegisterForm() {
   const [consent, setConsent] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+
+  const isSeller = intent === 'seller';
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -39,7 +45,8 @@ export default function RegisterForm() {
       setError(error.message);
       setLoading(false);
     } else {
-      router.push('/account?welcome=1');
+      // Send sellers to property registration, buyers to the main dashboard
+      router.push(isSeller ? '/account/property/new?welcome=1' : '/account?welcome=1');
       router.refresh();
     }
   }
@@ -73,7 +80,8 @@ export default function RegisterForm() {
         <span className="field-hint">At least 8 characters</span>
       </div>
       <div className="checkbox-field">
-        <input type="checkbox" id="consent" checked={consent} onChange={e => setConsent(e.target.checked)} />
+        <input type="checkbox" id="consent" checked={consent}
+          onChange={e => setConsent(e.target.checked)} />
         <label htmlFor="consent" className="checkbox-label">
           I agree to Intentory&apos;s{' '}
           <Link href="/terms">Terms of use</Link> and{' '}
@@ -81,7 +89,9 @@ export default function RegisterForm() {
         </label>
       </div>
       <button type="submit" className="btn btn-primary w-full btn-lg" disabled={loading}>
-        {loading ? 'Creating account…' : 'Create free account'}
+        {loading
+          ? 'Creating account…'
+          : isSeller ? 'Create free account' : 'Create free account'}
       </button>
     </form>
   );
