@@ -155,7 +155,7 @@ function SiteHeader() {
 
         {/* Desktop actions */}
         <div className="header-actions">
-          <Link href="/sellers" className="btn btn-ghost header-seller-cta">
+          <Link href="/register?intent=seller" className="btn btn-ghost header-seller-cta">
             I&apos;m a seller
           </Link>
           <Link href="/login" className="btn btn-ghost">Sign in</Link>
