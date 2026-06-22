@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import DemandCheckForm from './DemandCheckForm';
+import 'leaflet/dist/leaflet.css';
 
 export const metadata: Metadata = {
   title: 'Check buyer demand at your address',
