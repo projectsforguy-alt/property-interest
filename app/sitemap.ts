@@ -23,6 +23,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: `${BASE_URL}/approach-a-homeowner`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/sell-without-an-estate-agent`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
       url: `${BASE_URL}/pricing`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
@@ -32,13 +44,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${BASE_URL}/faq`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
-      priority: 0.8,
+      priority: 0.7,
     },
     {
       url: `${BASE_URL}/register`,
       lastModified: new Date(),
       changeFrequency: 'yearly',
-      priority: 0.5,
+      priority: 0.3,
     },
     {
       url: `${BASE_URL}/login`,
