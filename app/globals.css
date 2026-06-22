@@ -1597,6 +1597,18 @@ ul, ol { list-style: none; }
 }
 
 /* ============================================================
+   HEADER SELLER CTA
+   Hide at mid breakpoint where header gets crowded,
+   before mobile nav kicks in at 640px
+   ============================================================ */
+
+@media (max-width: 860px) {
+  .header-seller-cta {
+    display: none;
+  }
+}
+
+/* ============================================================
    MOBILE NAV
    ============================================================ */
 
