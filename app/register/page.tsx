@@ -50,6 +50,20 @@ export default async function RegisterPage({ searchParams }: Props) {
           Already have an account?{' '}
           <Link href="/login">Sign in</Link>
         </div>
+
+        <div className="auth-footer" style={{ marginTop: 'var(--space-2)' }}>
+          {isSeller ? (
+            <>
+              Looking to buy instead?{' '}
+              <Link href="/register">Register as a buyer</Link>
+            </>
+          ) : (
+            <>
+              Are you a seller?{' '}
+              <Link href="/register?intent=seller">List your property</Link>
+            </>
+          )}
+        </div>
       </div>
     </div>
   );
