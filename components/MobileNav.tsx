@@ -78,13 +78,33 @@ export default function MobileNav() {
         ))}
 
         <div className="mobile-nav-actions">
-          <Link href="/sellers/check" className="btn btn-primary w-full" onClick={() => setOpen(false)}>
-            I&apos;m a seller — check demand
-          </Link>
-          <Link href="/register" className="btn btn-outline w-full" onClick={() => setOpen(false)}>
+          {/* Buyer CTA */}
+          <Link href="/register" className="btn btn-primary w-full" onClick={() => setOpen(false)}>
             Register buying interest
           </Link>
-          <Link href="/login" className="btn btn-ghost w-full" style={{ justifyContent: 'center', color: 'rgba(255,255,255,0.5)', fontSize: 'var(--text-sm)' }} onClick={() => setOpen(false)}>
+
+          {/* Seller options — labelled section */}
+          <div className="mobile-nav-seller-group">
+            <div className="mobile-nav-group-label" style={{ paddingLeft: 0, paddingTop: 'var(--space-2)' }}>
+              I&apos;m a seller
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-2)' }}>
+              <Link href="/register?intent=seller" className="btn btn-outline w-full" onClick={() => setOpen(false)}>
+                List my property
+              </Link>
+              <Link href="/sellers/check" className="btn btn-outline w-full" onClick={() => setOpen(false)}>
+                Check demand at my address
+              </Link>
+            </div>
+          </div>
+
+          {/* Sign in */}
+          <Link
+            href="/login"
+            className="btn btn-ghost w-full"
+            style={{ justifyContent: 'center', color: 'rgba(255,255,255,0.5)', fontSize: 'var(--text-sm)' }}
+            onClick={() => setOpen(false)}
+          >
             Sign in
           </Link>
         </div>
