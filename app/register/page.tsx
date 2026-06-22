@@ -1,7 +1,11 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import RegisterForm from './RegisterForm';
 
-export const metadata = { title: 'Register interest | Intentory' };
+export const metadata: Metadata = {
+  title: 'Register interest | Intentory',
+  robots: { index: false, follow: false },
+};
 
 export default function RegisterPage() {
   return (
