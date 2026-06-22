@@ -4,23 +4,31 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-const NAV_LINKS = [
-  { href: '/how-it-works', label: 'How it works' },
-  { href: '/off-market-property', label: 'Off-market property' },
-  { href: '/pricing', label: 'Pricing' },
-  { href: '/faq', label: 'FAQ' },
+const NAV = [
+  {
+    label: 'Main',
+    links: [
+      { href: '/how-it-works', label: 'How it works' },
+      { href: '/pricing', label: 'Pricing' },
+      { href: '/faq', label: 'FAQ' },
+    ],
+  },
+  {
+    label: 'Guides',
+    links: [
+      { href: '/off-market-property', label: 'Off-market property' },
+      { href: '/approach-a-homeowner', label: 'Approach a homeowner' },
+      { href: '/sell-without-an-estate-agent', label: 'Sell without an agent' },
+    ],
+  },
 ];
 
 export default function MobileNav() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
-  // Close on route change
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
+  useEffect(() => { setOpen(false); }, [pathname]);
 
-  // Prevent body scroll when open
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
@@ -28,7 +36,6 @@ export default function MobileNav() {
 
   return (
     <>
-      {/* Hamburger button — only visible on mobile */}
       <button
         className="mobile-nav-toggle"
         onClick={() => setOpen((v) => !v)}
@@ -42,7 +49,6 @@ export default function MobileNav() {
         </span>
       </button>
 
-      {/* Backdrop */}
       {open && (
         <div
           className="mobile-nav-backdrop"
@@ -51,23 +57,25 @@ export default function MobileNav() {
         />
       )}
 
-      {/* Drawer */}
       <nav
         className={`mobile-nav-drawer${open ? ' mobile-nav-drawer--open' : ''}`}
         aria-label="Mobile navigation"
       >
-        <div className="mobile-nav-links">
-          {NAV_LINKS.map(({ href, label }) => (
-            <Link
-              key={href}
-              href={href}
-              className={`mobile-nav-link${pathname === href ? ' mobile-nav-link--active' : ''}`}
-              onClick={() => setOpen(false)}
-            >
-              {label}
-            </Link>
-          ))}
-        </div>
+        {NAV.map((group) => (
+          <div key={group.label} className="mobile-nav-group">
+            <div className="mobile-nav-group-label">{group.label}</div>
+            {group.links.map(({ href, label }) => (
+              <Link
+                key={href}
+                href={href}
+                className={`mobile-nav-link${pathname === href ? ' mobile-nav-link--active' : ''}`}
+                onClick={() => setOpen(false)}
+              >
+                {label}
+              </Link>
+            ))}
+          </div>
+        ))}
 
         <div className="mobile-nav-actions">
           <Link href="/login" className="btn btn-outline w-full" onClick={() => setOpen(false)}>
