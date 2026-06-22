@@ -89,7 +89,7 @@ export default function DemandCheckForm() {
                   Register your property as privately available and we&apos;ll match it to these buyers — before you list anywhere publicly.
                 </p>
                 <div style={{ display: 'flex', gap: 'var(--space-3)', flexWrap: 'wrap' }}>
-                  <Link href="/register" className="btn btn-primary">Register as available — free</Link>
+                  <Link href="/register?intent=seller" className="btn btn-primary">Register as available — free</Link>
                   <Link href="/how-it-works" className="btn btn-outline-dark">How it works</Link>
                 </div>
               </div>
@@ -101,7 +101,7 @@ export default function DemandCheckForm() {
                 No buyers have registered interest in <strong>{result.postcode}</strong> yet — but demand can appear at any time. Register your property as available and we&apos;ll notify you the moment a matching buyer appears.
               </p>
               <div style={{ display: 'flex', gap: 'var(--space-3)', flexWrap: 'wrap' }}>
-                <Link href="/register" className="btn btn-primary">Register and get notified — free</Link>
+                <Link href="/register?intent=seller" className="btn btn-primary">Register and get notified — free</Link>
                 <Link href="/pricing" className="btn btn-outline-dark">View pricing</Link>
               </div>
             </div>
