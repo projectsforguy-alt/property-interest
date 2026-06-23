@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 
 export const metadata = { title: 'How Intentory works | Intentory' };
@@ -32,6 +33,24 @@ export default function HowItWorksPage() {
           </p>
         </div>
       </section>
+
+      {/* Street image — grounds the concept in a real place */}
+      <div style={{ position: 'relative', height: 380, overflow: 'hidden' }}>
+        <Image
+          src="/images/how-it-works-hero.jpg"
+          alt="A quiet residential street in England"
+          fill
+          style={{ objectFit: 'cover', objectPosition: 'center 60%' }}
+          priority
+          sizes="100vw"
+        />
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'linear-gradient(to bottom, var(--navy) 0%, transparent 18%, transparent 82%, var(--surface) 100%)',
+          pointerEvents: 'none',
+        }} />
+      </div>
 
       <section className="section">
         <div className="container">
