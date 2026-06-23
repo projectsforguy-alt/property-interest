@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
@@ -159,15 +160,15 @@ export default function ApproachAHomeownerPage() {
 
       <main className="site-main">
 
-        {/* Hero */}
-        <section className="section section-dark" style={{ paddingTop: 'var(--space-20)', paddingBottom: 'var(--space-16)' }}>
-          <div className="container-narrow">
+        {/* Hero — split layout with front door image */}
+        <div className="hero-layout" style={{ background: 'var(--navy)', minHeight: 520 }}>
+          <div className="hero-text" style={{ paddingTop: 'var(--space-20)', paddingBottom: 'var(--space-16)' }}>
             <p className="section-label">Buyer guide</p>
             <h1 className="section-headline" style={{ color: 'var(--white)', marginBottom: 'var(--space-4)' }}>
               How to approach a homeowner about buying their house
             </h1>
             <p className="section-sub section-sub-light" style={{ marginBottom: 'var(--space-8)' }}>
-              Many UK homeowners would consider selling if approached in the right way. This guide covers what works, what doesn't, and how to give yourself the best chance of a positive response.
+              Many UK homeowners would consider selling if approached in the right way. This guide covers what works, what doesn&apos;t, and how to give yourself the best chance of a positive response.
             </p>
             <div style={{ display: 'flex', gap: 'var(--space-3)', flexWrap: 'wrap' }}>
               <Link href="/register" className="btn btn-primary btn-lg">
@@ -178,7 +179,19 @@ export default function ApproachAHomeownerPage() {
               </Link>
             </div>
           </div>
-        </section>
+          <div className="hero-img-wrap">
+            <Image
+              src="/images/approach-hero.jpg"
+              alt="A classic UK front door with brass letterbox"
+              fill
+              className="hero-img"
+              priority
+              sizes="50vw"
+              style={{ objectPosition: 'center center' }}
+            />
+            <div className="hero-img-fade" />
+          </div>
+        </div>
 
         {/* Why it works */}
         <section className="section" style={{ background: 'var(--white)' }}>
@@ -186,7 +199,7 @@ export default function ApproachAHomeownerPage() {
             <div className="prose" style={{ maxWidth: '100%' }}>
               <h2>Why approaching a homeowner directly can work</h2>
               <p>
-                The assumption most buyers make is that if a property isn't listed, it isn't for sale. This is often wrong. A significant number of homeowners are in a state of passive consideration — they'd sell for the right price to the right buyer, but they haven't committed to a full agent campaign because they're not ready for the disruption, the uncertainty, or the cost.
+                The assumption most buyers make is that if a property isn&apos;t listed, it isn&apos;t for sale. This is often wrong. A significant number of homeowners are in a state of passive consideration — they&apos;d sell for the right price to the right buyer, but they haven&apos;t committed to a full agent campaign because they&apos;re not ready for the disruption, the uncertainty, or the cost.
               </p>
               <p>
                 A genuine, well-written approach from a serious buyer can change that calculation. If someone is offering a fair price with no fuss, the appeal of avoiding an agent, avoiding viewings from strangers, and proceeding on their own terms can be compelling — particularly for homeowners who value privacy or are in no rush.
@@ -197,10 +210,10 @@ export default function ApproachAHomeownerPage() {
 
               <h2>Letter versus knocking on the door</h2>
               <p>
-                Knocking on someone's door to ask if they'd sell their house puts them in an uncomfortable position. They have to respond immediately, in person, without any time to think — and most people will say no simply to end an awkward encounter, regardless of whether they'd actually consider selling.
+                Knocking on someone&apos;s door to ask if they&apos;d sell their house puts them in an uncomfortable position. They have to respond immediately, in person, without any time to think — and most people will say no simply to end an awkward encounter, regardless of whether they&apos;d actually consider selling.
               </p>
               <p>
-                A letter does the opposite. It arrives when the owner is ready to read it, gives them time to think, and lets them respond (or not) without any social pressure. A well-written letter to the right property at the right time can produce a response weeks or months later, when the owner's circumstances have shifted and your approach comes to mind.
+                A letter does the opposite. It arrives when the owner is ready to read it, gives them time to think, and lets them respond (or not) without any social pressure. A well-written letter to the right property at the right time can produce a response weeks or months later, when the owner&apos;s circumstances have shifted and your approach comes to mind.
               </p>
               <p>
                 Always use a letter. It is more effective and more respectful.
@@ -228,7 +241,7 @@ export default function ApproachAHomeownerPage() {
                 To address a letter to the owner by name, you need to know who owns the property. In England and Wales, property ownership is recorded at HM Land Registry, and title registers are publicly available for a small fee (currently £3 per title). You can search by address at <a href="https://www.gov.uk/search-property-information-land-registry" target="_blank" rel="noopener noreferrer">gov.uk</a>.
               </p>
               <p>
-                Note that not all properties are registered — particularly older ones that haven't changed hands recently. In those cases, ownership research requires more effort, and the Land Registry search may return no result.
+                Note that not all properties are registered — particularly older ones that haven&apos;t changed hands recently. In those cases, ownership research requires more effort, and the Land Registry search may return no result.
               </p>
               <p>
                 Intentory handles this research as part of the owner approach service. We identify the registered owner, produce a personally addressed letter, and provide a private response link — so the owner can respond in confidence without committing to anything.
@@ -236,10 +249,10 @@ export default function ApproachAHomeownerPage() {
 
               <h2>What to do when an owner responds positively</h2>
               <p>
-                Move quickly, but don't appear desperate. Confirm your interest, arrange a viewing if the owner is willing, and have your finances in order before that conversation happens. A seller who agrees to a private approach does so partly to avoid uncertainty — a buyer who appears well-prepared and decisive reinforces the decision.
+                Move quickly, but don&apos;t appear desperate. Confirm your interest, arrange a viewing if the owner is willing, and have your finances in order before that conversation happens. A seller who agrees to a private approach does so partly to avoid uncertainty — a buyer who appears well-prepared and decisive reinforces the decision.
               </p>
               <p>
-                If the owner is open to selling but hasn't agreed a price, engage a local estate agent or RICS surveyor for a valuation so you're negotiating from an informed position. Both parties should instruct solicitors early in the process.
+                If the owner is open to selling but hasn&apos;t agreed a price, engage a local estate agent or RICS surveyor for a valuation so you&apos;re negotiating from an informed position. Both parties should instruct solicitors early in the process.
               </p>
 
               <h2>What to do when an owner says no</h2>
@@ -247,7 +260,7 @@ export default function ApproachAHomeownerPage() {
                 Respect it and move on. A homeowner who declines today may reconsider if their circumstances change — a job move, a family change, a shift in financial priorities. Some buyers leave a note with their contact details so the owner has a way to get in touch if they do decide to sell.
               </p>
               <p>
-                Registering your interest with Intentory means you'll be notified automatically if that owner later registers the property as privately available — without you having to do anything further.
+                Registering your interest with Intentory means you&apos;ll be notified automatically if that owner later registers the property as privately available — without you having to do anything further.
               </p>
             </div>
           </div>
