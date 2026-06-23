@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
@@ -99,18 +100,29 @@ export default function OffMarketPropertyPage() {
 
       <main className="site-main">
 
-        {/* Hero */}
-        <section className="section section-dark" style={{ paddingTop: 'var(--space-20)', paddingBottom: 'var(--space-16)' }}>
-          <div className="container-narrow">
+        {/* Hero — split layout with image */}
+        <div className="hero-layout" style={{ background: 'var(--navy)', minHeight: 480 }}>
+          <div className="hero-text" style={{ paddingTop: 'var(--space-20)', paddingBottom: 'var(--space-16)' }}>
             <p className="section-label">Guide</p>
             <h1 className="section-headline" style={{ color: 'var(--white)', marginBottom: 'var(--space-4)' }}>
               Off-market property — what it is and how to buy it
             </h1>
             <p className="section-sub section-sub-light" style={{ marginBottom: 0 }}>
-              A practical guide to private property transactions in the UK — for buyers who want a specific home and sellers who'd prefer a discreet sale.
+              A practical guide to private property transactions in the UK — for buyers who want a specific home and sellers who&apos;d prefer a discreet sale.
             </p>
           </div>
-        </section>
+          <div className="hero-img-wrap">
+            <Image
+              src="/images/off-market-hero.jpg"
+              alt="A quiet residential close in England with no for-sale boards"
+              fill
+              className="hero-img"
+              priority
+              sizes="50vw"
+            />
+            <div className="hero-img-fade" />
+          </div>
+        </div>
 
         {/* Main content */}
         <section className="section" style={{ background: 'var(--white)' }}>
@@ -128,7 +140,7 @@ export default function OffMarketPropertyPage() {
 
               <h2>How common are off-market sales in the UK?</h2>
               <p>
-                More common than most buyers assume. While precise figures are difficult to establish — by nature, these transactions aren't publicly tracked — anecdotal evidence from estate agents, property lawyers, and private buyers suggests that off-market activity is particularly concentrated in:
+                More common than most buyers assume. While precise figures are difficult to establish — by nature, these transactions aren&apos;t publicly tracked — anecdotal evidence from estate agents, property lawyers, and private buyers suggests that off-market activity is particularly concentrated in:
               </p>
               <ul style={{ listStyle: 'disc', paddingLeft: 'var(--space-6)', display: 'flex', flexDirection: 'column', gap: 'var(--space-2)', marginBottom: 'var(--space-5)' }}>
                 <li style={{ fontSize: 'var(--text-base)', color: 'var(--slate)', lineHeight: 1.65 }}>Sought-after villages and rural areas, where homes change hands infrequently and owners prefer a low-profile sale</li>
@@ -137,21 +149,21 @@ export default function OffMarketPropertyPage() {
                 <li style={{ fontSize: 'var(--text-base)', color: 'var(--slate)', lineHeight: 1.65 }}>Homeowners who are open to selling but unwilling to commit to the full process unless they know real demand exists</li>
               </ul>
               <p>
-                That last group is larger than it might appear. Many homeowners are in a kind of passive consideration — they'd sell for the right price to the right buyer, but they haven't called an agent because they're not ready to start viewings, deal with a chain, or pay a commission unless it leads somewhere.
+                That last group is larger than it might appear. Many homeowners are in a kind of passive consideration — they&apos;d sell for the right price to the right buyer, but they haven&apos;t called an agent because they&apos;re not ready to start viewings, deal with a chain, or pay a commission unless it leads somewhere.
               </p>
 
               <h2>Why do buyers pursue off-market properties?</h2>
               <p>
-                The straightforward answer: because the home they want isn't listed.
+                The straightforward answer: because the home they want isn&apos;t listed.
               </p>
               <p>
                 Portals only show properties whose owners have already made the decision to sell and instructed an agent. For buyers with a specific target — a particular road, a village, a style of house — this is a small and often unrepresentative subset of what could potentially come to market.
               </p>
               <p>
-                A buyer who has decided they want to live on a specific street in a specific town shouldn't have to wait indefinitely for the right listing to appear. An off-market approach is how they take control of the search — rather than competing on whatever happens to list, they go directly to the people who own what they want.
+                A buyer who has decided they want to live on a specific street in a specific town shouldn&apos;t have to wait indefinitely for the right listing to appear. An off-market approach is how they take control of the search — rather than competing on whatever happens to list, they go directly to the people who own what they want.
               </p>
               <p>
-                There's also a practical competitive advantage. When a home lists publicly, it attracts multiple buyers simultaneously. An off-market approach — made privately, before any listing — removes that competition entirely.
+                There&apos;s also a practical competitive advantage. When a home lists publicly, it attracts multiple buyers simultaneously. An off-market approach — made privately, before any listing — removes that competition entirely.
               </p>
 
               <h2>Why do sellers agree to off-market sales?</h2>
@@ -204,7 +216,7 @@ export default function OffMarketPropertyPage() {
                 A personal letter — rather than a door knock or an unsolicited call — is the most effective way to approach a homeowner. It gives them time to consider your interest without pressure, conveys seriousness, and provides a clear way to respond. The letter should be brief, specific about the property, and clear about your buying position.
               </p>
               <p>
-                Intentory's owner approach service handles this on your behalf — identifying the registered owner, writing a personalised letter, and providing a private response link the owner can use to get in touch if interested.
+                Intentory&apos;s owner approach service handles this on your behalf — identifying the registered owner, writing a personalised letter, and providing a private response link the owner can use to get in touch if interested.
               </p>
 
               <h3>4. Be prepared to move quickly</h3>
@@ -219,10 +231,10 @@ export default function OffMarketPropertyPage() {
 
               <h2>Off-market property for sellers</h2>
               <p>
-                Sellers considering an off-market approach don't have to wait to be found. Intentory lets homeowners check whether buyers have already registered interest at their address before they commit to anything. If demand exists, they can make themselves privately available to those buyers — without a public listing, without viewings from unqualified strangers, and without agent fees.
+                Sellers considering an off-market approach don&apos;t have to wait to be found. Intentory lets homeowners check whether buyers have already registered interest at their address before they commit to anything. If demand exists, they can make themselves privately available to those buyers — without a public listing, without viewings from unqualified strangers, and without agent fees.
               </p>
               <p>
-                This represents a meaningful shift in how the early stages of a property sale can work. Rather than the seller announcing publicly and waiting for interest to emerge, Intentory lets sellers see pre-existing interest first — and decide whether it's worth acting on.
+                This represents a meaningful shift in how the early stages of a property sale can work. Rather than the seller announcing publicly and waiting for interest to emerge, Intentory lets sellers see pre-existing interest first — and decide whether it&apos;s worth acting on.
               </p>
 
             </div>
