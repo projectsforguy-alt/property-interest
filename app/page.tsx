@@ -4,15 +4,15 @@ import Link from 'next/link';
 export const metadata: Metadata = {
   title: 'The home you want probably isn\'t listed',
   description:
-    'Intentory lets buyers register private interest in any home — listed or not. Sellers discover real buyer demand at their address before going to market. Free to start.',
+    'EarlyEggs lets buyers register private interest in any home — listed or not. Sellers discover real buyer demand at their address before going to market. Free to start.',
   alternates: {
-    canonical: 'https://property-interest-sepia.vercel.app',
+    canonical: 'https://www.earlyeggs.com',
   },
   openGraph: {
-    title: 'The home you want probably isn\'t listed | Intentory',
+    title: 'The home you want probably isn\'t listed | EarlyEggs',
     description:
       'Register private interest in any home. Sellers discover real buyer demand before going to market. Free to start.',
-    url: 'https://property-interest-sepia.vercel.app',
+    url: 'https://www.earlyeggs.com',
   },
 };
 
@@ -20,7 +20,7 @@ const FAQ_ITEMS = [
   {
     question: 'Can I buy a house that isn\'t for sale?',
     answer:
-      'Yes. Many homeowners would consider selling if approached in the right way — they simply haven\'t listed because nobody has asked. Intentory lets you register genuine interest in a specific address, street, or area, and we can contact the owner on your behalf. This is known as an off-market approach.',
+      'Yes. Many homeowners would consider selling if approached in the right way — they simply haven\'t listed because nobody has asked. EarlyEggs lets you register genuine interest in a specific address, street, or area, and we can contact the owner on your behalf. This is known as an off-market approach.',
   },
   {
     question: 'What is off-market property?',
@@ -33,7 +33,7 @@ const FAQ_ITEMS = [
       'Registering buyer interest is completely free. There\'s no subscription. You only pay if you choose to take an active step — such as requesting an owner approach (£29), street outreach (£99), or area outreach (£199).',
   },
   {
-    question: 'How do sellers use Intentory?',
+    question: 'How do sellers use EarlyEggs?',
     answer:
       'Sellers enter their postcode to see whether any buyers have already registered interest at their address, street, or area. If demand exists, they can register as privately available and broadcast to matched buyers for £49 — without any public listing.',
   },
@@ -43,9 +43,9 @@ const FAQ_ITEMS = [
       'Yes. Individual buyer registrations are never publicly visible. Sellers only see that demand exists at their address — not who the buyers are — until both parties agree to connect.',
   },
   {
-    question: 'What areas does Intentory cover?',
+    question: 'What areas does EarlyEggs cover?',
     answer:
-      'Intentory covers all of England and Wales. Buyers can register interest at any valid UK postcode, and sellers at any residential address.',
+      'EarlyEggs covers all of England and Wales. Buyers can register interest at any valid UK postcode, and sellers at any residential address.',
   },
 ];
 
@@ -96,8 +96,7 @@ export default function HomePage() {
 function HeroSection() {
   const doubled = [...TICKER_ITEMS, ...TICKER_ITEMS];
   return (
-    <section style={{ background: 'var(--navy)', color: 'var(--white)', overflow: 'hidden' }}>
-      {/* Desktop: side by side. Mobile: stacked via CSS class */}
+    <section style={{ background: 'var(--forest)', color: 'var(--white)', overflow: 'hidden' }}>
       <div className="hero-layout">
         {/* Left — text */}
         <div className="hero-text">
@@ -109,7 +108,7 @@ function HeroSection() {
             The home you want probably <em>isn&apos;t listed.</em>
           </h1>
           <p className="hero-sub">
-            Intentory lets buyers make private offers on any home — listed or not. And lets homeowners discover whether serious buyers are already waiting, before they call an agent.
+            EarlyEggs lets buyers make private approaches to any home — listed or not. And lets homeowners discover whether serious buyers are already waiting, before they call an agent.
           </p>
           <div className="hero-actions">
             <Link href="/register" className="btn btn-primary btn-lg">
@@ -148,7 +147,6 @@ function HeroSection() {
   );
 }
 
-
 function ProblemSection() {
   return (
     <section className="section" style={{ background: 'var(--white)', borderBottom: '1px solid var(--line)' }}>
@@ -161,13 +159,13 @@ function ProblemSection() {
             </h2>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-6)' }}>
-            <div style={{ paddingLeft: 'var(--space-5)', borderLeft: '3px solid var(--teal)' }}>
+            <div style={{ paddingLeft: 'var(--space-5)', borderLeft: '3px solid var(--gold)' }}>
               <div style={{ fontWeight: 600, marginBottom: 'var(--space-1)', fontSize: 'var(--text-base)' }}>For buyers</div>
               <p style={{ fontSize: 'var(--text-sm)', color: 'var(--slate)', lineHeight: 1.65 }}>
                 You want a specific road, village, or type of home. But you&apos;re at the mercy of whatever happens to be listed — and when your dream home does appear, so does everyone else. The best properties go before most buyers even knew they existed.
               </p>
             </div>
-            <div style={{ paddingLeft: 'var(--space-5)', borderLeft: '3px solid var(--teal)' }}>
+            <div style={{ paddingLeft: 'var(--space-5)', borderLeft: '3px solid var(--gold)' }}>
               <div style={{ fontWeight: 600, marginBottom: 'var(--space-1)', fontSize: 'var(--text-base)' }}>For sellers</div>
               <p style={{ fontSize: 'var(--text-sm)', color: 'var(--slate)', lineHeight: 1.65 }}>
                 You&apos;re considering selling but don&apos;t know if the demand is there. So you call an agent, agree to a commission, and commit to a process — before you even know whether a buyer is already out there waiting.
@@ -184,10 +182,10 @@ function BuyerBenefitsSection() {
   const benefits = [
     {
       title: 'Go after the home you actually want',
-      body: 'Most buyers search what\'s listed. Intentory lets you identify exactly where you want to live — a specific road, a village, a postcode — and make a private approach to owners directly. You\'re not waiting for luck.',
+      body: 'Most buyers search what\'s listed. EarlyEggs lets you identify exactly where you want to live — a specific road, a village, a postcode — and make a private approach to owners directly. You\'re not waiting for luck.',
     },
     {
-      title: 'Make an offer before it hits the market',
+      title: 'Make an approach before it hits the market',
       body: 'Register interest in a specific property and we\'ll contact the owner on your behalf. A motivated seller who hasn\'t yet committed to an agent may prefer a clean, private sale — on your terms and your timescale.',
     },
     {
@@ -210,12 +208,12 @@ function BuyerBenefitsSection() {
               Stop waiting for the right home to appear. Go and find it.
             </h2>
             <p className="section-sub section-sub-light" style={{ marginBottom: 'var(--space-8)' }}>
-              Intentory gives serious buyers a private route to the homes they actually want — not just the ones that happen to be listed.
+              EarlyEggs gives serious buyers a private route to the homes they actually want — not just the ones that happen to be listed.
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-5)', marginBottom: 'var(--space-10)' }}>
               {benefits.map((b, i) => (
                 <div key={i} style={{ display: 'flex', gap: 'var(--space-4)' }}>
-                  <div style={{ fontFamily: 'var(--font-tight)', fontWeight: 700, fontSize: 'var(--text-xs)', color: 'var(--teal)', width: 24, flexShrink: 0, paddingTop: 3 }}>0{i + 1}</div>
+                  <div style={{ fontFamily: 'var(--font-tight)', fontWeight: 700, fontSize: 'var(--text-xs)', color: 'var(--gold)', width: 24, flexShrink: 0, paddingTop: 3 }}>0{i + 1}</div>
                   <div>
                     <div style={{ fontWeight: 600, fontSize: 'var(--text-sm)', color: 'var(--white)', marginBottom: 4 }}>{b.title}</div>
                     <div style={{ fontSize: 'var(--text-sm)', color: 'rgba(255,255,255,0.6)', lineHeight: 1.6 }}>{b.body}</div>
@@ -281,7 +279,7 @@ function SellerBenefitsSection() {
               },
               {
                 title: 'Save significantly on fees',
-                body: 'Estate agent commission typically runs to thousands. A private sale through Intentory costs a fraction of that — particularly when the buyer is already out there waiting.',
+                body: 'Estate agent commission typically runs to thousands. A private sale through EarlyEggs costs a fraction of that — particularly when the buyer is already out there waiting.',
               },
               {
                 title: 'No obligation at any stage',
@@ -289,9 +287,9 @@ function SellerBenefitsSection() {
               },
             ].map(item => (
               <div key={item.title} style={{ display: 'flex', gap: 'var(--space-4)', alignItems: 'flex-start' }}>
-                <div style={{ width: 24, height: 24, borderRadius: '50%', background: 'var(--teal-soft)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 2 }}>
+                <div style={{ width: 24, height: 24, borderRadius: '50%', background: 'var(--gold-soft)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 2 }}>
                   <svg width="12" height="12" viewBox="0 0 20 20" fill="none">
-                    <path d="M4 10l4 4 8-8" stroke="var(--teal-dark)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M4 10l4 4 8-8" stroke="var(--gold-dark)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 </div>
                 <div>
@@ -309,13 +307,13 @@ function SellerBenefitsSection() {
 
 function HowItWorksSection() {
   return (
-    <section className="section section-teal">
+    <section className="section section-gold">
       <div className="container">
         <div className="section-label">Simple by design</div>
-        <h2 className="section-headline" style={{ marginBottom: 'var(--space-12)' }}>How Intentory works</h2>
+        <h2 className="section-headline" style={{ marginBottom: 'var(--space-12)' }}>How EarlyEggs works</h2>
         <div className="two-col-grid">
           <div>
-            <div style={{ fontWeight: 700, fontSize: 'var(--text-xs)', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--teal-dark)', marginBottom: 'var(--space-5)' }}>Buyers</div>
+            <div style={{ fontWeight: 700, fontSize: 'var(--text-xs)', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--gold-dark)', marginBottom: 'var(--space-5)' }}>Buyers</div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-5)' }}>
               {[
                 { n: '01', t: 'Register where you want to buy', b: 'A specific address, a street, a village, or an area. Free to register.' },
@@ -323,7 +321,7 @@ function HowItWorksSection() {
                 { n: '03', t: 'Make your move', b: 'Open a private conversation, make an offer, or upgrade to a direct owner approach on any unlisted property.' },
               ].map(s => (
                 <div key={s.n} style={{ display: 'flex', gap: 'var(--space-4)' }}>
-                  <div style={{ fontFamily: 'var(--font-tight)', fontWeight: 700, fontSize: 'var(--text-xs)', color: 'var(--teal-dark)', width: 24, flexShrink: 0, paddingTop: 2 }}>{s.n}</div>
+                  <div style={{ fontFamily: 'var(--font-tight)', fontWeight: 700, fontSize: 'var(--text-xs)', color: 'var(--gold-dark)', width: 24, flexShrink: 0, paddingTop: 2 }}>{s.n}</div>
                   <div>
                     <div style={{ fontWeight: 600, fontSize: 'var(--text-sm)', marginBottom: 4 }}>{s.t}</div>
                     <div style={{ fontSize: 'var(--text-sm)', color: 'var(--slate)', lineHeight: 1.6 }}>{s.b}</div>
@@ -333,7 +331,7 @@ function HowItWorksSection() {
             </div>
           </div>
           <div>
-            <div style={{ fontWeight: 700, fontSize: 'var(--text-xs)', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--teal-dark)', marginBottom: 'var(--space-5)' }}>Sellers</div>
+            <div style={{ fontWeight: 700, fontSize: 'var(--text-xs)', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--gold-dark)', marginBottom: 'var(--space-5)' }}>Sellers</div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-5)' }}>
               {[
                 { n: '01', t: 'Check demand at your address', b: 'Enter your postcode. See whether buyers have already registered interest in your property or area. Free and instant.' },
@@ -341,7 +339,7 @@ function HowItWorksSection() {
                 { n: '03', t: 'Connect and proceed on your terms', b: 'Receive buyer messages, arrange viewings, and decide whether to proceed — all privately, all without an agent if you choose.' },
               ].map(s => (
                 <div key={s.n} style={{ display: 'flex', gap: 'var(--space-4)' }}>
-                  <div style={{ fontFamily: 'var(--font-tight)', fontWeight: 700, fontSize: 'var(--text-xs)', color: 'var(--teal-dark)', width: 24, flexShrink: 0, paddingTop: 2 }}>{s.n}</div>
+                  <div style={{ fontFamily: 'var(--font-tight)', fontWeight: 700, fontSize: 'var(--text-xs)', color: 'var(--gold-dark)', width: 24, flexShrink: 0, paddingTop: 2 }}>{s.n}</div>
                   <div>
                     <div style={{ fontWeight: 600, fontSize: 'var(--text-sm)', marginBottom: 4 }}>{s.t}</div>
                     <div style={{ fontSize: 'var(--text-sm)', color: 'var(--slate)', lineHeight: 1.6 }}>{s.b}</div>
@@ -378,8 +376,8 @@ function FaqSection() {
           ))}
         </div>
         <div style={{ marginTop: 'var(--space-8)' }}>
-          <Link href="/how-it-works" style={{ fontSize: 'var(--text-sm)', color: 'var(--teal)', fontWeight: 500, textDecoration: 'underline', textUnderlineOffset: '3px' }}>
-            Read the full guide to how Intentory works →
+          <Link href="/how-it-works" style={{ fontSize: 'var(--text-sm)', color: 'var(--gold)', fontWeight: 500, textDecoration: 'underline', textUnderlineOffset: '3px' }}>
+            Read the full guide to how EarlyEggs works →
           </Link>
         </div>
       </div>
@@ -392,7 +390,7 @@ function CtaSection() {
     <section className="section section-dark">
       <div className="container">
         <div className="two-col-grid" style={{ gap: 'var(--space-4)' }}>
-          <div className="split-card split-card-buyer" style={{ background: 'var(--navy-soft)' }}>
+          <div className="split-card split-card-buyer" style={{ background: 'var(--forest-soft)' }}>
             <div className="split-card-eyebrow">For buyers</div>
             <h3 className="split-card-headline">Go after the home you want.</h3>
             <p className="split-card-sub">
