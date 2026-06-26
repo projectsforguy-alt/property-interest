@@ -3,7 +3,7 @@ import { getSupabaseServiceClient } from '@/lib/supabase';
 import { INTEREST_TYPE_LABELS, INTEREST_STATUS_LABELS } from '@/lib/types';
 import type { BuyerInterest } from '@/lib/types';
 
-export const metadata = { title: 'Buyers | Intentory Admin' };
+export const metadata = { title: 'Buyers | EarlyEggs Admin' };
 
 export default async function AdminBuyersPage() {
   const supabase = getSupabaseServiceClient();
@@ -41,10 +41,10 @@ export default async function AdminBuyersPage() {
               return (
                 <tr key={i.id}>
                   <td style={{ fontWeight: 500 }}>{name}</td>
-                  <td><span className="badge badge-navy">{INTEREST_TYPE_LABELS[i.interest_type]}</span></td>
+                  <td><span className="badge badge-forest">{INTEREST_TYPE_LABELS[i.interest_type]}</span></td>
                   <td style={{ fontSize: 'var(--text-xs)', maxWidth: 200 }}>{location}</td>
                   <td style={{ fontFamily: 'monospace', fontSize: 'var(--text-xs)' }}>{i.postcode ?? '—'}</td>
-                  <td><span className={`badge ${i.status === 'active' ? 'badge-teal' : 'badge-slate'}`}>{INTEREST_STATUS_LABELS[i.status]}</span></td>
+                  <td><span className={`badge ${i.status === 'active' ? 'badge-gold' : 'badge-slate'}`}>{INTEREST_STATUS_LABELS[i.status]}</span></td>
                   <td style={{ fontSize: 'var(--text-xs)', color: 'var(--slate)' }}>
                     {new Date(i.created_at).toLocaleDateString('en-GB')}
                   </td>
