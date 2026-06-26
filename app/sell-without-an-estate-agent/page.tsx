@@ -4,15 +4,15 @@ import Link from 'next/link';
 export const metadata: Metadata = {
   title: 'How to sell your house without an estate agent',
   description:
-    'A practical guide to selling property privately in the UK — the options available, the real costs and risks, and how private demand platforms like Intentory change the picture.',
+    'A practical guide to selling property privately in the UK — the options available, the real costs and risks, and how private demand platforms like EarlyEggs change the picture.',
   alternates: {
-    canonical: 'https://property-interest-sepia.vercel.app/sell-without-an-estate-agent',
+    canonical: 'https://www.earlyeggs.com/sell-without-an-estate-agent',
   },
   openGraph: {
-    title: 'How to sell your house without an estate agent | Intentory',
+    title: 'How to sell your house without an estate agent | EarlyEggs',
     description:
       'The options, costs, and risks of selling property privately in the UK — and how to find buyers without a public listing.',
-    url: 'https://property-interest-sepia.vercel.app/sell-without-an-estate-agent',
+    url: 'https://www.earlyeggs.com/sell-without-an-estate-agent',
   },
 };
 
@@ -24,17 +24,17 @@ const articleSchema = {
     'A practical guide to selling property privately in the UK — the options available, the real costs, and how to find buyers without a public listing.',
   author: {
     '@type': 'Organization',
-    name: 'Intentory',
-    url: 'https://property-interest-sepia.vercel.app',
+    name: 'EarlyEggs',
+    url: 'https://www.earlyeggs.com',
   },
   publisher: {
     '@type': 'Organization',
-    name: 'Intentory',
-    url: 'https://property-interest-sepia.vercel.app',
+    name: 'EarlyEggs',
+    url: 'https://www.earlyeggs.com',
   },
   mainEntityOfPage: {
     '@type': 'WebPage',
-    '@id': 'https://property-interest-sepia.vercel.app/sell-without-an-estate-agent',
+    '@id': 'https://www.earlyeggs.com/sell-without-an-estate-agent',
   },
 };
 
@@ -76,10 +76,10 @@ const faqSchema = {
     },
     {
       '@type': 'Question',
-      name: 'How does Intentory help sellers avoid estate agent fees?',
+      name: 'How does EarlyEggs help sellers avoid estate agent fees?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Intentory lets sellers check whether buyers have already registered interest at their address before committing to an agent. If matched buyers exist, sellers can broadcast their availability to those buyers for £49 — making a direct connection without any commission or public listing.',
+        text: 'EarlyEggs lets sellers check whether buyers have already registered interest at their address before committing to an agent. If matched buyers exist, sellers can broadcast their availability to those buyers for £49 — making a direct connection without any commission or public listing.',
       },
     },
   ],
@@ -134,8 +134,8 @@ const FAQ_ITEMS = [
     a: 'Yes. Conveyancing — the legal transfer of ownership — requires a solicitor or licensed conveyancer regardless of how you sell. This is true for all residential property transactions in England and Wales.',
   },
   {
-    q: 'How does Intentory help sellers avoid estate agent fees?',
-    a: 'Intentory lets sellers check whether buyers have already registered interest at their address before committing to anything. If matched buyers exist, sellers can broadcast their availability to those buyers for £49 — making a direct connection without any commission or public listing.',
+    q: 'How does EarlyEggs help sellers avoid estate agent fees?',
+    a: 'EarlyEggs lets sellers check whether buyers have already registered interest at their address before committing to anything. If matched buyers exist, sellers can broadcast their availability to those buyers for £49 — making a direct connection without any commission or public listing.',
   },
 ];
 
@@ -168,7 +168,7 @@ export default function SellWithoutAnEstateAgentPage() {
                 Check demand at my address
               </Link>
               <Link href="/how-it-works" className="btn btn-outline btn-lg">
-                How Intentory works
+                How EarlyEggs works
               </Link>
             </div>
           </div>
@@ -191,7 +191,7 @@ export default function SellWithoutAnEstateAgentPage() {
 
               <h2>What you save — and what you still pay</h2>
               <p>
-                The primary saving when selling without an agent is the commission. Traditional high-street agents in the UK typically charge between 1% and 3% of the sale price, inclusive of VAT. On a £400,000 property, that's £4,000 to £12,000.
+                The primary saving when selling without an agent is the commission. Traditional high-street agents in the UK typically charge between 1% and 3% of the sale price, inclusive of VAT. On a £400,000 property, that&apos;s £4,000 to £12,000.
               </p>
               <p>
                 Regardless of how you sell, you will still need to budget for:
@@ -207,10 +207,10 @@ export default function SellWithoutAnEstateAgentPage() {
               ].map((row) => (
                 <div key={row.item} style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: 'var(--space-4)', alignItems: 'start', padding: 'var(--space-4)', background: 'var(--surface)', borderRadius: 'var(--radius)', border: '1px solid var(--line)' }}>
                   <div>
-                    <div style={{ fontWeight: 600, fontSize: 'var(--text-sm)', color: 'var(--navy)', marginBottom: 2 }}>{row.item}</div>
+                    <div style={{ fontWeight: 600, fontSize: 'var(--text-sm)', color: 'var(--forest)', marginBottom: 2 }}>{row.item}</div>
                     <div style={{ fontSize: 'var(--text-xs)', color: 'var(--slate)' }}>{row.note}</div>
                   </div>
-                  <div style={{ fontFamily: 'var(--font-tight)', fontWeight: 600, fontSize: 'var(--text-sm)', color: 'var(--teal-dark)', whiteSpace: 'nowrap' }}>{row.cost}</div>
+                  <div style={{ fontFamily: 'var(--font-tight)', fontWeight: 600, fontSize: 'var(--text-sm)', color: 'var(--gold-dark)', whiteSpace: 'nowrap' }}>{row.cost}</div>
                 </div>
               ))}
             </div>
@@ -225,22 +225,22 @@ export default function SellWithoutAnEstateAgentPage() {
             {/* Options */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-5)', margin: 'var(--space-8) 0' }}>
               {OPTIONS.map((option, i) => (
-                <div key={option.title} style={{ background: i === 2 ? 'var(--teal-soft)' : 'var(--surface)', border: `1.5px solid ${i === 2 ? 'var(--teal)' : 'var(--line)'}`, borderRadius: 'var(--radius-lg)', padding: 'var(--space-6)' }}>
+                <div key={option.title} style={{ background: i === 2 ? 'var(--gold-soft)' : 'var(--surface)', border: `1.5px solid ${i === 2 ? 'var(--gold)' : 'var(--line)'}`, borderRadius: 'var(--radius-lg)', padding: 'var(--space-6)' }}>
                   {i === 2 && (
-                    <div style={{ display: 'inline-flex', alignItems: 'center', background: 'var(--teal)', color: 'var(--navy)', fontSize: 'var(--text-xs)', fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', padding: '3px 10px', borderRadius: 'var(--radius-full)', marginBottom: 'var(--space-3)' }}>
-                      How Intentory works
+                    <div style={{ display: 'inline-flex', alignItems: 'center', background: 'var(--gold)', color: 'var(--forest)', fontSize: 'var(--text-xs)', fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', padding: '3px 10px', borderRadius: 'var(--radius-full)', marginBottom: 'var(--space-3)' }}>
+                      How EarlyEggs works
                     </div>
                   )}
-                  <div style={{ fontWeight: 600, fontSize: 'var(--text-base)', color: 'var(--navy)', marginBottom: 'var(--space-2)' }}>{option.title}</div>
+                  <div style={{ fontWeight: 600, fontSize: 'var(--text-base)', color: 'var(--forest)', marginBottom: 'var(--space-2)' }}>{option.title}</div>
                   <p style={{ fontSize: 'var(--text-sm)', color: 'var(--slate)', lineHeight: 1.6, marginBottom: 'var(--space-4)' }}>{option.best}</p>
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-4)' }}>
                     <div>
-                      <div style={{ fontSize: 'var(--text-xs)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--teal-dark)', marginBottom: 'var(--space-2)' }}>Advantages</div>
+                      <div style={{ fontSize: 'var(--text-xs)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--gold-dark)', marginBottom: 'var(--space-2)' }}>Advantages</div>
                       <ul style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-2)' }}>
                         {option.pros.map((p) => (
                           <li key={p} style={{ display: 'flex', gap: 'var(--space-2)', fontSize: 'var(--text-sm)', color: 'var(--slate)', lineHeight: 1.5 }}>
                             <svg width="14" height="14" viewBox="0 0 20 20" fill="none" style={{ flexShrink: 0, marginTop: 2 }}>
-                              <path d="M4 10l4 4 8-8" stroke="var(--teal-dark)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                              <path d="M4 10l4 4 8-8" stroke="var(--gold-dark)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                             </svg>
                             {p}
                           </li>
@@ -271,18 +271,18 @@ export default function SellWithoutAnEstateAgentPage() {
                 The case for selling privately is strongest when one or more of the following is true:
               </p>
               <ul style={{ listStyle: 'disc', paddingLeft: 'var(--space-6)', display: 'flex', flexDirection: 'column', gap: 'var(--space-2)', marginBottom: 'var(--space-5)' }}>
-                <li style={{ fontSize: 'var(--text-base)', color: 'var(--slate)', lineHeight: 1.65 }}>You know there is demand for your property — a neighbour has expressed interest, or you have checked a platform like Intentory and found registered buyers</li>
-                <li style={{ fontSize: 'var(--text-base)', color: 'var(--slate)', lineHeight: 1.65 }}>You value privacy and don't want your home publicly listed, photographed, or walked through by strangers</li>
+                <li style={{ fontSize: 'var(--text-base)', color: 'var(--slate)', lineHeight: 1.65 }}>You know there is demand for your property — a neighbour has expressed interest, or you have checked a platform like EarlyEggs and found registered buyers</li>
+                <li style={{ fontSize: 'var(--text-base)', color: 'var(--slate)', lineHeight: 1.65 }}>You value privacy and don&apos;t want your home publicly listed, photographed, or walked through by strangers</li>
                 <li style={{ fontSize: 'var(--text-base)', color: 'var(--slate)', lineHeight: 1.65 }}>You want to move quickly and a willing buyer already exists</li>
                 <li style={{ fontSize: 'var(--text-base)', color: 'var(--slate)', lineHeight: 1.65 }}>The property is in a location or price bracket where off-market sales are common and buyers actively seek private opportunities</li>
               </ul>
               <p>
-                If none of these apply — if you don't know whether demand exists and need broad market exposure to find a buyer — a traditional agent or online listing service is likely the more practical route.
+                If none of these apply — if you don&apos;t know whether demand exists and need broad market exposure to find a buyer — a traditional agent or online listing service is likely the more practical route.
               </p>
 
               <h2>The legal process is the same either way</h2>
               <p>
-                Regardless of how you find your buyer, the legal process for transferring ownership of a residential property in England and Wales is identical. Both parties instruct solicitors. Searches are conducted. A contract is exchanged and completion follows. The conveyancing timeline is typically 8–16 weeks from offer to completion, and this doesn't change meaningfully whether or not an agent was involved.
+                Regardless of how you find your buyer, the legal process for transferring ownership of a residential property in England and Wales is identical. Both parties instruct solicitors. Searches are conducted. A contract is exchanged and completion follows. The conveyancing timeline is typically 8–16 weeks from offer to completion, and this doesn&apos;t change meaningfully whether or not an agent was involved.
               </p>
               <p>
                 What does change is how the buyer was found, and how much it cost to find them.
@@ -292,14 +292,14 @@ export default function SellWithoutAnEstateAgentPage() {
         </section>
 
         {/* Check demand CTA block */}
-        <section className="section section-teal">
+        <section className="section section-gold">
           <div className="container-narrow">
             <p className="section-label">Start here</p>
             <h2 className="section-headline" style={{ marginBottom: 'var(--space-4)' }}>
               Check whether buyers are already registered at your address
             </h2>
             <p style={{ fontSize: 'var(--text-base)', color: 'var(--slate)', lineHeight: 1.65, marginBottom: 'var(--space-8)', maxWidth: 560 }}>
-              Before you call an agent or commit to any marketing, find out whether demand already exists. It's free, it takes 30 seconds, and it creates no obligation.
+              Before you call an agent or commit to any marketing, find out whether demand already exists. It&apos;s free, it takes 30 seconds, and it creates no obligation.
             </p>
             <div style={{ display: 'flex', gap: 'var(--space-3)', flexWrap: 'wrap' }}>
               <Link href="/sellers/check" className="btn btn-primary btn-lg">
@@ -339,9 +339,9 @@ export default function SellWithoutAnEstateAgentPage() {
         <section className="section section-dark">
           <div className="container">
             <div className="two-col-grid" style={{ gap: 'var(--space-4)' }}>
-              <div className="split-card split-card-buyer" style={{ background: 'var(--navy-soft)' }}>
+              <div className="split-card split-card-buyer" style={{ background: 'var(--forest-soft)' }}>
                 <div className="split-card-eyebrow">For buyers</div>
-                <h3 className="split-card-headline">Looking for a home that isn't listed?</h3>
+                <h3 className="split-card-headline">Looking for a home that isn&apos;t listed?</h3>
                 <p className="split-card-sub">
                   Register your interest in any address, street, or area. We match you to sellers automatically — and can approach owners on your behalf.
                 </p>
