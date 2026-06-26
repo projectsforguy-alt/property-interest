@@ -4,28 +4,28 @@ import Link from 'next/link';
 export const metadata: Metadata = {
   title: 'Pricing — Simple, one-off actions',
   description:
-    'Registering property interest on Intentory is always free. Pay only when you take an active step — owner approach £29, street outreach £99, area outreach £199, seller broadcast £49.',
+    'Registering property interest on EarlyEggs is always free. Pay only when you take an active step — owner approach £29, street outreach £99, area outreach £199, seller broadcast £49.',
   alternates: {
-    canonical: 'https://property-interest-sepia.vercel.app/pricing',
+    canonical: 'https://www.earlyeggs.com/pricing',
   },
   openGraph: {
-    title: 'Pricing | Intentory',
+    title: 'Pricing | EarlyEggs',
     description:
       'Free to register. Pay only when you act — owner approach £29, street outreach £99, area outreach £199, seller broadcast £49.',
-    url: 'https://property-interest-sepia.vercel.app/pricing',
+    url: 'https://www.earlyeggs.com/pricing',
   },
 };
 
 const pricingSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
-  name: 'Intentory — Private Property Demand Platform',
+  name: 'EarlyEggs — Private Property Demand Platform',
   description:
-    'Intentory connects buyers who want a specific home with sellers who haven\'t listed yet. Register interest for free, or check real buyer demand at your address.',
+    'EarlyEggs connects buyers who want a specific home with sellers who haven\'t listed yet. Register interest for free, or check real buyer demand at your address.',
   provider: {
     '@type': 'Organization',
-    name: 'Intentory',
-    url: 'https://property-interest-sepia.vercel.app',
+    name: 'EarlyEggs',
+    url: 'https://www.earlyeggs.com',
   },
   serviceType: 'Property matching service',
   areaServed: { '@type': 'Country', name: 'United Kingdom' },
@@ -161,7 +161,7 @@ const SELLER_ACTIONS = [
 const FAQ_ITEMS = [
   {
     q: 'Are there any subscription fees?',
-    a: 'No. Intentory has no subscription, no monthly fee, and no hidden charges. You pay only for the specific action you choose to take.',
+    a: 'No. EarlyEggs has no subscription, no monthly fee, and no hidden charges. You pay only for the specific action you choose to take.',
   },
   {
     q: 'What if an owner doesn\'t respond to a letter?',
@@ -173,7 +173,7 @@ const FAQ_ITEMS = [
   },
   {
     q: 'Do I need an account to pay?',
-    a: 'Yes. Paid actions are tied to your Intentory account so we can notify you of responses and manage your active interests.',
+    a: 'Yes. Paid actions are tied to your EarlyEggs account so we can notify you of responses and manage your active interests.',
   },
 ];
 
@@ -205,7 +205,7 @@ export default function PricingPage() {
           <div className="container">
             <p className="section-label">For buyers</p>
             <h2 className="section-headline" style={{ marginBottom: 'var(--space-3)' }}>
-              Start free. Act when you're ready.
+              Start free. Act when you&apos;re ready.
             </h2>
             <p className="section-sub" style={{ marginBottom: 'var(--space-10)' }}>
               Register your interest in any location at no cost. Unlock paid actions when you want to actively pursue a property or street.
@@ -279,7 +279,7 @@ export default function PricingPage() {
         </section>
 
         {/* Comparison note */}
-        <section className="section section-teal">
+        <section className="section section-gold">
           <div className="container-narrow">
             <p className="section-label">Worth knowing</p>
             <h2 className="section-headline" style={{ marginBottom: 'var(--space-8)' }}>
@@ -298,20 +298,20 @@ export default function PricingPage() {
                   note: 'You can\'t list on Rightmove directly. You pay an agent, who pays for the listing as part of their service.',
                 },
                 {
-                  label: 'Intentory owner approach',
+                  label: 'EarlyEggs owner approach',
                   value: '£29',
                   note: 'A single, personally addressed letter to the owner of a specific property. No commission. No agent.',
                 },
                 {
-                  label: 'Intentory street outreach',
+                  label: 'EarlyEggs street outreach',
                   value: '£99',
                   note: 'Every owner on a street contacted. Equivalent reach to dozens of individual approaches, for the cost of a family dinner.',
                 },
               ].map((row) => (
                 <div key={row.label} style={{ display: 'flex', gap: 'var(--space-6)', alignItems: 'flex-start', paddingBottom: 'var(--space-5)', borderBottom: '1px solid var(--line)' }}>
                   <div style={{ minWidth: 200, flexShrink: 0 }}>
-                    <div style={{ fontWeight: 600, fontSize: 'var(--text-sm)', color: 'var(--navy)', marginBottom: 2 }}>{row.label}</div>
-                    <div style={{ fontFamily: 'var(--font-tight)', fontWeight: 600, fontSize: 'var(--text-lg)', color: 'var(--teal-dark)' }}>{row.value}</div>
+                    <div style={{ fontWeight: 600, fontSize: 'var(--text-sm)', color: 'var(--forest)', marginBottom: 2 }}>{row.label}</div>
+                    <div style={{ fontFamily: 'var(--font-tight)', fontWeight: 600, fontSize: 'var(--text-lg)', color: 'var(--gold-dark)' }}>{row.value}</div>
                   </div>
                   <p style={{ fontSize: 'var(--text-sm)', color: 'var(--slate)', lineHeight: 1.65, paddingTop: 2 }}>{row.note}</p>
                 </div>
@@ -339,7 +339,7 @@ export default function PricingPage() {
             </div>
             <p style={{ marginTop: 'var(--space-6)', fontSize: 'var(--text-sm)', color: 'var(--slate)' }}>
               More questions?{' '}
-              <Link href="/faq" style={{ color: 'var(--teal)', fontWeight: 500, textDecoration: 'underline', textUnderlineOffset: '3px' }}>
+              <Link href="/faq" style={{ color: 'var(--gold)', fontWeight: 500, textDecoration: 'underline', textUnderlineOffset: '3px' }}>
                 Read the full FAQ →
               </Link>
             </p>
