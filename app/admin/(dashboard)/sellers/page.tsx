@@ -2,7 +2,7 @@ import { getSupabaseServiceClient } from '@/lib/supabase';
 import { PROPERTY_STATUS_LABELS, PROPERTY_TYPE_LABELS, formatBudget } from '@/lib/types';
 import type { SellerProperty } from '@/lib/types';
 
-export const metadata = { title: 'Properties | Intentory Admin' };
+export const metadata = { title: 'Properties | EarlyEggs Admin' };
 
 export default async function AdminSellersPage() {
   const supabase = getSupabaseServiceClient();
@@ -29,6 +29,7 @@ export default async function AdminSellersPage() {
               <th>Type</th>
               <th>Price</th>
               <th>Matches</th>
+              <th>Verified</th>
               <th>Status</th>
               <th>Registered</th>
             </tr>
@@ -41,12 +42,17 @@ export default async function AdminSellersPage() {
                 <tr key={p.id}>
                   <td style={{ fontWeight: 500 }}>{name}</td>
                   <td style={{ fontSize: 'var(--text-xs)', maxWidth: 200 }}>{p.full_address}</td>
-                  <td>{p.property_type ? <span className="badge badge-navy">{PROPERTY_TYPE_LABELS[p.property_type]}</span> : '—'}</td>
+                  <td>{p.property_type ? <span className="badge badge-forest">{PROPERTY_TYPE_LABELS[p.property_type]}</span> : '—'}</td>
                   <td style={{ fontSize: 'var(--text-xs)' }}>{p.asking_price ? formatBudget(p.asking_price) : '—'}</td>
-                  <td style={{ fontWeight: 600, color: p.broadcast_buyer_count > 0 ? 'var(--teal-dark)' : 'var(--slate)' }}>
+                  <td style={{ fontWeight: 600, color: p.broadcast_buyer_count > 0 ? 'var(--gold-dark)' : 'var(--slate)' }}>
                     {p.broadcast_buyer_count}
                   </td>
-                  <td><span className={`badge ${p.status === 'available' ? 'badge-teal' : 'badge-slate'}`}>{PROPERTY_STATUS_LABELS[p.status]}</span></td>
+                  <td>
+                    <span className={`badge ${p.verified ? 'badge-gold' : 'badge-slate'}`}>
+                      {p.verified ? 'Verified' : 'Unverified'}
+                    </span>
+                  </td>
+                  <td><span className={`badge ${p.status === 'available' ? 'badge-gold' : 'badge-slate'}`}>{PROPERTY_STATUS_LABELS[p.status]}</span></td>
                   <td style={{ fontSize: 'var(--text-xs)', color: 'var(--slate)' }}>
                     {new Date(p.created_at).toLocaleDateString('en-GB')}
                   </td>
