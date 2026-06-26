@@ -3,7 +3,7 @@ import { getSupabaseServerClient } from '@/lib/supabase';
 import { PROPERTY_STATUS_LABELS, PROPERTY_TYPE_LABELS, formatBudget } from '@/lib/types';
 import type { SellerProperty } from '@/lib/types';
 
-export const metadata = { title: 'My properties | Intentory' };
+export const metadata = { title: 'My properties | EarlyEggs' };
 
 export default async function PropertiesPage({ searchParams }: { searchParams: Promise<{ added?: string }> }) {
   const params = await searchParams;
@@ -30,7 +30,7 @@ export default async function PropertiesPage({ searchParams }: { searchParams: P
       </div>
 
       {params.added && (
-        <div style={{ background: 'var(--teal-soft)', border: '1.5px solid var(--teal)', borderRadius: 'var(--radius-lg)', padding: 'var(--space-4) var(--space-5)', marginBottom: 'var(--space-6)', fontSize: 'var(--text-sm)', color: 'var(--teal-dark)' }}>
+        <div style={{ background: 'var(--gold-soft)', border: '1.5px solid var(--gold)', borderRadius: 'var(--radius-lg)', padding: 'var(--space-4) var(--space-5)', marginBottom: 'var(--space-6)', fontSize: 'var(--text-sm)', color: 'var(--gold-dark)' }}>
           ✓ Property registered. We&apos;re checking for matched buyers now.
         </div>
       )}
@@ -50,8 +50,8 @@ export default async function PropertiesPage({ searchParams }: { searchParams: P
           {properties.map(p => (
             <div key={p.id} className="card" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                {p.property_type && <span className="badge badge-navy">{PROPERTY_TYPE_LABELS[p.property_type]}</span>}
-                <span className={`badge ${p.status === 'available' ? 'badge-teal' : 'badge-slate'}`}>
+                {p.property_type && <span className="badge badge-forest">{PROPERTY_TYPE_LABELS[p.property_type]}</span>}
+                <span className={`badge ${p.status === 'available' ? 'badge-gold' : 'badge-slate'}`}>
                   {PROPERTY_STATUS_LABELS[p.status]}
                 </span>
               </div>
@@ -60,7 +60,7 @@ export default async function PropertiesPage({ searchParams }: { searchParams: P
                 <div style={{ fontSize: 'var(--text-xs)', color: 'var(--slate)' }}>Asking {formatBudget(p.asking_price)}</div>
               )}
               {p.broadcast_buyer_count > 0 && (
-                <div style={{ fontSize: 'var(--text-xs)', color: 'var(--teal-dark)', fontWeight: 600 }}>
+                <div style={{ fontSize: 'var(--text-xs)', color: 'var(--gold-dark)', fontWeight: 600 }}>
                   {p.broadcast_buyer_count} matched {p.broadcast_buyer_count === 1 ? 'buyer' : 'buyers'}
                 </div>
               )}
