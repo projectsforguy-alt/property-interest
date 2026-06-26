@@ -159,24 +159,13 @@ function EarlyEggsWordmark({ height = 22 }: { height?: number }) {
   );
 }
 
-/* Egg brand mark — used in header brand-mark slot */
-function EggMark() {
-  return (
-    <svg viewBox="0 0 20 24" width="16" height="19" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path d="M10 1C6 1 2 5.5 2 11.5C2 17 5.5 23 10 23C14.5 23 18 17 18 11.5C18 5.5 14 1 10 1Z" fill="#DCBE8D"/>
-    </svg>
-  );
-}
 
 function SiteHeader() {
   return (
     <header className="site-header">
       <div className="container header-inner">
         <Link href="/" className="brand" aria-label="EarlyEggs home">
-          <span className="brand-mark" aria-hidden="true">
-            <EggMark />
-          </span>
-          <EarlyEggsWordmark height={18} />
+          <EarlyEggsWordmark height={24} />
         </Link>
 
         {/* Desktop nav */}
@@ -209,7 +198,7 @@ function SiteFooter() {
       <div className="container">
         <div className="footer-inner">
           <div>
-            <div className="footer-brand-name">
+            <div style={{ marginBottom: 'var(--space-3)' }}>
               <EarlyEggsWordmark height={20} />
             </div>
             <p className="footer-brand-desc">
