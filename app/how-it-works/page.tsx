@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-export const metadata = { title: 'How Intentory works | Intentory' };
+export const metadata = { title: 'How EarlyEggs works | EarlyEggs' };
 
 const BUYER_STEPS = [
   { n: '01', title: 'Register your interest', body: 'Choose the type of interest you want to register — a specific property, a street, a village, an area, or a plot of land. Add your postcode or address and tell us what you\'re looking for.' },
@@ -29,7 +29,7 @@ export default function HowItWorksPage() {
             A private market that runs quietly beneath the public one.
           </h1>
           <p className="section-sub section-sub-light">
-            Most serious buyers and motivated sellers never find each other because one hasn&apos;t listed yet and the other hasn&apos;t asked. Intentory bridges that gap.
+            Most serious buyers and motivated sellers never find each other because one hasn&apos;t listed yet and the other hasn&apos;t asked. EarlyEggs bridges that gap.
           </p>
         </div>
       </section>
@@ -47,7 +47,7 @@ export default function HowItWorksPage() {
         <div style={{
           position: 'absolute',
           inset: 0,
-          background: 'linear-gradient(to bottom, var(--navy) 0%, transparent 18%, transparent 82%, var(--surface) 100%)',
+          background: 'linear-gradient(to bottom, var(--forest) 0%, transparent 18%, transparent 82%, var(--surface) 100%)',
           pointerEvents: 'none',
         }} />
       </div>
@@ -90,7 +90,7 @@ export default function HowItWorksPage() {
         </div>
       </section>
 
-      <section className="section section-teal">
+      <section className="section section-gold">
         <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 'var(--space-8)', flexWrap: 'wrap' }}>
           <div>
             <h2 className="section-headline" style={{ marginBottom: 'var(--space-2)' }}>Ready to register?</h2>
