@@ -13,7 +13,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
     <div className="admin-shell">
       <aside className="admin-sidebar">
         <div style={{ padding: 'var(--space-4) var(--space-6)', borderBottom: '1px solid rgba(255,255,255,0.08)', marginBottom: 'var(--space-4)' }}>
-          <div style={{ fontFamily: 'var(--font-tight)', fontWeight: 600, color: 'var(--white)', fontSize: 'var(--text-base)' }}>Intentory</div>
+          <div style={{ fontFamily: 'var(--font-tight)', fontWeight: 600, color: 'var(--white)', fontSize: 'var(--text-base)' }}>EarlyEggs</div>
           <div style={{ fontSize: 'var(--text-xs)', color: 'rgba(255,255,255,0.4)', marginTop: 2 }}>Admin</div>
         </div>
         <nav className="admin-nav">
@@ -32,6 +32,10 @@ export default async function AdminLayout({ children }: { children: React.ReactN
           <Link href="/admin/matches" className="admin-nav-item">
             <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M4 10h12M10 4l6 6-6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
             Matches
+          </Link>
+          <Link href="/admin/approaches" className="admin-nav-item">
+            <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M3 5h14a1 1 0 011 1v7a1 1 0 01-1 1H5l-3 2V6a1 1 0 011-1z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/></svg>
+            Approaches
           </Link>
         </nav>
         <div style={{ position: 'absolute', bottom: 'var(--space-6)', left: 0, right: 0, padding: '0 var(--space-3)' }}>
