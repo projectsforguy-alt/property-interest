@@ -79,7 +79,7 @@ export default async function InterestDetailPage({ params }: { params: Promise<{
       )}
 
       {interest.interest_type === 'specific_property' && !interest.approach_requested && (
-        <div className="card" style={{ background: 'var(--teal-soft)', border: '1.5px solid var(--teal)', marginBottom: 'var(--space-6)' }}>
+        <div className="card" style={{ background: 'var(--gold-soft)', border: '1.5px solid var(--gold)', marginBottom: 'var(--space-6)' }}>
           <div style={{ fontWeight: 600, marginBottom: 'var(--space-2)' }}>Request a private owner approach — £29</div>
           <p style={{ fontSize: 'var(--text-sm)', color: 'var(--slate)', marginBottom: 'var(--space-4)' }}>
             We&apos;ll contact the owner of this property on your behalf with a professional letter and a private response link.
