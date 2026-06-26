@@ -176,7 +176,7 @@ function SiteHeader() {
           <span className="brand-mark" aria-hidden="true">
             <EggMark />
           </span>
-          <EarlyEggsWordmark height={22} />
+          <EarlyEggsWordmark height={18} />
         </Link>
 
         {/* Desktop nav */}
