@@ -3,7 +3,7 @@ import { getSupabaseServerClient } from '@/lib/supabase';
 import type { BuyerInterest } from '@/lib/types';
 import { INTEREST_TYPE_LABELS, INTEREST_STATUS_LABELS } from '@/lib/types';
 
-export const metadata = { title: 'My interests | Intentory' };
+export const metadata = { title: 'My interests | EarlyEggs' };
 
 function interestLocationLabel(i: BuyerInterest): string {
   if (i.interest_type === 'specific_property') return i.full_address ?? i.postcode ?? '—';
@@ -34,7 +34,7 @@ export default async function AccountPage({ searchParams }: { searchParams: Prom
         <div>
           <h1 className="account-page-title">My interests</h1>
           <p className="account-page-sub">
-            {params.welcome ? `Welcome to Intentory, ${firstName}.` : `Welcome back, ${firstName}.`}
+            {params.welcome ? `Welcome to EarlyEggs, ${firstName}.` : `Welcome back, ${firstName}.`}
             {' '}Manage your registered buying interests below.
           </p>
         </div>
@@ -42,7 +42,7 @@ export default async function AccountPage({ searchParams }: { searchParams: Prom
       </div>
 
       {params.added && (
-        <div style={{ background: 'var(--teal-soft)', border: '1.5px solid var(--teal)', borderRadius: 'var(--radius-lg)', padding: 'var(--space-4) var(--space-5)', marginBottom: 'var(--space-6)', fontSize: 'var(--text-sm)', color: 'var(--teal-dark)' }}>
+        <div style={{ background: 'var(--gold-soft)', border: '1.5px solid var(--gold)', borderRadius: 'var(--radius-lg)', padding: 'var(--space-4) var(--space-5)', marginBottom: 'var(--space-6)', fontSize: 'var(--text-sm)', color: 'var(--gold-dark)' }}>
           ✓ Interest registered. We&apos;ll alert you if a matching seller registers.
         </div>
       )}
@@ -63,8 +63,8 @@ export default async function AccountPage({ searchParams }: { searchParams: Prom
           {activeInterests.map(interest => (
             <div key={interest.id} className="card" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }}>
               <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 'var(--space-3)' }}>
-                <span className="badge badge-navy">{INTEREST_TYPE_LABELS[interest.interest_type]}</span>
-                <span className={`badge ${interest.status === 'active' ? 'badge-teal' : 'badge-slate'}`}>
+                <span className="badge badge-forest">{INTEREST_TYPE_LABELS[interest.interest_type]}</span>
+                <span className={`badge ${interest.status === 'active' ? 'badge-gold' : 'badge-slate'}`}>
                   {INTEREST_STATUS_LABELS[interest.status]}
                 </span>
               </div>
