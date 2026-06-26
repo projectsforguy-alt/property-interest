@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description:
     'Find out instantly whether buyers have registered interest in your property, street, or area — free, no account required.',
   alternates: {
-    canonical: 'https://property-interest-sepia.vercel.app/sellers/check',
+    canonical: 'https://www.earlyeggs.com/sellers/check',
   },
 };
 
