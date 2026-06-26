@@ -7,13 +7,13 @@ export const metadata: Metadata = {
   description:
     'Off-market property in the UK explained — what it means, how common it is, who it suits, and how buyers can approach homeowners privately. A practical guide.',
   alternates: {
-    canonical: 'https://property-interest-sepia.vercel.app/off-market-property',
+    canonical: 'https://www.earlyeggs.com/off-market-property',
   },
   openGraph: {
-    title: 'Off-market property — What it is and how to buy it | Intentory',
+    title: 'Off-market property — What it is and how to buy it | EarlyEggs',
     description:
       'Off-market property in the UK explained. What it means, how buyers approach homeowners privately, and how sellers benefit from a discreet sale.',
-    url: 'https://property-interest-sepia.vercel.app/off-market-property',
+    url: 'https://www.earlyeggs.com/off-market-property',
   },
 };
 
@@ -25,17 +25,17 @@ const articleSchema = {
     'A practical guide to off-market property in the UK — what the term means, how common these transactions are, and how buyers can approach homeowners privately.',
   author: {
     '@type': 'Organization',
-    name: 'Intentory',
-    url: 'https://property-interest-sepia.vercel.app',
+    name: 'EarlyEggs',
+    url: 'https://www.earlyeggs.com',
   },
   publisher: {
     '@type': 'Organization',
-    name: 'Intentory',
-    url: 'https://property-interest-sepia.vercel.app',
+    name: 'EarlyEggs',
+    url: 'https://www.earlyeggs.com',
   },
   mainEntityOfPage: {
     '@type': 'WebPage',
-    '@id': 'https://property-interest-sepia.vercel.app/off-market-property',
+    '@id': 'https://www.earlyeggs.com/off-market-property',
   },
 };
 
@@ -64,7 +64,7 @@ const faqSchema = {
       name: 'How do I buy an off-market property?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'The most direct route is to approach the homeowner personally, through a letter or introduction. Platforms like Intentory facilitate this by matching registered buyer interest with homeowners who are open to a private sale, and by sending personally addressed letters to owners on behalf of buyers.',
+        text: 'The most direct route is to approach the homeowner personally, through a letter or introduction. Platforms like EarlyEggs facilitate this by matching registered buyer interest with homeowners who are open to a private sale, and by sending personally addressed letters to owners on behalf of buyers.',
       },
     },
     {
@@ -101,7 +101,7 @@ export default function OffMarketPropertyPage() {
       <main className="site-main">
 
         {/* Hero — split layout with image */}
-        <div className="hero-layout" style={{ background: 'var(--navy)', minHeight: 480 }}>
+        <div className="hero-layout" style={{ background: 'var(--forest)', minHeight: 480 }}>
           <div className="hero-text" style={{ paddingTop: 'var(--space-20)', paddingBottom: 'var(--space-16)' }}>
             <p className="section-label">Guide</p>
             <h1 className="section-headline" style={{ color: 'var(--white)', marginBottom: 'var(--space-4)' }}>
@@ -189,8 +189,8 @@ export default function OffMarketPropertyPage() {
                     body: 'Estate agent commission in the UK typically runs to 1–3% of the sale price. On an average home, that\'s several thousand pounds. A private sale eliminates that cost entirely.',
                   },
                 ].map((item) => (
-                  <div key={item.title} style={{ paddingLeft: 'var(--space-5)', borderLeft: '3px solid var(--teal)' }}>
-                    <div style={{ fontWeight: 600, fontSize: 'var(--text-base)', color: 'var(--navy)', marginBottom: 'var(--space-1)' }}>{item.title}</div>
+                  <div key={item.title} style={{ paddingLeft: 'var(--space-5)', borderLeft: '3px solid var(--gold)' }}>
+                    <div style={{ fontWeight: 600, fontSize: 'var(--text-base)', color: 'var(--forest)', marginBottom: 'var(--space-1)' }}>{item.title}</div>
                     <p style={{ fontSize: 'var(--text-sm)', color: 'var(--slate)', lineHeight: 1.65, margin: 0 }}>{item.body}</p>
                   </div>
                 ))}
@@ -208,7 +208,7 @@ export default function OffMarketPropertyPage() {
 
               <h3>2. Register your interest formally</h3>
               <p>
-                Platforms like Intentory allow you to register buying interest at a specific address, street, or area. This creates a permanent record that can be matched automatically if a seller in that location becomes open to a private sale — without you having to do anything further.
+                Platforms like EarlyEggs allow you to register buying interest at a specific address, street, or area. This creates a permanent record that can be matched automatically if a seller in that location becomes open to a private sale — without you having to do anything further.
               </p>
 
               <h3>3. Approach the owner directly</h3>
@@ -216,7 +216,7 @@ export default function OffMarketPropertyPage() {
                 A personal letter — rather than a door knock or an unsolicited call — is the most effective way to approach a homeowner. It gives them time to consider your interest without pressure, conveys seriousness, and provides a clear way to respond. The letter should be brief, specific about the property, and clear about your buying position.
               </p>
               <p>
-                Intentory&apos;s owner approach service handles this on your behalf — identifying the registered owner, writing a personalised letter, and providing a private response link the owner can use to get in touch if interested.
+                EarlyEggs&apos;s owner approach service handles this on your behalf — identifying the registered owner, writing a personalised letter, and providing a private response link the owner can use to get in touch if interested.
               </p>
 
               <h3>4. Be prepared to move quickly</h3>
@@ -231,10 +231,10 @@ export default function OffMarketPropertyPage() {
 
               <h2>Off-market property for sellers</h2>
               <p>
-                Sellers considering an off-market approach don&apos;t have to wait to be found. Intentory lets homeowners check whether buyers have already registered interest at their address before they commit to anything. If demand exists, they can make themselves privately available to those buyers — without a public listing, without viewings from unqualified strangers, and without agent fees.
+                Sellers considering an off-market approach don&apos;t have to wait to be found. EarlyEggs lets homeowners check whether buyers have already registered interest at their address before they commit to anything. If demand exists, they can make themselves privately available to those buyers — without a public listing, without viewings from unqualified strangers, and without agent fees.
               </p>
               <p>
-                This represents a meaningful shift in how the early stages of a property sale can work. Rather than the seller announcing publicly and waiting for interest to emerge, Intentory lets sellers see pre-existing interest first — and decide whether it&apos;s worth acting on.
+                This represents a meaningful shift in how the early stages of a property sale can work. Rather than the seller announcing publicly and waiting for interest to emerge, EarlyEggs lets sellers see pre-existing interest first — and decide whether it&apos;s worth acting on.
               </p>
 
             </div>
@@ -260,7 +260,7 @@ export default function OffMarketPropertyPage() {
                 },
                 {
                   q: 'How do I buy an off-market property?',
-                  a: 'The most direct route is to approach the homeowner with a personal letter. Platforms like Intentory facilitate this by matching registered buyer interest with homeowners who are open to a private sale, and by sending personally addressed letters to owners on your behalf.',
+                  a: 'The most direct route is to approach the homeowner with a personal letter. Platforms like EarlyEggs facilitate this by matching registered buyer interest with homeowners who are open to a private sale, and by sending personally addressed letters to owners on your behalf.',
                 },
                 {
                   q: 'Why do sellers choose to sell off-market?',
@@ -289,7 +289,7 @@ export default function OffMarketPropertyPage() {
         <section className="section section-dark">
           <div className="container">
             <div className="two-col-grid" style={{ gap: 'var(--space-4)' }}>
-              <div className="split-card split-card-buyer" style={{ background: 'var(--navy-soft)' }}>
+              <div className="split-card split-card-buyer" style={{ background: 'var(--forest-soft)' }}>
                 <div className="split-card-eyebrow">For buyers</div>
                 <h3 className="split-card-headline">Register interest in any property.</h3>
                 <p className="split-card-sub">
