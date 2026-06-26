@@ -165,7 +165,7 @@ function SiteHeader() {
     <header className="site-header">
       <div className="container header-inner">
         <Link href="/" className="brand" aria-label="EarlyEggs home">
-          <EarlyEggsWordmark height={24} />
+          <EarlyEggsWordmark height={30} />
         </Link>
 
         {/* Desktop nav */}
