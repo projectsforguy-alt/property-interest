@@ -244,7 +244,7 @@ export default function AddInterestForm() {
             {PROPERTY_TYPES.map(([type, label]) => (
               <button key={type} type="button"
                 onClick={() => toggleType(type)}
-                className={`badge${selectedTypes.includes(type) ? ' badge-teal' : ' badge-slate'}`}
+                className={`badge ${selectedTypes.includes(type) ? 'badge-gold' : 'badge-slate'}`}
                 style={{ cursor: 'pointer', padding: '6px 14px', fontSize: 'var(--text-sm)' }}>
                 {label}
               </button>
