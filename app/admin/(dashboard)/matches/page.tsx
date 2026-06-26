@@ -2,7 +2,7 @@ import { getSupabaseServiceClient } from '@/lib/supabase';
 import { MATCH_TYPE_LABELS } from '@/lib/types';
 import type { Match } from '@/lib/types';
 
-export const metadata = { title: 'Matches | Intentory Admin' };
+export const metadata = { title: 'Matches | EarlyEggs Admin' };
 
 export default async function AdminMatchesPage() {
   const supabase = getSupabaseServiceClient();
@@ -44,8 +44,8 @@ export default async function AdminMatchesPage() {
                 <tr key={m.id}>
                   <td style={{ fontSize: 'var(--text-xs)', maxWidth: 180 }}>{buyerLabel}</td>
                   <td style={{ fontSize: 'var(--text-xs)', maxWidth: 180 }}>{sellerLabel}</td>
-                  <td><span className="badge badge-navy">{MATCH_TYPE_LABELS[m.match_type]}</span></td>
-                  <td><span className={`badge ${m.status === 'active' ? 'badge-teal' : 'badge-slate'}`}>{m.status}</span></td>
+                  <td><span className="badge badge-forest">{MATCH_TYPE_LABELS[m.match_type]}</span></td>
+                  <td><span className={`badge ${m.status === 'active' ? 'badge-gold' : 'badge-slate'}`}>{m.status}</span></td>
                   <td style={{ fontSize: 'var(--text-xs)', color: 'var(--slate)' }}>
                     {new Date(m.created_at).toLocaleDateString('en-GB')}
                   </td>
