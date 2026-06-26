@@ -7,13 +7,13 @@ export const metadata: Metadata = {
   description:
     'A practical guide to approaching a homeowner about buying their property privately in the UK — what to say, how to write the letter, and what to expect.',
   alternates: {
-    canonical: 'https://property-interest-sepia.vercel.app/approach-a-homeowner',
+    canonical: 'https://www.earlyeggs.com/approach-a-homeowner',
   },
   openGraph: {
-    title: 'How to approach a homeowner about buying their house | Intentory',
+    title: 'How to approach a homeowner about buying their house | EarlyEggs',
     description:
       'What to say, how to write the letter, and what to expect when approaching a homeowner privately in the UK.',
-    url: 'https://property-interest-sepia.vercel.app/approach-a-homeowner',
+    url: 'https://www.earlyeggs.com/approach-a-homeowner',
   },
 };
 
@@ -25,17 +25,17 @@ const articleSchema = {
     'A practical guide to approaching a homeowner about buying their property privately in the UK.',
   author: {
     '@type': 'Organization',
-    name: 'Intentory',
-    url: 'https://property-interest-sepia.vercel.app',
+    name: 'EarlyEggs',
+    url: 'https://www.earlyeggs.com',
   },
   publisher: {
     '@type': 'Organization',
-    name: 'Intentory',
-    url: 'https://property-interest-sepia.vercel.app',
+    name: 'EarlyEggs',
+    url: 'https://www.earlyeggs.com',
   },
   mainEntityOfPage: {
     '@type': 'WebPage',
-    '@id': 'https://property-interest-sepia.vercel.app/approach-a-homeowner',
+    '@id': 'https://www.earlyeggs.com/approach-a-homeowner',
   },
 };
 
@@ -77,10 +77,10 @@ const faqSchema = {
     },
     {
       '@type': 'Question',
-      name: 'Can Intentory contact a homeowner on my behalf?',
+      name: 'Can EarlyEggs contact a homeowner on my behalf?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes. Intentory\'s owner approach service researches the registered owner of any UK residential property and sends a personally addressed letter on your behalf, including a private response link. This costs £29 per property.',
+        text: 'Yes. EarlyEggs\'s owner approach service researches the registered owner of any UK residential property and sends a personally addressed letter on your behalf, including a private response link. This costs £29 per property.',
       },
     },
   ],
@@ -137,12 +137,12 @@ const FAQ_ITEMS = [
     a: 'Response rates vary significantly by area, property type, and how the letter is written. A credible, personal letter to the right property at the right time can be highly effective. Many homeowners are in passive consideration — open to selling but not actively looking to list — and a genuine approach can change their decision.',
   },
   {
-    q: 'Can Intentory contact a homeowner on my behalf?',
-    a: 'Yes. Intentory\'s owner approach service researches the registered owner of any UK residential property and sends a personally addressed letter on your behalf, including a private response link. This costs £29 per property.',
+    q: 'Can EarlyEggs contact a homeowner on my behalf?',
+    a: 'Yes. EarlyEggs\'s owner approach service researches the registered owner of any UK residential property and sends a personally addressed letter on your behalf, including a private response link. This costs £29 per property.',
   },
   {
     q: 'What if the homeowner says no?',
-    a: 'Respect the decision and move on. A homeowner who declines today may reconsider in future — particularly if their circumstances change. Some buyers register ongoing interest through Intentory so they\'re notified if the owner later decides to sell.',
+    a: 'Respect the decision and move on. A homeowner who declines today may reconsider in future — particularly if their circumstances change. Some buyers register ongoing interest through EarlyEggs so they\'re notified if the owner later decides to sell.',
   },
 ];
 
@@ -161,7 +161,7 @@ export default function ApproachAHomeownerPage() {
       <main className="site-main">
 
         {/* Hero — split layout with front door image */}
-        <div className="hero-layout" style={{ background: 'var(--navy)', minHeight: 520 }}>
+        <div className="hero-layout" style={{ background: 'var(--forest)', minHeight: 520 }}>
           <div className="hero-text" style={{ paddingTop: 'var(--space-20)', paddingBottom: 'var(--space-16)' }}>
             <p className="section-label">Buyer guide</p>
             <h1 className="section-headline" style={{ color: 'var(--white)', marginBottom: 'var(--space-4)' }}>
@@ -226,9 +226,9 @@ export default function ApproachAHomeownerPage() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-6)', margin: 'var(--space-8) 0' }}>
               {STEPS.map((step) => (
                 <div key={step.n} style={{ display: 'flex', gap: 'var(--space-6)', alignItems: 'flex-start', paddingBottom: 'var(--space-6)', borderBottom: '1px solid var(--line)' }}>
-                  <div style={{ fontFamily: 'var(--font-tight)', fontWeight: 700, fontSize: 'var(--text-sm)', color: 'var(--teal)', flexShrink: 0, width: 28, paddingTop: 2 }}>{step.n}</div>
+                  <div style={{ fontFamily: 'var(--font-tight)', fontWeight: 700, fontSize: 'var(--text-sm)', color: 'var(--gold)', flexShrink: 0, width: 28, paddingTop: 2 }}>{step.n}</div>
                   <div>
-                    <div style={{ fontWeight: 600, fontSize: 'var(--text-base)', color: 'var(--navy)', marginBottom: 'var(--space-2)' }}>{step.title}</div>
+                    <div style={{ fontWeight: 600, fontSize: 'var(--text-base)', color: 'var(--forest)', marginBottom: 'var(--space-2)' }}>{step.title}</div>
                     <p style={{ fontSize: 'var(--text-sm)', color: 'var(--slate)', lineHeight: 1.7, margin: 0 }}>{step.body}</p>
                   </div>
                 </div>
@@ -244,7 +244,7 @@ export default function ApproachAHomeownerPage() {
                 Note that not all properties are registered — particularly older ones that haven&apos;t changed hands recently. In those cases, ownership research requires more effort, and the Land Registry search may return no result.
               </p>
               <p>
-                Intentory handles this research as part of the owner approach service. We identify the registered owner, produce a personally addressed letter, and provide a private response link — so the owner can respond in confidence without committing to anything.
+                EarlyEggs handles this research as part of the owner approach service. We identify the registered owner, produce a personally addressed letter, and provide a private response link — so the owner can respond in confidence without committing to anything.
               </p>
 
               <h2>What to do when an owner responds positively</h2>
@@ -260,16 +260,16 @@ export default function ApproachAHomeownerPage() {
                 Respect it and move on. A homeowner who declines today may reconsider if their circumstances change — a job move, a family change, a shift in financial priorities. Some buyers leave a note with their contact details so the owner has a way to get in touch if they do decide to sell.
               </p>
               <p>
-                Registering your interest with Intentory means you&apos;ll be notified automatically if that owner later registers the property as privately available — without you having to do anything further.
+                Registering your interest with EarlyEggs means you&apos;ll be notified automatically if that owner later registers the property as privately available — without you having to do anything further.
               </p>
             </div>
           </div>
         </section>
 
-        {/* Intentory's role */}
-        <section className="section section-teal">
+        {/* EarlyEggs's role */}
+        <section className="section section-gold">
           <div className="container-narrow">
-            <p className="section-label">How Intentory helps</p>
+            <p className="section-label">How EarlyEggs helps</p>
             <h2 className="section-headline" style={{ marginBottom: 'var(--space-8)' }}>
               We handle the approach on your behalf
             </h2>
@@ -289,17 +289,17 @@ export default function ApproachAHomeownerPage() {
                 },
                 {
                   title: 'You\'re notified of any response',
-                  body: 'If the owner responds, you\'re notified through your Intentory account and can begin a private conversation.',
+                  body: 'If the owner responds, you\'re notified through your EarlyEggs account and can begin a private conversation.',
                 },
               ].map((item) => (
                 <div key={item.title} style={{ display: 'flex', gap: 'var(--space-4)', alignItems: 'flex-start' }}>
-                  <div style={{ width: 24, height: 24, borderRadius: '50%', background: 'var(--teal)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 2 }}>
+                  <div style={{ width: 24, height: 24, borderRadius: '50%', background: 'var(--gold)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 2 }}>
                     <svg width="12" height="12" viewBox="0 0 20 20" fill="none">
-                      <path d="M4 10l4 4 8-8" stroke="var(--navy)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                      <path d="M4 10l4 4 8-8" stroke="var(--forest)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </div>
                   <div>
-                    <div style={{ fontWeight: 600, fontSize: 'var(--text-sm)', color: 'var(--navy)', marginBottom: 4 }}>{item.title}</div>
+                    <div style={{ fontWeight: 600, fontSize: 'var(--text-sm)', color: 'var(--forest)', marginBottom: 4 }}>{item.title}</div>
                     <div style={{ fontSize: 'var(--text-sm)', color: 'var(--slate)', lineHeight: 1.6 }}>{item.body}</div>
                   </div>
                 </div>
