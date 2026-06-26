@@ -6,13 +6,13 @@ export const metadata: Metadata = {
   description:
     'Check whether buyers have already registered interest at your address before you commit to an agent. List privately, connect directly, and save on fees.',
   alternates: {
-    canonical: 'https://property-interest-sepia.vercel.app/sellers',
+    canonical: 'https://www.earlyeggs.com/sellers',
   },
   openGraph: {
-    title: 'For homeowners | Intentory',
+    title: 'For homeowners | EarlyEggs',
     description:
       'Check buyer demand at your address before you commit to anything. Sell privately, no public listing required.',
-    url: 'https://property-interest-sepia.vercel.app/sellers',
+    url: 'https://www.earlyeggs.com/sellers',
   },
 };
 
@@ -66,11 +66,11 @@ export default function SellersPage() {
 
       <section className="section" style={{ background: 'var(--white)', borderTop: '1px solid var(--line)' }}>
         <div className="container">
-          <div className="section-label">Why Intentory</div>
+          <div className="section-label">Why EarlyEggs</div>
           <h2 className="section-headline">You might not need to list at all.</h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 'var(--space-4)', marginTop: 'var(--space-10)' }}>
             {[
-              { title: 'No agent fees', desc: 'A private introduction via Intentory costs £49. A traditional agent typically charges 1–2% of the sale price.' },
+              { title: 'No agent fees', desc: 'A private introduction via EarlyEggs costs £49. A traditional agent typically charges 1–2% of the sale price.' },
               { title: 'Serious buyers only', desc: 'Every buyer in our database has declared their budget, buying position, and timeline. No tyre-kickers.' },
               { title: 'No public exposure', desc: 'Your property never appears on Rightmove, Zoopla, or any public portal. The process is entirely private.' },
               { title: 'No obligation', desc: 'Registering is free and creates no commitment. You decide whether to proceed at every step.' },
@@ -84,7 +84,7 @@ export default function SellersPage() {
         </div>
       </section>
 
-      <section className="section section-teal">
+      <section className="section section-gold">
         <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 'var(--space-8)', flexWrap: 'wrap' }}>
           <div>
             <h2 className="section-headline" style={{ marginBottom: 'var(--space-2)' }}>Ready to get started?</h2>
