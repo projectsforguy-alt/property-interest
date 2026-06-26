@@ -50,11 +50,30 @@ export async function sendSellerRegistrationConfirmation(email: string, firstNam
   });
 }
 
+export async function sendApproachConfirmation(email: string, firstName: string, address: string) {
+  await loopsPost('/events/send', {
+    email,
+    eventName: 'approach_confirmed',
+    firstName,
+    address,
+  });
+}
+
+export async function sendOwnerResponseAlert(email: string, firstName: string, address: string, response: string) {
+  await loopsPost('/events/send', {
+    email,
+    eventName: 'owner_responded',
+    firstName,
+    address,
+    ownerResponse: response,
+  });
+}
+
 export async function createOrUpdateContact(email: string, firstName: string, lastName?: string) {
   await loopsPost('/contacts/create', {
     email,
     firstName,
     lastName: lastName ?? '',
-    source: 'intentory',
+    source: 'earlyeggs',
   });
 }
