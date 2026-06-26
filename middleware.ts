@@ -39,7 +39,23 @@ export async function middleware(req: NextRequest) {
     }
   );
 
-  await supabase.auth.getUser();
+  const { data: { user } } = await supabase.auth.getUser();
+
+  // Profile completion gate: if a logged-in user hits /account/add-interest
+  // without a buying_position set, redirect them to complete their profile first.
+  if (pathname === '/account/add-interest' && user) {
+    const { data: profile } = await supabase
+      .from('profiles')
+      .select('buying_position, timeline')
+      .eq('id', user.id)
+      .single();
+
+    const isComplete = profile?.buying_position && profile?.timeline;
+    if (!isComplete) {
+      return NextResponse.redirect(new URL('/account/complete-profile', req.url));
+    }
+  }
+
   return res;
 }
 
