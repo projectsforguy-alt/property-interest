@@ -924,6 +924,9 @@ ul, ol { list-style: none; }
   display: grid;
   grid-template-columns: 240px 1fr;
   min-height: calc(100vh - 60px);
+  max-width: 1160px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 .account-sidebar {
@@ -1002,7 +1005,6 @@ ul, ol { list-style: none; }
 .account-content {
   padding: var(--space-10) var(--space-10);
   background: var(--surface);
-  max-width: 960px;
 }
 
 .account-page-header {
