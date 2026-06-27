@@ -19,6 +19,19 @@ export default async function PropertiesPage({ searchParams }: { searchParams: P
 
   const properties = (data ?? []) as SellerProperty[];
 
+  // Fetch match counts for all properties in one query
+  const { data: matchData } = await supabase
+    .from('matches')
+    .select('seller_property_id')
+    .eq('seller_user_id', user!.id)
+    .neq('status', 'expired');
+
+  const matchCounts: Record<string, number> = {};
+  for (const m of (matchData ?? [])) {
+    const pid = m.seller_property_id as string;
+    matchCounts[pid] = (matchCounts[pid] ?? 0) + 1;
+  }
+
   return (
     <>
       <div className="account-page-header">
@@ -46,34 +59,74 @@ export default async function PropertiesPage({ searchParams }: { searchParams: P
           <Link href="/account/properties/add" className="btn btn-primary">Register a property</Link>
         </div>
       ) : (
-        <div className="card-grid">
-          {properties.map(p => (
-            <div key={p.id} className="card" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                {p.property_type && <span className="badge badge-forest">{PROPERTY_TYPE_LABELS[p.property_type]}</span>}
-                <span className={`badge ${p.status === 'available' ? 'badge-gold' : 'badge-slate'}`}>
-                  {PROPERTY_STATUS_LABELS[p.status]}
-                </span>
-              </div>
-              <div style={{ fontWeight: 600, fontSize: 'var(--text-sm)', lineHeight: 1.4 }}>{p.full_address}</div>
-              {p.asking_price && (
-                <div style={{ fontSize: 'var(--text-xs)', color: 'var(--slate)' }}>Asking {formatBudget(p.asking_price)}</div>
-              )}
-              {p.broadcast_buyer_count > 0 && (
-                <div style={{ fontSize: 'var(--text-xs)', color: 'var(--gold-dark)', fontWeight: 600 }}>
-                  {p.broadcast_buyer_count} matched {p.broadcast_buyer_count === 1 ? 'buyer' : 'buyers'}
-                </div>
-              )}
-              <div style={{ display: 'flex', gap: 'var(--space-2)', marginTop: 'auto' }}>
-                <Link href={`/account/properties/${p.id}`} className="btn btn-outline-dark btn-sm">View</Link>
-                {!p.broadcast_sent_at && p.status === 'available' && (
-                  <Link href={`/account/properties/${p.id}/broadcast`} className="btn btn-primary btn-sm">
-                    Broadcast to buyers — £49
-                  </Link>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)' }}>
+          {properties.map(p => {
+            const matchCount = matchCounts[p.id] ?? 0;
+            const hasMatches = matchCount > 0;
+
+            return (
+              <div key={p.id} className="card" style={{
+                border: hasMatches ? '1.5px solid var(--gold)' : undefined,
+              }}>
+                {/* Match alert banner */}
+                {hasMatches && (
+                  <div style={{
+                    background: 'var(--gold)',
+                    margin: 'calc(-1 * var(--space-6)) calc(-1 * var(--space-6)) var(--space-5)',
+                    padding: 'var(--space-3) var(--space-5)',
+                    borderRadius: 'var(--radius-lg) var(--radius-lg) 0 0',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    gap: 'var(--space-4)',
+                  }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}>
+                      <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+                        <circle cx="10" cy="10" r="8" fill="var(--forest)" fillOpacity="0.15" />
+                        <circle cx="10" cy="10" r="4" fill="var(--forest)" />
+                      </svg>
+                      <span style={{ fontWeight: 700, fontSize: 'var(--text-sm)', color: 'var(--forest)' }}>
+                        {matchCount} interested {matchCount === 1 ? 'buyer' : 'buyers'}
+                      </span>
+                    </div>
+                    <Link href={`/account/properties/${p.id}`} className="btn btn-sm" style={{ background: 'var(--forest)', color: 'var(--white)', border: 'none' }}>
+                      View buyers
+                    </Link>
+                  </div>
                 )}
+
+                <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 'var(--space-4)' }}>
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{ fontWeight: 600, fontSize: 'var(--text-base)', lineHeight: 1.3, marginBottom: 'var(--space-2)' }}>
+                      {p.full_address}
+                    </div>
+                    <div style={{ display: 'flex', gap: 'var(--space-2)', flexWrap: 'wrap', alignItems: 'center' }}>
+                      {p.property_type && (
+                        <span className="badge badge-forest">{PROPERTY_TYPE_LABELS[p.property_type]}</span>
+                      )}
+                      <span className={`badge ${p.status === 'available' ? 'badge-gold' : 'badge-slate'}`}>
+                        {PROPERTY_STATUS_LABELS[p.status]}
+                      </span>
+                      {p.asking_price && (
+                        <span style={{ fontSize: 'var(--text-xs)', color: 'var(--slate)' }}>
+                          Asking {formatBudget(p.asking_price)}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+
+                  <div style={{ display: 'flex', gap: 'var(--space-2)', flexShrink: 0 }}>
+                    <Link href={`/account/properties/${p.id}`} className="btn btn-outline-dark btn-sm">View</Link>
+                    {!p.broadcast_sent_at && p.status === 'available' && (
+                      <Link href={`/account/properties/${p.id}/broadcast`} className="btn btn-primary btn-sm">
+                        Broadcast — £49
+                      </Link>
+                    )}
+                  </div>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       )}
     </>
