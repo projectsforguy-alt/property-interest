@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { createBrowserClient } from '@supabase/ssr';
 import type { BuyingPosition, Timeline, PropertyType } from '@/lib/types';
 import { BUYING_POSITION_LABELS, TIMELINE_LABELS, PROPERTY_TYPE_LABELS } from '@/lib/types';
@@ -16,8 +15,6 @@ function getBrowserClient() {
 const PROPERTY_TYPES = Object.entries(PROPERTY_TYPE_LABELS) as [PropertyType, string][];
 
 export default function CompleteProfilePage() {
-  const router = useRouter();
-
   const [buyingPosition, setBuyingPosition] = useState<BuyingPosition | ''>('');
   const [budgetMin, setBudgetMin] = useState('');
   const [budgetMax, setBudgetMax] = useState('');
@@ -45,7 +42,11 @@ export default function CompleteProfilePage() {
     setLoading(true);
     const supabase = getBrowserClient();
     const { data: { user } } = await supabase.auth.getUser();
-    if (!user) { router.push('/login'); return; }
+
+    if (!user) {
+      window.location.href = '/login';
+      return;
+    }
 
     const { error: updateError } = await supabase
       .from('profiles')
@@ -58,9 +59,14 @@ export default function CompleteProfilePage() {
       })
       .eq('id', user.id);
 
-    if (updateError) { setError(updateError.message); setLoading(false); return; }
+    if (updateError) {
+      setError(updateError.message);
+      setLoading(false);
+      return;
+    }
 
-    router.push('/account/add-interest');
+    // Use full navigation so middleware reads fresh profile data
+    window.location.href = '/account/add-interest';
   }
 
   return (
