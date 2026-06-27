@@ -45,9 +45,7 @@ export default function RegisterForm({ intent = 'buyer' }: Props) {
       setError(error.message);
       setLoading(false);
     } else {
-      // Send sellers to property registration, buyers to the main dashboard
-      router.push(isSeller ? '/account/property/new?welcome=1' : '/account?welcome=1');
-      router.refresh();
+      window.location.href = isSeller ? '/account/properties/add?welcome=1' : '/account?welcome=1';
     }
   }
 
@@ -83,15 +81,13 @@ export default function RegisterForm({ intent = 'buyer' }: Props) {
         <input type="checkbox" id="consent" checked={consent}
           onChange={e => setConsent(e.target.checked)} />
         <label htmlFor="consent" className="checkbox-label">
-          I agree to Intentory&apos;s{' '}
+          I agree to EarlyEggs&apos;{' '}
           <Link href="/terms">Terms of use</Link> and{' '}
           <Link href="/privacy">Privacy policy</Link>
         </label>
       </div>
       <button type="submit" className="btn btn-primary w-full btn-lg" disabled={loading}>
-        {loading
-          ? 'Creating account…'
-          : isSeller ? 'Create free account' : 'Create free account'}
+        {loading ? 'Creating account…' : 'Create free account'}
       </button>
     </form>
   );
