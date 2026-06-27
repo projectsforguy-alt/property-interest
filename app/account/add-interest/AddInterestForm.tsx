@@ -3,10 +3,10 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { createBrowserClient } from '@supabase/ssr';
 import dynamic from 'next/dynamic';
-import type { InterestType, BuyingPosition, Timeline, PropertyType } from '@/lib/types';
+import type { InterestType, PropertyType } from '@/lib/types';
 import {
   INTEREST_TYPE_LABELS, INTEREST_TYPE_DESCRIPTIONS,
-  BUYING_POSITION_LABELS, TIMELINE_LABELS, PROPERTY_TYPE_LABELS,
+  PROPERTY_TYPE_LABELS,
 } from '@/lib/types';
 import PostcodeInput from '@/components/PostcodeInput';
 
@@ -40,10 +40,6 @@ export default function AddInterestForm() {
   const [selectedTypes, setSelectedTypes] = useState<PropertyType[]>([]);
   const [minBedrooms, setMinBedrooms] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
-
-  // Buyer profile
-  const [buyingPosition, setBuyingPosition] = useState<BuyingPosition | ''>('');
-  const [timeline, setTimeline] = useState<Timeline | ''>('');
   const [buyerMessage, setBuyerMessage] = useState('');
 
   const [error, setError] = useState('');
@@ -123,13 +119,6 @@ export default function AddInterestForm() {
       if (mapAddress && !areaName) payload.location_notes = mapAddress;
     }
 
-    if (buyingPosition) {
-      await supabase.from('profiles').update({ buying_position: buyingPosition }).eq('id', user.id);
-    }
-    if (timeline) {
-      await supabase.from('profiles').update({ timeline }).eq('id', user.id);
-    }
-
     const { error: insertError } = await supabase.from('buyer_interests').insert(payload);
     if (insertError) { setError(insertError.message); setLoading(false); return; }
 
@@ -147,7 +136,7 @@ export default function AddInterestForm() {
     <form onSubmit={handleSubmit} style={{ maxWidth: 640 }}>
       {error && <div className="form-error-banner">{error}</div>}
 
-      {/* Step 1: Interest type */}
+      {/* Step 1: Interest type + location */}
       <div className="form-card" style={{ marginBottom: 'var(--space-5)' }}>
         <div className="form-section-title">What are you interested in?</div>
         <div className="intent-picker">
@@ -182,7 +171,7 @@ export default function AddInterestForm() {
               <label className="field-label" htmlFor="postcodeSpecific">Postcode</label>
               <PostcodeInput value={postcode} onChange={handlePostcodeChange} required />
               <span className="field-hint" style={{ marginTop: 4 }}>
-                {postcodeValid ? `✓ ${postcode}` : 'Enter your postcode and we\'ll validate it'}
+                {postcodeValid ? `✓ ${postcode}` : "Enter your postcode and we'll validate it"}
               </span>
             </div>
           </>
@@ -228,7 +217,7 @@ export default function AddInterestForm() {
         )}
 
         <div className="field" style={{ marginTop: 'var(--space-2)' }}>
-          <label className="field-label" htmlFor="locationNotes">Additional location details <span style={{ fontWeight: 400, color: 'var(--slate)' }}>(optional)</span></label>
+          <label className="field-label" htmlFor="locationNotes">Additional details <span style={{ fontWeight: 400, color: 'var(--slate)' }}>(optional)</span></label>
           <input id="locationNotes" type="text" className="field-input"
             placeholder="e.g. South-facing garden preferred, near school catchment"
             value={locationNotes} onChange={e => setLocationNotes(e.target.value)} />
@@ -265,33 +254,6 @@ export default function AddInterestForm() {
             <input id="maxPrice" type="text" className="field-input"
               placeholder="e.g. £450,000"
               value={maxPrice} onChange={e => setMaxPrice(e.target.value)} />
-          </div>
-        </div>
-      </div>
-
-      {/* Step 3: Buying position */}
-      <div className="form-card" style={{ marginBottom: 'var(--space-5)' }}>
-        <div className="form-section-title">Your buying position</div>
-        <div className="field-row">
-          <div className="field">
-            <label className="field-label" htmlFor="buyingPosition">Buying position</label>
-            <select id="buyingPosition" className="field-select"
-              value={buyingPosition} onChange={e => setBuyingPosition(e.target.value as BuyingPosition)}>
-              <option value="">Select…</option>
-              {(Object.entries(BUYING_POSITION_LABELS) as [BuyingPosition, string][]).map(([v, l]) => (
-                <option key={v} value={v}>{l}</option>
-              ))}
-            </select>
-          </div>
-          <div className="field">
-            <label className="field-label" htmlFor="timeline">Timeline</label>
-            <select id="timeline" className="field-select"
-              value={timeline} onChange={e => setTimeline(e.target.value as Timeline)}>
-              <option value="">Select…</option>
-              {(Object.entries(TIMELINE_LABELS) as [Timeline, string][]).map(([v, l]) => (
-                <option key={v} value={v}>{l}</option>
-              ))}
-            </select>
           </div>
         </div>
         <div className="field">
