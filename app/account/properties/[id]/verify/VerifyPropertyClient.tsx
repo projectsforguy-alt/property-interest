@@ -53,7 +53,7 @@ function StatusStepper({ current }: { current: VerificationStatus }) {
 
 export default function VerifyPropertyClient({ property }: { property: SellerProperty }) {
   const router = useRouter();
-  const status = property.verification_status ?? 'unverified';
+  const status = (property.verification_status ?? 'unverified') as VerificationStatus;
 
   const [code, setCode] = useState('');
   const [loading, setLoading] = useState(false);
@@ -63,7 +63,8 @@ export default function VerifyPropertyClient({ property }: { property: SellerPro
   async function requestLetter() {
     setLoading(true);
     setError('');
-    const res = await fetch('/api/account/properties/verify', {
+    // Route is at app/account/properties/verify/route.ts → /account/properties/verify
+    const res = await fetch('/account/properties/verify', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ propertyId: property.id, action: 'request_letter' }),
@@ -79,7 +80,7 @@ export default function VerifyPropertyClient({ property }: { property: SellerPro
     if (code.length !== 6) { setError('Please enter the 6-digit code from your letter.'); return; }
     setLoading(true);
     setError('');
-    const res = await fetch('/api/account/properties/verify', {
+    const res = await fetch('/account/properties/verify', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ propertyId: property.id, action: 'submit_code', code }),
@@ -100,7 +101,7 @@ export default function VerifyPropertyClient({ property }: { property: SellerPro
         </div>
       </div>
 
-      <StatusStepper current={status as VerificationStatus} />
+      <StatusStepper current={status} />
 
       {success && (
         <div style={{ background: 'var(--gold-soft)', border: '1.5px solid var(--gold)', borderRadius: 'var(--radius-lg)', padding: 'var(--space-4) var(--space-5)', marginBottom: 'var(--space-5)', fontSize: 'var(--text-sm)', color: 'var(--forest)' }}>
@@ -110,7 +111,6 @@ export default function VerifyPropertyClient({ property }: { property: SellerPro
 
       {error && <div className="form-error-banner">{error}</div>}
 
-      {/* Unverified: explain and offer to request letter */}
       {(status === 'unverified' || status === 'letter_requested') && (
         <div className="card" style={{ marginBottom: 'var(--space-5)' }}>
           <div className="form-section-title">How ownership verification works</div>
@@ -142,7 +142,6 @@ export default function VerifyPropertyClient({ property }: { property: SellerPro
         </div>
       )}
 
-      {/* Letter sent / awaiting code: show code entry */}
       {(status === 'letter_sent' || status === 'awaiting_code') && (
         <div className="card" style={{ marginBottom: 'var(--space-5)' }}>
           <div className="form-section-title">Enter your verification code</div>
@@ -152,13 +151,8 @@ export default function VerifyPropertyClient({ property }: { property: SellerPro
           <div className="field">
             <label className="field-label" htmlFor="verifyCode">Verification code</label>
             <input
-              id="verifyCode"
-              type="text"
-              inputMode="numeric"
-              maxLength={6}
-              className="field-input"
-              placeholder="000000"
-              value={code}
+              id="verifyCode" type="text" inputMode="numeric" maxLength={6}
+              className="field-input" placeholder="000000" value={code}
               onChange={e => setCode(e.target.value.replace(/\D/g, ''))}
               style={{ maxWidth: 160, fontSize: 'var(--text-xl)', letterSpacing: '0.2em', fontFamily: 'var(--font-tight)' }}
             />
@@ -169,7 +163,6 @@ export default function VerifyPropertyClient({ property }: { property: SellerPro
         </div>
       )}
 
-      {/* Verified */}
       {status === 'verified' && (
         <div className="card" style={{ background: 'var(--gold-soft)', border: '1.5px solid var(--gold)' }}>
           <div style={{ display: 'flex', gap: 'var(--space-4)', alignItems: 'flex-start' }}>
