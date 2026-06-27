@@ -1,7 +1,6 @@
 'use client';
 import { createBrowserClient } from '@supabase/ssr';
 import { useState, useEffect, useRef } from 'react';
-
 import type { Message } from '@/lib/types';
 
 function getBrowserClient() {
@@ -16,12 +15,14 @@ export default function MessageThread({ matchId, userId, initialMessages }: {
   const [messages, setMessages] = useState<Message[]>(initialMessages);
   const [body, setBody] = useState('');
   const [sending, setSending] = useState(false);
+  const [error, setError] = useState('');
   const bottomRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
+  // Realtime subscription — works if enabled in Supabase, silently no-ops if not
   useEffect(() => {
     const supabase = getBrowserClient();
     const channel = supabase
@@ -30,7 +31,11 @@ export default function MessageThread({ matchId, userId, initialMessages }: {
         event: 'INSERT', schema: 'public', table: 'messages',
         filter: `match_id=eq.${matchId}`,
       }, (payload) => {
-        setMessages(prev => [...prev, payload.new as Message]);
+        const incoming = payload.new as Message;
+        // Only append if not already in state (avoids duplicating optimistic messages)
+        setMessages(prev =>
+          prev.some(m => m.id === incoming.id) ? prev : [...prev, incoming]
+        );
       })
       .subscribe();
     return () => { supabase.removeChannel(channel); };
@@ -40,9 +45,39 @@ export default function MessageThread({ matchId, userId, initialMessages }: {
     e.preventDefault();
     if (!body.trim()) return;
     setSending(true);
+    setError('');
+
     const supabase = getBrowserClient();
-    await supabase.from('messages').insert({ match_id: matchId, sender_id: userId, body: body.trim() });
+
+    // Optimistic message — shown immediately
+    const optimisticId = `optimistic-${Date.now()}`;
+    const optimistic: Message = {
+      id: optimisticId,
+      match_id: matchId,
+      sender_id: userId,
+      body: body.trim(),
+      read_at: null,
+      created_at: new Date().toISOString(),
+    };
+    setMessages(prev => [...prev, optimistic]);
     setBody('');
+
+    const { data, error: insertError } = await supabase
+      .from('messages')
+      .insert({ match_id: matchId, sender_id: userId, body: optimistic.body })
+      .select()
+      .single() as { data: Message | null; error: unknown };
+
+    if (insertError || !data) {
+      // Roll back optimistic message and show error
+      setMessages(prev => prev.filter(m => m.id !== optimisticId));
+      setBody(optimistic.body);
+      setError('Failed to send. Please try again.');
+    } else {
+      // Replace optimistic message with real one from DB
+      setMessages(prev => prev.map(m => m.id === optimisticId ? data : m));
+    }
+
     setSending(false);
   }
 
@@ -56,15 +91,18 @@ export default function MessageThread({ matchId, userId, initialMessages }: {
         )}
         {messages.map(msg => {
           const isMine = msg.sender_id === userId;
+          const isOptimistic = msg.id.startsWith('optimistic-');
           return (
             <div key={msg.id} style={{
               display: 'flex', flexDirection: 'column',
               alignItems: isMine ? 'flex-end' : 'flex-start',
               gap: 4,
+              opacity: isOptimistic ? 0.7 : 1,
+              transition: 'opacity 0.2s',
             }}>
               <div style={{
-                background: isMine ? 'var(--navy)' : 'var(--surface)',
-                color: isMine ? 'var(--white)' : 'var(--navy)',
+                background: isMine ? 'var(--forest)' : 'var(--surface)',
+                color: isMine ? 'var(--white)' : 'var(--forest)',
                 border: isMine ? 'none' : '1.5px solid var(--line)',
                 borderRadius: 'var(--radius-lg)',
                 padding: 'var(--space-3) var(--space-4)',
@@ -82,6 +120,11 @@ export default function MessageThread({ matchId, userId, initialMessages }: {
         })}
         <div ref={bottomRef} />
       </div>
+
+      {error && (
+        <div style={{ padding: '0 var(--space-4)', fontSize: 'var(--text-xs)', color: 'var(--red)' }}>{error}</div>
+      )}
+
       <div style={{ borderTop: '1px solid var(--line)', padding: 'var(--space-4)' }}>
         <form onSubmit={handleSend} style={{ display: 'flex', gap: 'var(--space-3)' }}>
           <input
@@ -90,7 +133,7 @@ export default function MessageThread({ matchId, userId, initialMessages }: {
             style={{ flex: 1 }}
           />
           <button type="submit" className="btn btn-primary" disabled={sending || !body.trim()}>
-            Send
+            {sending ? '…' : 'Send'}
           </button>
         </form>
       </div>
