@@ -1002,6 +1002,7 @@ ul, ol { list-style: none; }
 .account-content {
   padding: var(--space-10) var(--space-10);
   background: var(--surface);
+  max-width: 960px;
 }
 
 .account-page-header {
