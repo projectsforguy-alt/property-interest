@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import { notFound, redirect } from 'next/navigation';
-import { getSupabaseServerClient } from '@/lib/supabase';
-import { PROPERTY_TYPE_LABELS, PROPERTY_STATUS_LABELS, VERIFICATION_STATUS_LABELS, formatBudget } from '@/lib/types';
-import type { SellerProperty } from '@/lib/types';
+import { getSupabaseServerClient, getSupabaseServiceClient } from '@/lib/supabase';
+import { PROPERTY_TYPE_LABELS, PROPERTY_STATUS_LABELS, VERIFICATION_STATUS_LABELS, INTEREST_TYPE_LABELS, formatBudget } from '@/lib/types';
+import type { SellerProperty, InterestType } from '@/lib/types';
 
 export const metadata = { title: 'Property | EarlyEggs' };
 
@@ -28,11 +28,33 @@ export default async function PropertyDetailPage({ params }: { params: Promise<{
 
   const { data: matchData } = await supabase
     .from('matches')
-    .select('id, status, match_type')
+    .select('id, status, match_type, buyer_user_id, buyer_interests(interest_type, full_address, street_name, area_name, postcode)')
     .eq('seller_property_id', id)
     .neq('status', 'expired');
 
-  const matches = matchData ?? [];
+  const matches = (matchData ?? []) as {
+    id: string;
+    status: string;
+    match_type: string;
+    buyer_user_id: string;
+    buyer_interests: { interest_type: InterestType; full_address: string | null; street_name: string | null; area_name: string | null; postcode: string | null } | null;
+  }[];
+
+  // Fetch buyer first names only via service client
+  const buyerIds = [...new Set(matches.map(m => m.buyer_user_id))];
+  const buyerFirstNames: Record<string, string> = {};
+
+  if (buyerIds.length > 0) {
+    const service = getSupabaseServiceClient();
+    const { data: profiles } = await service
+      .from('profiles')
+      .select('id, first_name')
+      .in('id', buyerIds) as { data: { id: string; first_name: string | null }[] | null; error: unknown };
+
+    for (const p of (profiles ?? [])) {
+      buyerFirstNames[p.id] = p.first_name ?? 'Buyer';
+    }
+  }
 
   return (
     <>
@@ -87,22 +109,34 @@ export default async function PropertyDetailPage({ params }: { params: Promise<{
         </div>
       </div>
 
-      {/* Matches */}
+      {/* Matched buyers */}
       {matches.length > 0 && (
         <div className="card" style={{ marginBottom: 'var(--space-5)' }}>
-          <div className="form-section-title">Matched buyers ({matches.length})</div>
+          <div className="form-section-title">Interested buyers ({matches.length})</div>
           <p style={{ fontSize: 'var(--text-sm)', color: 'var(--slate)', marginBottom: 'var(--space-4)' }}>
-            These buyers have registered interest that overlaps with your property.
+            These buyers have registered interest in your property or area. You can message them privately below.
           </p>
-          {matches.map((m: { id: string; status: string; match_type: string }) => (
-            <div key={m.id} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: 'var(--space-3) 0', borderTop: '1px solid var(--line)' }}>
-              <div style={{ fontSize: 'var(--text-sm)' }}>
-                <span className="badge badge-forest" style={{ marginRight: 'var(--space-2)' }}>{m.match_type.replace(/_/g, ' ')}</span>
-                <span style={{ color: 'var(--slate)' }}>{m.status}</span>
-              </div>
-              <Link href={`/account/messages/${m.id}`} className="btn btn-primary btn-sm">Open conversation</Link>
-            </div>
-          ))}
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            {matches.map(m => {
+              const firstName = buyerFirstNames[m.buyer_user_id] ?? 'Buyer';
+              const interest = m.buyer_interests;
+              const interestLabel = interest ? INTEREST_TYPE_LABELS[interest.interest_type] : 'Property';
+              const location = interest?.full_address ?? interest?.street_name ?? interest?.area_name ?? interest?.postcode ?? '';
+              const description = location ? `${interestLabel} interest — ${location}` : `${interestLabel} interest`;
+
+              return (
+                <div key={m.id} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 'var(--space-4)', padding: 'var(--space-4) 0', borderTop: '1px solid var(--line)' }}>
+                  <div>
+                    <div style={{ fontWeight: 600, fontSize: 'var(--text-sm)', marginBottom: 2 }}>{firstName}</div>
+                    <div style={{ fontSize: 'var(--text-xs)', color: 'var(--slate)' }}>{description}</div>
+                  </div>
+                  <Link href={`/account/messages/${m.id}`} className="btn btn-primary btn-sm">
+                    Message {firstName}
+                  </Link>
+                </div>
+              );
+            })}
+          </div>
         </div>
       )}
 
