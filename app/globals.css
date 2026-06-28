@@ -1717,5 +1717,4 @@ ul, ol { list-style: none; }
   .mobile-nav-toggle { display: flex; }
   .header-actions { display: none; }
   .site-nav { display: none; }
-  .mobile-nav-backdrop { display: block; }
 }
