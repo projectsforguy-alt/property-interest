@@ -1520,9 +1520,6 @@ ul, ol { list-style: none; }
   flex-shrink: 0;
   margin-left: auto;
 }
-  cursor: pointer;
-  flex-shrink: 0;
-}
 
 .mobile-nav-icon {
   display: flex;
