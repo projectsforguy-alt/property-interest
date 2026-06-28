@@ -32,7 +32,7 @@ export default async function PropertyDetailPage({ params }: { params: Promise<{
     .eq('seller_property_id', id)
     .neq('status', 'expired');
 
-  const matches = (matchData ?? []) as {
+  const matches = (matchData ?? []) as unknown as {
     id: string;
     status: string;
     match_type: string;
