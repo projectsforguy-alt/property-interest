@@ -1518,6 +1518,10 @@ ul, ol { list-style: none; }
   border: none;
   cursor: pointer;
   flex-shrink: 0;
+  margin-left: auto;
+}
+  cursor: pointer;
+  flex-shrink: 0;
 }
 
 .mobile-nav-icon {
@@ -1714,5 +1718,4 @@ ul, ol { list-style: none; }
   .mobile-nav-toggle { display: flex; }
   .header-actions { display: none; }
   .site-nav { display: none; }
-  .mobile-nav-backdrop { display: block; }
 }
