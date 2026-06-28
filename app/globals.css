@@ -121,8 +121,7 @@ ul, ol { list-style: none; }
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(25, 54, 48, 0.96);
-  backdrop-filter: blur(8px);
+  background: rgba(25, 54, 48, 1);
   border-bottom: 1px solid rgba(255,255,255,0.07);
 }
 
@@ -1519,7 +1518,6 @@ ul, ol { list-style: none; }
   border: none;
   cursor: pointer;
   flex-shrink: 0;
-  margin-left: auto;
 }
 
 .mobile-nav-icon {
@@ -1569,13 +1567,12 @@ ul, ol { list-style: none; }
   transition: transform 250ms ease, visibility 250ms ease;
   overflow-y: auto;
   padding: var(--space-16) var(--space-6) var(--space-8);
-  display: none;
+  display: flex;
   flex-direction: column;
   gap: var(--space-6);
 }
 
 .mobile-nav-drawer--open {
-  display: flex;
   transform: translateX(0);
   visibility: visible;
 }
@@ -1717,4 +1714,5 @@ ul, ol { list-style: none; }
   .mobile-nav-toggle { display: flex; }
   .header-actions { display: none; }
   .site-nav { display: none; }
+  .mobile-nav-backdrop { display: block; }
 }
