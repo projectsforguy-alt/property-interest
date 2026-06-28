@@ -924,9 +924,6 @@ ul, ol { list-style: none; }
   display: grid;
   grid-template-columns: 240px 1fr;
   min-height: calc(100vh - 60px);
-  max-width: 1160px;
-  margin: 0 auto;
-  width: 100%;
 }
 
 .account-sidebar {
@@ -1522,6 +1519,7 @@ ul, ol { list-style: none; }
   border: none;
   cursor: pointer;
   flex-shrink: 0;
+  margin-left: auto;
 }
 
 .mobile-nav-icon {
@@ -1571,12 +1569,13 @@ ul, ol { list-style: none; }
   transition: transform 250ms ease, visibility 250ms ease;
   overflow-y: auto;
   padding: var(--space-16) var(--space-6) var(--space-8);
-  display: flex;
+  display: none;
   flex-direction: column;
   gap: var(--space-6);
 }
 
 .mobile-nav-drawer--open {
+  display: flex;
   transform: translateX(0);
   visibility: visible;
 }
